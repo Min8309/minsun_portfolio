@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박민선 | Human, Code & Clarity - UI/UX & Web Designer</title>
+  <meta name="description" content="데이터와 AI의 복잡성을 명료한 인터페이스로 번역하는 웹 디자이너 박민선의 포트폴리오입니다." />
+
+  <!-- Pretendard Font & Google Fonts (JetBrains Mono) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       Design System & Variables [추천 2안: Human, Code & Clarity]
+       Ground: #F8FAFC (60%) | Accent: #0F172A (30%) | Pop: #2563EB & #10B981 (10%)
+       ========================================================================== */
+    :root {
+      --bg-ground: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --text-sub: #334155;
+      --border-color: #E2E8F0;
+      --border-dark: #0F172A;
+      --pop-blue: #2563EB;
+      --pop-blue-hover: #1D4ED8;
+      --pop-emerald: #10B981;
+      --mono-font: 'JetBrains Mono', monospace;
+      --body-font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body-font);
+      background-color: var(--bg-ground);
+      color: var(--text-main);
+      line-height: 1.6;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container & Layout */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(248, 250, 252, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: var(--mono-font);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-badge {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--pop-blue);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* Hero Section (Editorial Style) */
+    .hero {
+      padding: 90px 0 70px 0;
+      border-bottom: 2px solid var(--border-dark);
+    }
+
+    .hero-meta {
+      font-family: var(--mono-font);
+      font-size: 0.85rem;
+      color: var(--pop-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-meta span.tag {
+      background: #EFF6FF;
+      color: var(--pop-blue);
+      padding: 4px 10px;
+      border: 1px solid #BFDBFE;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.28;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      margin-bottom: 26px;
+    }
+
+    .hero-title .highlight {
+      color: var(--pop-blue);
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 840px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero-footer-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding-top: 32px;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .stat-item {
+      font-family: var(--mono-font);
+    }
+
+    .stat-num {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .stat-num span {
+      font-size: 0.95rem;
+      color: var(--pop-emerald);
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section Common */
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-header {
+      margin-bottom: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-family: var(--mono-font);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Project Grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    @media (max-width: 880px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card Featured (Ateliera가 메인 상단 전체 너비로 올 수 있도록) */
+    .project-card-featured {
+      grid-column: 1 / -1;
+      border: 2px solid var(--border-dark);
+      background: #FFFFFF;
+    }
+
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-dark);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .project-card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FAFAFC;
+    }
+
+    .project-num {
+      font-family: var(--mono-font);
+      font-weight: 700;
+      color: var(--pop-blue);
+      font-size: 0.85rem;
+    }
+
+    .project-category {
+      font-family: var(--mono-font);
+      font-size: 0.75rem;
+      background: var(--bg-ground);
+      padding: 3px 8px;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .project-card-body {
+      padding: 28px 24px;
+      flex: 1;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .project-summary {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .project-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      background: #F1F5F9;
+      padding: 14px 18px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-family: var(--mono-font);
+      font-size: 0.78rem;
+    }
+
+    .metric-key {
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .metric-val {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .tech-pill {
+      font-family: var(--mono-font);
+      font-size: 0.73rem;
+      background: #F8FAFC;
+      border: 1px solid var(--border-color);
+      padding: 3px 8px;
+      color: var(--text-sub);
+    }
+
+    .project-card-footer {
+      padding: 18px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-surface);
+    }
+
+    /* Buttons */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--text-main);
+      color: #FFFFFF;
+      border: 1px solid var(--text-main);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--pop-blue);
+      border-color: var(--pop-blue);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--border-dark);
+      background: #F1F5F9;
+    }
+
+    /* About Section */
+    .about-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 44px;
+    }
+
+    @media (max-width: 800px) {
+      .about-box {
+        grid-template-columns: 1fr;
+        padding: 28px;
+      }
+    }
+
+    .about-story h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .about-story p {
+      color: var(--text-sub);
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .about-skills {
+      border-left: 1px solid var(--border-color);
+      padding-left: 44px;
+    }
+
+    @media (max-width: 800px) {
+      .about-skills {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border-color);
+        padding-top: 28px;
+      }
+    }
+
+    .skill-block {
+      margin-bottom: 22px;
+    }
+
+    .skill-title {
+      font-family: var(--mono-font);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--pop-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .skill-items {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 50px 0;
+      background: #FFFFFF;
+      font-family: var(--mono-font);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-dark);
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: 1px solid var(--border-color);
+      font-family: var(--mono-font);
+      font-size: 1.1rem;
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      background: var(--text-main);
+      color: #FFFFFF;
+    }
+
+    .modal-content h3 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+    }
+
+    .modal-content .modal-meta {
+      font-family: var(--mono-font);
+      color: var(--pop-blue);
+      font-size: 0.82rem;
+      margin-bottom: 20px;
+    }
+
+    .modal-content p {
+      font-size: 0.96rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-badge"></span>
+        MINSUN.PARK // PORTFOLIO
+      </a>
+      <ul class="nav-links">
+        <li><a href="#projects">01. Projects</a></li>
+        <li><a href="#about">02. Philosophy</a></li>
+        <li><a href="#contact">03. Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-meta">
+          <span class="tag">PORTFOLIO</span>
+          <span>HUMAN, CODE & CLARITY</span>
+        </div>
+        <h1 class="hero-title">
+          복잡한 데이터와 코드를<br />
+          <span class="highlight">명쾌한 인터페이스</span>로 번역합니다.
+        </h1>
+        <p class="hero-lead">
+          AI의 차가운 극효율과 인간 고유의 감성적 서사 사이에서 가장 균형 잡힌 인터페이스를 설계합니다.<br />
+          화면 조판을 넘어 3D 인터랙션 공간 연출, Zero-Dependency 프론트엔드 모듈, 데이터 파이프라인까지 직접 구현하는 UI/UX 디자이너 박민선입니다.
+        </p>
+
+        <div class="hero-footer-stats">
+          <div class="stat-item">
+            <div class="stat-num">05 <span>Projects</span></div>
+            <div class="stat-label">3D Canvas, AI & Data Products</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">WebGL <span>& 3D UI</span></div>
+            <div class="stat-label">가상 공간 탐색 및 브러시 엔진</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Zero <span>Dependency</span></div>
+            <div class="stat-label">Vanilla JS & Clean Architecture</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Selected Projects</h2>
+            <p class="section-desc">// 3D 가상 아틀리에, 인터랙티브 엔진, 머신러닝 대시보드</p>
+          </div>
+        </div>
+
+        <div class="project-grid">
+
+          <!-- NEW Project 01: Ateliera (Featured Hero Card) -->
+          <article class="project-card project-card-featured">
+            <div>
+              <div class="project-card-header">
+                <span class="project-num">FEATURED PROJECT 01</span>
+                <span class="project-category">3D WEB CANVAS & VIRTUAL STUDIO</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title" style="font-size: 1.6rem;">Ateliera (아틀리에라 : 한강변의 3D 화실)</h3>
+                <p class="project-summary">
+                  서울 한강변의 원목 화실을 3D 인터랙티브 공간으로 구현하고, 브라우저 드로잉 캔버스와 가상 미술용품 쇼룸을 연결한 웹 3D 아틀리에 플랫폼입니다. 수채화의 번짐, 두터운 유화 붓결, 실제 3D 튜브 메쉬 입체 붓질까지 다채로운 질감을 지원합니다.
+                </p>
+                <div class="project-metrics" style="grid-template-columns: repeat(3, 1fr);">
+                  <div>
+                    <div class="metric-key">3D ENVIRONMENT</div>
+                    <div class="metric-val">한강 뷰 & 낮/밤 라이팅 전환</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">CANVAS ENGINE</div>
+                    <div class="metric-val">질감 브러시 6종 & 3D 메쉬 붓질</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">VIRTUAL COMMERCE</div>
+                    <div class="metric-val">화실 내 진열장 탐색 & 장바구니</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">WebGL / 3D Canvas</span>
+                  <span class="tech-pill">Virtual Room Tour</span>
+                  <span class="tech-pill">Digital Texture Rendering</span>
+                  <span class="tech-pill">Responsive UI</span>
+                  <span class="tech-pill">State Cart</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('ateliera')">설계 상세 보기</button>
+              <a href="#" class="btn-action btn-primary">화실 입장하기 (Demo) ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 02: MY AI LIFE -->
+          <article class="project-card">
+            <div>
+              <div class="project-card-header">
+                <span class="project-num">PROJECT 02</span>
+                <span class="project-category">INTERACTIVE ENGINE</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">MY AI LIFE (나의 AI 인생 시뮬레이터)</h3>
+                <p class="project-summary">
+                  AI의 극효율 권고와 인간의 주관적 가치관이 충돌하는 생애주기 분기점을 설계했습니다. 기회비용을 6대 실시간 라이프 HUD와 나비효과 큐로 가시화하며 OSMU 스토리 대본을 자동 렌더링합니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">CORE MECHANIC</div>
+                    <div class="metric-val">6대 라이프 HUD & 나비효과</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">ARCHITECTURE</div>
+                    <div class="metric-val">Zero-Dependency ES6+</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">Vanilla JS</span>
+                  <span class="tech-pill">CSS Grid</span>
+                  <span class="tech-pill">Glassmorphism</span>
+                  <span class="tech-pill">OSMU Engine</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('my-ai-life')">설계 상세 보기</button>
+              <a href="#" class="btn-action btn-primary">라이브 데모 ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 03: 서울 상권 AI 추천 -->
+          <article class="project-card">
+            <div>
+              <div class="project-card-header">
+                <span class="project-num">PROJECT 03</span>
+                <span class="project-category">DATA PRODUCT</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">서울, 어디서 놀고 어디서 벌까?</h3>
+                <p class="project-summary">
+                  서울시 8.4만 건의 상권 데이터를 정제하여, 창업자(수익성/폐업 안정성)와 소비자(2030/주말 야간 핫플)의 시선에 맞춰 완전히 다른 UI 대시보드와 Random Forest 월매출 예측치를 제공합니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">DATA MART</div>
+                    <div class="metric-val">84,675행 데이터 통합</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">ML MODEL</div>
+                    <div class="metric-val">Random Forest (R² 0.5227)</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">Streamlit</span>
+                  <span class="tech-pill">Pandas</span>
+                  <span class="tech-pill">Machine Learning</span>
+                  <span class="tech-pill">Public Data</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">설계 상세 보기</button>
+              <a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">서비스 바로가기 ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 04: CSI LAB -->
+          <article class="project-card">
+            <div>
+              <div class="project-card-header">
+                <span class="project-num">PROJECT 04</span>
+                <span class="project-category">GAMIFIED CRIME DATA</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">CSI LAB : 범죄 데이터 수사 솔루션</h3>
+                <p class="project-summary">
+                  거시적 범죄 통계를 가상 사건 해결 게임으로 재해석했습니다. YOLO11 시각 객체 탐지와 목격자 진술을 비교해 사건을 해결하면 실제 30개년 지역 범죄 데이터와 예방 가이드가 잠금 해제됩니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">COMPUTER VISION</div>
+                    <div class="metric-val">YOLO11n 객체 탐지</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">PIPELINE</div>
+                    <div class="metric-val">1990-2024 시계열 데이터</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">YOLO11</span>
+                  <span class="tech-pill">Streamlit</span>
+                  <span class="tech-pill">Session State</span>
+                  <span class="tech-pill">Gamification</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('csi-lab')">설계 상세 보기</button>
+              <a href="#" class="btn-action btn-primary">라이브 데모 ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 05: EchoChamber -->
+          <article class="project-card">
+            <div>
+              <div class="project-card-header">
+                <span class="project-num">PROJECT 05</span>
+                <span class="project-category">AI AGENT NETWORK</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">EchoChamber : Rumor Lab</h3>
+                <p class="project-summary">
+                  자율 생성형 AI 에이전트 간의 대화 속에서 가십이 전파되고 왜곡되는 과정을 관찰합니다. FastAPI 백엔드 라우터와 연동하여 정보의 신뢰도 하락과 평판 손실을 관계망 그래프로 시각화했습니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">BACKEND ARCH</div>
+                    <div class="metric-val">FastAPI RESTful Routers</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">VISUALIZATION</div>
+                    <div class="metric-val">NetworkX & Plotly 그래프</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">FastAPI</span>
+                  <span class="tech-pill">Generative Agents</span>
+                  <span class="tech-pill">NetworkX</span>
+                  <span class="tech-pill">PII Masking</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('echo-chamber')">설계 상세 보기</button>
+              <a href="#" class="btn-action btn-primary">API & 대시보드 ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Design Philosophy & Competence</h2>
+            <p class="section-desc">// 삶의 경험이 빚어낸 깊이 있는 질문, 기술을 관통하는 구현력</p>
+          </div>
+        </div>
+
+        <div class="about-box">
+          <div class="about-story">
+            <h3>"인생의 전환점에서, 디자인의 본질을 명확히 정의합니다."</h3>
+            <p>
+              40대를 지나며 마주한 삶의 수많은 기로들은 저에게 <strong>'사람이 어떤 맥락에서 결정을 망설이고, 무엇에 감동하는가'</strong>를 깊이 있게 관찰하는 눈을 주었습니다.
+            </p>
+            <p>
+              지시받은 화면을 보기 좋게 그리는 것에 머무르지 않습니다. Ateliera의 3D 공간 연출부터 Pandas의 데이터 정제, 머신러닝의 예측 원리, 브라우저가 화면을 그리는 순수 자바스크립트 아키텍처까지 기술의 내부 원리를 집요하게 파고듭니다.
+            </p>
+            <p>
+              기획자의 사업적 의도를 꿰뚫고, 개발자의 언어(API, 모듈화, 상태관리)로 소통하며, 사용자가 마주할 복잡한 기술을 가장 정갈하고 직관적인 인터페이스로 번역하는 든든한 파트너가 되겠습니다.
+            </p>
+          </div>
+
+          <div class="about-skills">
+            <div class="skill-block">
+              <div class="skill-title">01. 3D & Spatial UI/UX</div>
+              <div class="skill-items">
+                WebGL/3D 가상 공간 연출, 캔버스 드로잉 브러시 엔진, 낮/밤 환경 라이팅 전환, 가상 쇼룸 및 인터랙티브 인터페이스
+              </div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-title">02. Frontend & Interaction</div>
+              <div class="skill-items">
+                Vanilla JS (ES6+ Modules), CSS Grid & Flexbox, 반응형 웹 퍼블리싱, Zero-Dependency 경량 아키텍처, 상태 기반 동적 렌더링
+              </div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-title">03. Tech & Data Literacy</div>
+              <div class="skill-items">
+                FastAPI 연동 및 RESTful API 구조 이해, Streamlit 프로토타이핑, Pandas 데이터 전처리 파이프라인, 머신러닝/YOLO 비전 AI 모델 협업
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="padding-top: 0;">
+      <div class="container">
+        <div style="background: var(--text-main); color: #FFFFFF; padding: 50px 44px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+          <div>
+            <h3 style="font-size: 1.7rem; font-weight: 700; margin-bottom: 8px;">함께 새로운 가치를 만들 준비가 되셨나요?</h3>
+            <p style="color: #94A3B8; font-size: 0.98rem;">비즈니스와 사용자를 연결하는 가장 단단하고 명쾌한 인터페이스를 제안합니다.</p>
+          </div>
+          <div>
+            <a href="mailto:your_email@gmail.com" class="btn-action" style="background: #FFFFFF; color: var(--text-main); padding: 13px 26px; font-weight: 700; text-decoration: none;">이메일로 문의하기 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Park Min Sun. All rights reserved. Designed with Human, Code & Clarity.</div>
+      <div>MBC ACADEMY AI & WEB DESIGN CAPSTONE</div>
+    </div>
+  </footer>
+
+  <!-- Modal for Project Details -->
+  <div id="detailModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeDetailModal()">ESC ×</button>
+      <div id="modalBody" class="modal-content">
+        <!-- JS Injected Content -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projectDetails = {
+      'ateliera': {
+        title: 'Ateliera (아틀리에라 : 한강변의 3D 화실)',
+        meta: 'WebGL / 3D Canvas • Spatial UI/UX • Digital Painting Engine • Virtual Showroom',
+        content: `
+          <p><strong>기획 의도:</strong> 디지털 환경에서도 실제 아틀리에에 머무는 듯한 아날로그적 온기와 몰입감을 전달하고자 기획한 3D 가상 작업실 플랫폼입니다. 서울 한강의 수려한 전망과 햇살이 비치는 화실을 배경으로 창작(그리기)과 탐색(공간 둘러보기), 선택(미술용품 담기)을 하나의 유기적인 인터랙션으로 통합했습니다.</p>
+          <p><strong>캔버스 및 브러시 엔진:</strong> 브라우저 위에서 수채화의 맑은 번짐, 물감의 도톰한 두께감, 연필과 목탄의 거친 흑연 입자, 에어브러시 분사는 물론, 튜브 형태의 메쉬로 발광하는 3D 입체 붓질까지 구현했습니다. 캔버스 비율 유지, 필압/기울기 반응, 낮/밤 모드에 따른 한강물 반사와 조명 변화를 지원합니다.</p>
+          <p><strong>가상 쇼룸 인터페이스:</strong> 화실 왼쪽 문을 열고 들어가 실제 진열장 속 캔버스, 종이, 붓, 물감 등의 상품 정보를 확인하고 장바구니에 담는 쇼룸 동선을 설계하여 디지털 페인팅 툴과 커머스 경험을 결합했습니다.</p>
+        `
+      },
+      'my-ai-life': {
+        title: 'MY AI LIFE (나의 AI 인생 시뮬레이터)',
+        meta: 'Vanilla JS (ES6) • Zero-Dependency • Responsive Web • OSMU Engine',
+        content: `
+          <p><strong>기획 의도:</strong> AI가 계산한 극효율의 수치가 과연 인간에게도 행복한 삶인가라는 문제의식에서 출발했습니다. 10대 진로 갈림길부터 50대 노후 매듭까지 연령대별 딜레마를 마주하도록 설계했습니다.</p>
+          <p><strong>인터랙션 디자인:</strong> 직관적 선택 후 실제 공공 통계 '팩트 카드'가 팝업되며 기회비용을 숙고하게 만드는 4단계 루프를 적용했습니다. 6대 라이프 지표와 나비효과 큐를 통해 선택의 무게를 시각화합니다.</p>
+          <p><strong>코드 아키텍처:</strong> 외부 라이브러리 없이 브라우저에서 즉시 실행되는 순수 ES6 모듈 구조(Engine, UI, Data 분리)로 경량성과 유지보수성을 극대화했습니다.</p>
+        `
+      },
+      'seoul-data': {
+        title: '서울, 어디서 놀고 어디서 벌까? (상권 데이터 분석)',
+        meta: 'Streamlit • Pandas • Random Forest • Public Data Mart',
+        content: `
+          <p><strong>기획 의도:</strong> 방대한 서울시 상권 데이터를 일반 사용자 목적에 맞게 재해석했습니다. 창업자(수익/안정성)와 소비자(2030/주말·야간 핫플)의 시선에 맞춰 듀얼 모드 UI를 제공합니다.</p>
+          <p><strong>데이터 및 UI 설계:</strong> 8.4만 건의 데이터를 정제·병합하고 Random Forest 모델(R² 0.5227)로 점포당 월매출을 추정했습니다. AI 수치를 '확정된 정답'이 아닌 '참고 예측치'로 인지하도록 정보 경계를 투명하게 명시했습니다.</p>
+        `
+      },
+      'csi-lab': {
+        title: 'CSI LAB : 범죄 데이터 수사 솔루션',
+        meta: 'Ultralytics YOLO11n • Streamlit • 30Y Time Machine Data',
+        content: `
+          <p><strong>기획 의도:</strong> 난해한 공공 범죄 통계를 일반 시민이 능동적으로 체감할 수 있도록 '수사관이 되어 사건을 해결하는' 게이미피케이션 구조를 도입했습니다.</p>
+          <p><strong>인터페이스 구현:</strong> 가상 CCTV 화면 속에서 YOLO11 딥러닝 객체 탐지로 시각 단서를 수집하고 목격자 진술과 대조하는 증거 분석실(Evidence LAB) 인터페이스를 구축했습니다. 사건 해결 후에는 실제 30개년 지역 범죄 데이터와 예방 가이드로 연결됩니다.</p>
+        `
+      },
+      'echo-chamber': {
+        title: 'EchoChamber : Rumor Lab',
+        meta: 'FastAPI • Generative Agents • Plotly/NetworkX • PII Masking',
+        content: `
+          <p><strong>기획 의도:</strong> 온라인 대화 속에서 가십이 전파되며 왜곡되는 과정을 관찰하고 분석하는 AI 에이전트 실험 플랫폼입니다.</p>
+          <p><strong>아키텍처 및 디자인:</strong> FastAPI 백엔드의 Memory, Conversation, Network 라우터와 연동하여, 에이전트 간 소문 전달 궤적과 왜곡률, 평판 하락 수치를 대시보드 그래프로 시각화했습니다. 댓글 분석을 위한 개인정보 비식별화(PII Masking) 파이프라인 UI도 함께 설계되었습니다.</p>
+        `
+      }
+    };
+
+    function openDetailModal(id) {
+      const data = projectDetails[id];
+      if (!data) return;
+
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <div class="modal-meta">${data.meta}</div>
+        <h3>${data.title}</h3>
+        <hr style="border:0; border-top:1px solid #E2E8F0; margin:16px 0 20px 0;">
+        ${data.content}
+      `;
+
+      document.getElementById('detailModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detailModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'detailModal') {
+        closeDetailModal();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDetailModal();
+    });
+  </script>
+</body>
+</html>
