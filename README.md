@@ -21,6 +21,7 @@
 | 04 | CSI LAB | 객체 탐지와 범죄 데이터를 결합한 수사 게임 경험 | [데모](https://csilab-kr.streamlit.app/) |
 | 05 | EchoChamber : Rumor Lab | AI 에이전트 간 소문 전파와 왜곡 과정 시각화 | [데모](https://min8309.github.io/echoChamber/) |
 | 06 | 시니어 뇌건강 헬퍼 | 두뇌 운동·대화·기억 기록·기기 사진 촬영을 제공하는 시니어 생활 도우미 | [서비스](https://senior-helper-seven.vercel.app/) |
+| 07 | 촬라의 상상 — AI 영상 제작 | 일상의 사진을 AI 스토리와 영상으로 확장 | [YouTube](https://www.youtube.com/@MinsunPark-l2r) |
 
 ### 시니어 뇌건강 헬퍼
 
@@ -33,6 +34,14 @@
 - **기술 구성:** React 19, TypeScript, Vite 8, Tailwind CSS 4, 브라우저 음성·카메라 기능.
 
 Supabase 클라우드 저장과 n8n·AI 사진 분석은 운영 연결 및 설정이 필요한 항목입니다. 실제 기기 권한, AI 안내 정확성 및 시니어 사용성 검증도 추가 확인 대상입니다.
+
+### 촬라의 상상 — AI 영상 제작
+
+직접 촬영한 일상의 사진에서 영감을 찾아, AI로 스토리를 만들고 움직이는 영상으로 확장하는 작업입니다. Gemini, Flow, CapCut, Adobe Premiere Pro 2025, Gems, n8n을 활용합니다.
+
+- [오래된 집의 작은 정령들](https://www.youtube.com/watch?v=dq6IprFL5II): 오래된 대문 뒤의 정령들과 위기를 상상한 이야기.
+- [탈주각](https://www.youtube.com/watch?v=cX2tMJmW-zk): 과거의 영광을 그리워하는 인형의 현실 도피 이야기.
+- [퇴근 후 소주 한 병 마셨더니 곰이 되었습니다](https://www.youtube.com/watch?v=zIIUAnMNh0k): 버려진 인형에서 출발한 직장인 공감 콘텐츠.
 
 ## AI 및 제작 도구
 
