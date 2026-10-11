@@ -35,6 +35,11 @@
 
 Supabase 클라우드 저장과 n8n·AI 사진 분석은 운영 연결 및 설정이 필요한 항목입니다. 실제 기기 권한, AI 안내 정확성 및 시니어 사용성 검증도 추가 확인 대상입니다.
 
+## 연락처
+
+- Gmail: [minsunpark3421@gmail.com](mailto:minsunpark3421@gmail.com)
+- 네이버 메일: [flushing3421@naver.com](mailto:flushing3421@naver.com)
+
 ## 로컬 실행
 
 포트폴리오 자체는 `index.html`에 HTML·CSS·JavaScript를 담은 정적 페이지이며, 별도 패키지 설치나 빌드가 필요하지 않습니다. 위 기술 구성은 소개된 개별 프로젝트의 기술입니다.
