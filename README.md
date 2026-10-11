@@ -19,7 +19,7 @@
 | 02 | MY AI LIFE | 선택과 공공 통계로 살펴보는 AI 인생 시뮬레이터 | [데모](https://min8309.github.io/my_ai_life/) |
 | 03 | 서울, 어디서 놀고 어디서 벌까? | 서울 상권 데이터 분석과 창업자·소비자 맞춤 정보 | [서비스](https://dataseoul.streamlit.app/) |
 | 04 | CSI LAB | 객체 탐지와 범죄 데이터를 결합한 수사 게임 경험 | [데모](https://csilab-kr.streamlit.app/) |
-| 05 | EchoChamber : Rumor Lab | AI 에이전트 간 소문 전파와 왜곡 과정 시각화 | 링크 준비 중 |
+| 05 | EchoChamber : Rumor Lab | AI 에이전트 간 소문 전파와 왜곡 과정 시각화 | [데모](https://min8309.github.io/echoChamber/) |
 | 06 | 시니어 뇌건강 헬퍼 | 두뇌 운동·대화·기억 기록·기기 사진 촬영을 제공하는 시니어 생활 도우미 | [서비스](https://senior-helper-seven.vercel.app/) |
 
 ### 시니어 뇌건강 헬퍼
