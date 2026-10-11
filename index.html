@@ -127,6 +127,22 @@
     @media(max-width:1000px) { .container { padding:0 32px; } .hero-title { font-size:80px; } .hero-art { max-width:420px; } .floating-note { padding:10px; font-size:10px; } .project-card-featured > div:first-child { grid-template-columns:1fr; } .project-card-featured .project-cover { grid-row:auto; aspect-ratio:2; min-height:0; border-right:0; border-bottom:1px solid var(--border-color); } .stat-item { display:block; } .stat-label { margin-top:8px; max-width:none; } }
     @media(max-width:700px) { .container { padding:0 22px; } .nav-inner { min-height:70px; gap:12px; } .logo { font-size:12px; gap:8px; } .nav-links { gap:12px; } .nav-links a { font-size:11px; } .nav-links a::after { display:none; } .hero { padding-top:48px; } .hero-layout { grid-template-columns:1fr; gap:0; } .hero-title { font-size:clamp(64px,15vw,88px); } .hero-meta { font-size:8px; gap:10px; margin-bottom:24px; } .hero-lead { font-size:14px; } .hero-art { max-width:380px; margin:16px auto 0; } .hero-footer-stats { margin-top:16px; gap:12px; padding:24px 0; } .stat-num { font-size:20px; } .stat-num span { font-size:8px; display:block; } .stat-label { font-size:9px; line-height:1.7; } .section { padding:64px 0; } .section-header { margin-bottom:28px; } .section-index { display:none; } .project-grid { grid-template-columns:1fr; gap:24px; } .project-card-featured .project-cover { aspect-ratio:1.6; } .project-card-header { padding:20px 20px 0; } .project-card-body { padding:18px 20px 0; } .project-title { font-size:21px; } .project-metrics { grid-template-columns:repeat(2,minmax(0,1fr)) !important; } .project-card-footer { padding:18px 20px 22px; } .about-box { grid-template-columns:1fr; gap:32px; } .about-skills { border-left:0; padding-left:0; } .contact-box { padding:28px; } .modal-backdrop { padding:12px; } .modal-box { padding:66px 24px 24px; } .modal-content h3 { font-size:23px; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } .motion-ready .reveal { opacity:1; transform:none; } }
+    @media print {
+      :root { --bg-ground:#FFFFFF; --bg-surface:#F1F5F9; --text-main:#0B0F19; --text-sub:#334155; --text-muted:#475569; --primary:#0369A1; --pop-amber:#92400E; --border-color:#CBD5E1; }
+      body { background:#FFFFFF; color:#0B0F19; }
+      header { position:static; background:#FFFFFF; }
+      .hero-art,.hero::before,.scroll-progress,.skip-link,.modal-backdrop { display:none !important; }
+      .hero-layout { display:block; }
+      .hero-title .outline { color:var(--text-main); -webkit-text-stroke:0; }
+      .hero { padding-top:24px; }
+      .section { padding:32px 0; }
+      .project-grid { display:block; }
+      .project-card { margin-bottom:24px; break-inside:avoid; box-shadow:none; }
+      .project-card-featured > div:first-child { display:block; }
+      .project-card-featured .project-cover { min-height:0; aspect-ratio:1.9; }
+      .reveal,.motion-ready .reveal { opacity:1 !important; transform:none !important; }
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+    }
   </style>
 </head>
 <body>
@@ -337,7 +353,7 @@
               <div class="project-card-body">
                 <h3 class="project-title">CSI LAB : 범죄 데이터 수사 솔루션</h3>
                 <p class="project-summary">
-                  거시적 범죄 통계를 가상 사건 해결 게임으로 재해석했습니다. YOLO11 시각 객체 탐지와 목격자 진술을 비교해 사건을 해결하면 실제 30개년 지역 범죄 데이터와 예방 가이드가 잠금 해제됩니다.
+                  거시적 범죄 통계를 가상 사건 해결 게임으로 재해석했습니다. YOLO11 시각 객체 탐지와 목격자 진술을 비교해 사건을 해결하면 1990–2024년 지역 범죄 데이터와 예방 가이드가 잠금 해제됩니다.
                 </p>
                 <div class="project-metrics">
                   <div>
@@ -346,7 +362,7 @@
                   </div>
                   <div>
                     <div class="metric-key">PIPELINE</div>
-                    <div class="metric-val">1990-2024 시계열 데이터</div>
+                    <div class="metric-val">1990–2024 시계열 데이터</div>
                   </div>
                 </div>
                 <div class="project-tech">
@@ -557,10 +573,10 @@
       },
       'csi-lab': {
         title: 'CSI LAB : 범죄 데이터 수사 솔루션',
-        meta: 'Ultralytics YOLO11n • Streamlit • 30Y Time Machine Data',
+        meta: 'Ultralytics YOLO11n • Streamlit • Historical Crime Data',
         content: `
           <p><strong>기획 의도:</strong> 난해한 공공 범죄 통계를 일반 시민이 능동적으로 체감할 수 있도록 '수사관이 되어 사건을 해결하는' 게이미피케이션 구조를 도입했습니다.</p>
-          <p><strong>인터페이스 구현:</strong> 가상 CCTV 화면 속에서 YOLO11 딥러닝 객체 탐지로 시각 단서를 수집하고 목격자 진술과 대조하는 증거 분석실(Evidence LAB) 인터페이스를 구축했습니다. 사건 해결 후에는 실제 30개년 지역 범죄 데이터와 예방 가이드로 연결됩니다.</p>
+          <p><strong>인터페이스 구현:</strong> 가상 CCTV 화면 속에서 YOLO11 딥러닝 객체 탐지로 시각 단서를 수집하고 목격자 진술과 대조하는 증거 분석실(Evidence LAB) 인터페이스를 구축했습니다. 사건 해결 후에는 1990–2024년 지역 범죄 데이터와 예방 가이드로 연결됩니다.</p>
         `
       },
       'senior-helper': {
@@ -644,24 +660,19 @@
       document.querySelectorAll('.reveal').forEach(el => reveals.observe(el));
       document.documentElement.classList.add('motion-ready');
     }
-    if ('IntersectionObserver' in window) {
-      const sectionObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            document.querySelectorAll('.nav-links a').forEach(link => {
-              if (link.getAttribute('href') === '#' + entry.target.id) link.setAttribute('aria-current','location');
-              else link.removeAttribute('aria-current');
-            });
-          }
-        });
-      }, { rootMargin:'-15% 0px -55% 0px', threshold:0 });
-      document.querySelectorAll('main > section[id]').forEach(el => sectionObserver.observe(el));
-    }
     const progress = document.querySelector('.scroll-progress');
     let scrollQueued = false;
     function updateProgress() {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       progress.style.transform = `scaleX(${total > 0 ? Math.min(1, window.scrollY / total) : 0})`;
+      const sections = Array.from(document.querySelectorAll('main > section[id]'));
+      const marker = window.scrollY + window.innerHeight * 0.35;
+      let active = sections.filter(section => section.offsetTop <= marker).pop();
+      if (total > 0 && window.scrollY >= total - 2) active = sections[sections.length - 1];
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        if (active && link.getAttribute('href') === '#' + active.id) link.setAttribute('aria-current','location');
+        else link.removeAttribute('aria-current');
+      });
       scrollQueued = false;
     }
     window.addEventListener('scroll', () => {
