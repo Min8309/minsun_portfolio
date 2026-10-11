@@ -143,6 +143,16 @@
       .reveal,.motion-ready .reveal { opacity:1 !important; transform:none !important; }
       *,*::before,*::after { animation:none !important; transition:none !important; }
     }
+    .tool-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .tool-card { background:var(--bg-surface); border:1px solid var(--border-color); border-radius:16px; padding:28px; }
+    .tool-category { color:var(--pop-amber); font:10px var(--mono-font); letter-spacing:.1em; margin-bottom:12px; }
+    .tool-card h3 { font-size:21px; font-weight:500; letter-spacing:-.03em; margin-bottom:20px; }
+    .tool-entry + .tool-entry { border-top:1px solid var(--border-color); margin-top:18px; padding-top:18px; }
+    .tool-entry dt { font-size:15px; font-weight:600; color:var(--primary); margin-bottom:6px; }
+    .tool-entry dd { font-size:13px; line-height:1.85; color:var(--text-sub); }
+    .tool-note { margin-top:24px; font-size:13px; line-height:1.85; color:var(--text-muted); max-width:800px; }
+    @media(max-width:700px) { .tool-grid { grid-template-columns:1fr; } .tool-card { padding:24px; } .nav-links { gap:10px; } .nav-links a { font-size:10px; } .logo { font-size:11px; } }
+    @media print { .tool-grid { display:block; } .tool-card { margin-bottom:18px; break-inside:avoid; } }
   </style>
 </head>
 <body>
@@ -159,6 +169,7 @@
       <nav aria-label="주요 메뉴"><ul class="nav-links">
         <li><a href="#projects">Work</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#tools">Tools</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul></nav>
     </div>
@@ -505,6 +516,61 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- AI & Implementation Tools -->
+    <section id="tools" class="section" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <div class="section-kicker">03 / AI & TOOLKIT</div>
+            <h2 id="tools-title" class="section-title">아이디어를 구현하는 도구들.</h2>
+            <p class="section-desc">프로젝트 제작에 활용한 AI와 개발·디자인 도구를 역할별로 정리했습니다.</p>
+          </div>
+        </div>
+        <div class="tool-grid">
+          <article class="tool-card reveal">
+            <div class="tool-category">01 / DEVELOPMENT ENVIRONMENT</div>
+            <h3>개발 환경 & 에이전트 워크스페이스</h3>
+            <dl>
+              <div class="tool-entry"><dt>Visual Studio Code</dt><dd>코드 편집, 프로젝트 파일 관리와 터미널 실행을 위한 개발 환경입니다. 프론트엔드 화면과 백엔드 코드를 작성하고 실행하는 작업 기반으로 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>Google Antigravity</dt><dd>AI 에이전트와 함께 구현 작업을 진행하는 개발 환경입니다. 작업 계획부터 코드 작성·실행·검토로 이어지는 개발 흐름을 지원합니다.</dd></div>
+            </dl>
+          </article>
+          <article class="tool-card reveal">
+            <div class="tool-category">02 / GENERATIVE AI & CODING</div>
+            <h3>기획·문제 해결 & AI 코딩</h3>
+            <dl>
+              <div class="tool-entry"><dt>ChatGPT</dt><dd>아이디어 구체화, 사용자 흐름과 문구 정리, 기술 개념 이해를 돕는 생성형 AI입니다. 기획과 구현 과정의 질문을 정리하고 대안을 탐색하는 데 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>OpenAI Codex</dt><dd>저장소의 코드를 읽고 수정하며 명령 실행과 오류 확인을 지원하는 코딩 에이전트입니다. 기능 구현, 코드 수정과 검증을 돕는 도구로 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>Claude</dt><dd>긴 문맥을 바탕으로 문서·코드와 요구사항을 검토하는 생성형 AI입니다. 구현 방향과 코드 구조를 비교하고 문제 해결의 대안을 검토하는 데 활용했습니다.</dd></div>
+            </dl>
+          </article>
+          <article class="tool-card reveal">
+            <div class="tool-category">03 / VISION AI & MODEL PLATFORM</div>
+            <h3>객체 탐지 & AI 모델 생태계</h3>
+            <dl>
+              <div class="tool-entry"><dt>Ultralytics YOLO</dt><dd>이미지와 영상에서 객체를 탐지하는 컴퓨터 비전 모델입니다. CSI LAB에서 YOLO11n을 활용한 시각 단서 탐지 경험을 구현했습니다.</dd></div>
+              <div class="tool-entry"><dt>Hugging Face</dt><dd>공개 AI 모델, 데이터셋과 데모를 탐색하는 플랫폼입니다. 프로젝트에 적합한 모델과 적용 방법을 조사·비교하는 데 활용했습니다.</dd></div>
+            </dl>
+          </article>
+          <article class="tool-card reveal">
+            <div class="tool-category">04 / BACKEND & API</div>
+            <h3>서비스 연결 & 데이터 흐름</h3>
+            <dl>
+              <div class="tool-entry"><dt>FastAPI</dt><dd>Python 기반 API 프레임워크입니다. EchoChamber의 메모리·대화·관계망 라우터 등 프론트엔드와 데이터 처리 기능을 연결하는 백엔드 구성에 활용했습니다.</dd></div>
+            </dl>
+          </article>
+          <article class="tool-card reveal">
+            <div class="tool-category">05 / UI/UX DESIGN</div>
+            <h3>화면 설계 & 시각 디자인</h3>
+            <dl>
+              <div class="tool-entry"><dt>Figma</dt><dd>화면 구성, 컴포넌트와 인터랙션 흐름을 설계하는 디자인 도구입니다. UI/UX 아이디어를 시각화하고 구현 전에 화면의 일관성과 사용 흐름을 검토하는 데 활용했습니다.</dd></div>
+            </dl>
+          </article>
+        </div>
+        <p class="tool-note reveal">AI 모델과 개발 도구는 역할이 다릅니다. ChatGPT·Claude는 생성형 AI, Codex는 코딩 에이전트, YOLO는 객체 탐지 모델입니다. VS Code·Antigravity는 개발 환경, FastAPI는 백엔드 프레임워크, Figma는 디자인 도구이며, 모든 도구가 각 프로젝트에 동일하게 사용된 것은 아닙니다.</p>
       </div>
     </section>
 

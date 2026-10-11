@@ -34,6 +34,20 @@
 
 Supabase 클라우드 저장과 n8n·AI 사진 분석은 운영 연결 및 설정이 필요한 항목입니다. 실제 기기 권한, AI 안내 정확성 및 시니어 사용성 검증도 추가 확인 대상입니다.
 
+## AI 및 제작 도구
+
+페이지의 **AI & Toolkit** 섹션에서 도구를 역할별로 소개합니다.
+
+| 분류 | 도구 | 활용 역할 |
+| --- | --- | --- |
+| 개발 환경 | Visual Studio Code, Google Antigravity | 코드 편집·실행 및 에이전트 기반 개발 흐름 |
+| 생성형 AI·코딩 에이전트 | ChatGPT, OpenAI Codex, Claude | 기획 정리, 구현 지원, 코드·문서 검토 |
+| 비전 AI·모델 플랫폼 | Ultralytics YOLO, Hugging Face | 객체 탐지 및 모델·데이터셋 탐색 |
+| 백엔드·API | FastAPI | 프론트엔드와 데이터 처리 기능 연결 |
+| UI/UX 디자인 | Figma | 화면·컴포넌트·인터랙션 설계 |
+
+도구별 역할을 구분했으며, 모든 도구가 각 프로젝트에 동일하게 사용된 것은 아닙니다.
+
 ## 연락처
 
 - Gmail: [minsunpark3421@gmail.com](mailto:minsunpark3421@gmail.com)
