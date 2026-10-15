@@ -1,0 +1,45 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="모닝블록 앱의 컨셉, 기획 의도와 핵심 구현 기록"><title>모닝블록 | 프로젝트 기획·구현 메모</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f4ee;color:#252d2b;font-family:"Noto Sans CJK KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.8}a{color:#245c56}main{max-width:1080px;margin:auto;padding:56px 28px}header{padding:52px;background:#245c56;color:white;border-radius:28px}header p{max-width:650px;color:#e0e9e3}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:700}h1{font-size:clamp(38px,6vw,66px);line-height:1.2;margin:18px 0}h2{font-size:26px;line-height:1.5;margin:8px 0 20px}h3{font-size:16px;margin:0 0 8px;color:#245c56}nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}nav a,.download{background:#e6eee1;padding:8px 15px;border-radius:999px;text-decoration:none;font-size:13px}.art{width:100%;display:block;margin-top:28px;border-radius:18px}section{margin:42px 0;scroll-margin-top:24px}.number{color:#876744;font-size:13px;font-weight:bold;letter-spacing:1px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid #e5e8df;border-radius:20px;padding:24px;overflow-wrap:anywhere}.card p{font-size:14px;margin:0}.meta,footer{font-size:12px;color:#626c67}.footer-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px}footer{padding:24px 0;border-top:1px solid #d8ded9}@media(max-width:720px){main{padding:24px 16px}header{padding:30px 24px}.cards{grid-template-columns:1fr}h2{font-size:23px}}@media print{body{background:white}main{padding:0}header{background:#e6eee1;color:#245c56;padding:24px}header p{color:#252d2b}nav,.footer-links{display:none}.art{max-height:180px;object-fit:contain}section{break-inside:avoid;margin:20px 0}.cards{gap:10px}.card{padding:14px}h1{font-size:36px}h2{font-size:20px}.card p{font-size:11px}}</style></head><body><main>
+<header><div class="eyebrow">MORNINGBLOCK · PROJECT NOTES</div><h1>나만의 아침을<br>조립하는 시간</h1><p>모듈형 오디오 모닝 루틴 앱 · 컨셉, 기획 의도, 핵심 구현과 검증 기록</p><p>작성일 2026-10-15 · 구현 기준 3e9e31a</p></header>
+<nav aria-label="문서 목차"><a href="#section-1">컨셉</a><a href="#section-2">기획 의도</a><a href="#section-3">사용자 흐름</a><a href="#section-4">화면·상태 구현</a><a href="#section-5">콘텐츠·오디오 구현</a><a href="#section-6">핵심 파일</a><a href="#section-7">최근 개선·검증</a><a href="#section-8">한계·다음 단계</a></nav>
+<img class="art" src="../assets/morningblock-characters.png" alt="모닝블록의 모드별 캐릭터 이미지">
+<section id="section-1"><div class="number">01 / 컨셉</div><h2>내 아침을 블록처럼 조립하다</h2><div class="cards">
+<article class="card"><h3>한 문장 소개</h3><p>직장인이 원하는 시간과 순서로 모듈을 조합하고, 음성으로 따라가는 모닝 루틴 앱.</p></article>
+<article class="card"><h3>목표 경험</h3><p>예약 모닝콜 → 알림 터치 → 저장한 루틴 실행 → 화면을 오래 보지 않고 듣기 → 완료 기록.</p></article>
+<article class="card"><h3>서비스 톤</h3><p>파스텔 색상과 블로키 캐릭터, 반원 다이얼로 부담 없이 작은 아침 습관을 시작한다.</p></article>
+</div></section>
+<section id="section-2"><div class="number">02 / 기획 의도</div><h2>바쁜 아침에 선택과 화면 조작을 줄이기</h2><div class="cards">
+<article class="card"><h3>문제 가설</h3><p>출근 준비 중 뉴스·학습·운동 앱을 오가면 흐름이 끊기고, 정해진 긴 루틴은 지속하기 어렵다.</p></article>
+<article class="card"><h3>설계 방향</h3><p>스트레칭·뉴스·외국어·명상·팟캐스트의 시간과 순서를 사용자가 조절한다. 낭독 모듈도 편집 화면에서 추가할 수 있다.</p></article>
+<article class="card"><h3>기획 메모</h3><p>기본 루틴과 오늘만 변경을 분리해 일상 변동에 대응한다. 이 의도는 설계 가설이며 사용자 조사나 효과 측정 결과는 아니다.</p></article>
+</div></section>
+<section id="section-3"><div class="number">03 / 사용자 흐름</div><h2>한 번 구성하고, 매일 가볍게 실행</h2><div class="cards">
+<article class="card"><h3>01 구성</h3><p>내 루틴에서 이름·시작 예정 시간·모듈을 설정한다. 모듈당 1~30분, 드래그로 순서를 바꾸고 여러 루틴을 저장한다.</p></article>
+<article class="card"><h3>02 실행</h3><p>오늘 화면에서 수동 시작하거나 모바일 모닝콜 알림으로 연결 루틴을 실행한다. 오늘만 변경은 수동 실행에 적용된다.</p></article>
+<article class="card"><h3>03 회고</h3><p>일시정지·재개 후 끝까지 마친 루틴을 기록한다. 중단·건너뛰기는 완료에서 제외하고 실제 진행 시간을 집계한다.</p></article>
+</div></section>
+<section id="section-4"><div class="number">04 / 화면·상태 구현</div><h2>구성과 실행을 분리한 앱 구조</h2><div class="cards">
+<article class="card"><h3>화면</h3><p>오늘·내 루틴·기록·모닝콜·설정 메뉴. ModuleDial의 반원 다이얼, 모드별 이미지, 접히는 설정 카드와 캐릭터 애니메이션.</p></article>
+<article class="card"><h3>상태·저장</h3><p>App.tsx에서 저장 루틴·오늘 변경·편집 초안·실행 세션을 구분한다. AsyncStorage에 루틴·기록·RSS 목록을 저장한다.</p></article>
+<article class="card"><h3>실행 제어</h3><p>모듈 순서·남은 시간·일시정지 시간을 관리한다. 완료 기록은 일시정지 시간을 제외하며 한국 시간 달력으로 표시한다.</p></article>
+</div></section>
+<section id="section-5"><div class="number">05 / 콘텐츠·오디오 구현</div><h2>직접 작성한 레슨과 공개 RSS 연결</h2><div class="cards">
+<article class="card"><h3>뉴스·외국어</h3><p>뉴시스 RSS 제목·소개문을 읽는다. 기사 전문 수집·AI 요약은 구현하지 않았다. 4개 언어 × 3단계의 기본 레슨 12개를 제공한다.</p></article>
+<article class="card"><h3>팟캐스트</h3><p>공개 HTTPS 오디오 RSS 등록·선택, 원본 오디오 재생, 이어 듣기 위치 저장. Luke 피드는 웹 읽기 제한 시 날짜가 표시된 스냅샷을 사용한다.</p></article>
+<article class="card"><h3>음성</h3><p>기기 TTS와 언어별 음성 선택. 선택 기능인 클라우드 TTS는 별도 서버가 OpenAI tts-1-hd에 요청하며 Nova·Onyx를 지원한다.</p></article>
+</div></section>
+<section id="section-6"><div class="number">06 / 핵심 파일</div><h2>기능별 책임과 기술 구성</h2><div class="cards">
+<article class="card"><h3>화면·루틴</h3><p>App.tsx / src/ModuleDial.tsx / src/ReorderableModules.tsx / src/TimeStepper.tsx / src/RecordsScreen.tsx</p></article>
+<article class="card"><h3>콘텐츠·알림</h3><p>src/news.ts / src/podcasts.ts / src/PodcastPlayer.tsx / src/language-lessons.ts / src/alarm.ts / src/alarm.web.ts</p></article>
+<article class="card"><h3>음성·기술</h3><p>src/voice.ts / src/cloud-voice.ts / server/tts.mjs. Expo 57, React Native 0.86, React 19, TypeScript 6, expo-audio·speech·notifications.</p></article>
+</div></section>
+<section id="section-7"><div class="number">07 / 최근 개선·검증</div><h2>재현한 오류를 수정하고 회귀 검사 추가</h2><div class="cards">
+<article class="card"><h3>개선 내용</h3><p>모닝콜의 오늘 화면 복귀 오류, 잘못 저장된 기록의 화면 오류, 클라우드 사용 시 기기 음성 목록 누락을 수정했다. 실행되지 않는 안내 분기와 오래된 설명을 삭제했다.</p></article>
+<article class="card"><h3>자동 검증</h3><p>2026-10-14 작업 기준: 타입 검사, 테스트 38개, web·iOS·Android 번들 내보내기 통과. 기준 커밋 3e9e31a.</p></article>
+<article class="card"><h3>브라우저 검증</h3><p>루틴 생성·저장·삭제, 모닝콜 설정 저장, 오늘만 변경의 저장 분리, 일시정지·재개·완료 기록을 확인했다. 타이머 완료 검증은 가상 시간으로 수행했다.</p></article>
+</div></section>
+<section id="section-8"><div class="number">08 / 한계·다음 단계</div><h2>모바일 실사용 검증과 운영 준비</h2><div class="cards">
+<article class="card"><h3>모바일</h3><p>모닝콜은 OS 예약 알림이다. 웹은 설정만 저장한다. 실기기의 잠금 화면·무음/집중 모드·권한·오디오 인터럽트·장시간 백그라운드 전환은 추가 검증이 필요하다.</p></article>
+<article class="card"><h3>외부 연결</h3><p>해당 작업에서 실시간 RSS 요청은 네트워크 정책으로 차단됐다. 클라우드 TTS는 연결 코드와 요청 거부 테스트를 검증했으며 실제 생성·청취는 미검증이다.</p></article>
+<article class="card"><h3>개발 우선순위</h3><p>실기기 알림·재생 검증 → 백그라운드 재생 엔진과 콘텐츠 사전 준비 → 외부 피드·음성 연결 확인 → 사용자별 인증·사용량 제한·모니터링.</p></article>
+</div></section>
+<div class="footer-links"></div><footer>기획 의도는 설계 가설이며 사용자 연구 결과가 아닙니다. 검증 내역은 2026-10-14 작업 기록이며 배포 완료나 실제 기기 검증을 의미하지 않습니다.</footer></main></body></html>
