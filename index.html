@@ -364,6 +364,10 @@
     .video-caption a { display:block; color:var(--primary); text-underline-offset:4px; min-height:44px; padding-block:10px; }
     @media(max-width:700px) { .video-featured .video-cover { padding:16px; } }
     @media print { .video-player { display:none; } }
+    .project-card-featured .senior-screen-cover { display:flex; align-items:center; justify-content:center; padding:16px; background:#161D24; aspect-ratio:auto; }
+    .senior-screen-cover figure { width:100%; margin:0; }
+    .senior-screen-cover img { display:block; width:100%; height:auto; border-radius:8px; }
+    .senior-screen-cover figcaption { color:var(--text-sub); font-size:12px; line-height:1.8; padding-top:12px; }
   </style>
 </head>
 <body>
@@ -505,8 +509,9 @@
           </article>
 <article id="work-senior-helper" tabindex="-1" class="reveal project-card project-card-featured">
             <div>
-<div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#18232D"/><circle cx="320" cy="210" r="145" fill="#F59E0B" fill-opacity=".035"/><text x="36" y="52" fill="#F59E0B" font-size="11" letter-spacing="4">SENIOR HELPER / EVERYDAY CARE</text><rect x="231" y="83" width="178" height="276" rx="28" fill="#0B0F19" stroke="#536478" stroke-width="2"/><rect x="243" y="96" width="154" height="249" rx="18" fill="#F4EDE0"/><rect x="291" y="102" width="58" height="8" rx="4" fill="#192536"/><circle cx="320" cy="165" r="28" fill="#E4B48C"/><path d="M293 159Q293 128 320 136Q346 128 347 160L333 148L305 150Z" fill="#503D32"/><circle cx="310" cy="164" r="2" fill="#503D32"/><circle cx="329" cy="164" r="2" fill="#503D32"/><path d="M311 175Q320 183 329 175" stroke="#9C6450" stroke-width="2" fill="none"/>
-<g fill="#D8E3D8"><rect x="255" y="208" width="59" height="48" rx="10"/><rect x="326" y="208" width="59" height="48" rx="10"/><rect x="255" y="268" width="59" height="48" rx="10"/><rect x="326" y="268" width="59" height="48" rx="10"/></g><g fill="#31534E" font-size="19" text-anchor="middle"><text x="284" y="239">✳</text><text x="356" y="239">?</text><text x="284" y="299">♡</text><text x="356" y="299">◎</text></g><text x="70" y="204" fill="#CBD5E1" font-size="13">Small moments.</text><text x="438" y="259" fill="#F59E0B" font-size="13">Warm connections.</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
+<div class="project-cover senior-screen-cover">
+                <figure><img src="assets/senior-helper-screen.png" alt="시니어 뇌건강 헬퍼 실제 홈 화면: 손자·손녀 캐릭터와 두뇌 운동, 물어보기, 오늘의 기억, 기기 사진 찍기의 큰 버튼 네 개" width="1212" height="823" loading="lazy"><figcaption>실제 구현 화면 · 시니어 뇌건강 헬퍼</figcaption></figure>
+              </div>
               <div class="project-card-header">
                 <span class="project-num">대표 작업 03</span>
                 <span class="project-category">SENIOR-FRIENDLY UX</span>
