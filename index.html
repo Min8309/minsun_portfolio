@@ -307,32 +307,88 @@
     .hero-footer-stats { display:none; }
     @media(min-width:701px) { .hero-title > span { display:inline; } .hero-title > span:first-child { margin-right:.16em; } .hero-title > .highlight { display:block; } }
     @media(max-width:360px) { .hero-title { font-size:40px; } #projects .section-title { font-size:26px; } }
+
+    :root { --sidebar-width:260px; }
+    html { scroll-padding-top:28px; }
+    body { padding-left:var(--sidebar-width); }
+    header.sidebar { position:fixed; inset:0 auto 0 0; width:var(--sidebar-width); height:100dvh; border-right:1px solid var(--border-color); border-bottom:0; background:#121A26; overflow-y:auto; overscroll-behavior:contain; }
+    .sidebar .nav-inner { display:block; min-height:0; padding:30px 20px; }
+    .sidebar .logo { font-size:16px; min-height:44px; }
+    .sidebar-intro { font-size:12px; color:var(--text-muted); line-height:1.8; padding:8px 0 22px; }
+    .sidebar-intro span { color:var(--text-sub); }
+    .sidebar .nav-links { display:grid; grid-template-columns:1fr 1fr; gap:2px 8px; padding-bottom:20px; border-bottom:1px solid var(--border-color); }
+    .sidebar .nav-links a { font-size:13px; min-height:44px; }
+    .sidebar .nav-links a::after { display:none; }
+    .project-nav { margin-top:24px; }
+    .project-nav h2 { display:flex; justify-content:space-between; color:var(--text-muted); font:11px/1.6 var(--mono-font); letter-spacing:.08em; margin-bottom:12px; }
+    .project-nav h2 span { color:var(--primary); }
+    .project-nav ul { list-style:none; display:grid; gap:4px; }
+    .project-nav a { display:flex; align-items:center; gap:10px; min-height:58px; padding:9px 10px; border:1px solid transparent; border-radius:8px; text-decoration:none; color:var(--text-sub); font-size:14px; line-height:1.5; }
+    .project-nav a small { display:block; font-size:11px; color:var(--text-muted); margin-top:3px; }
+    .project-nav-number { font:11px var(--mono-font); color:var(--text-muted); }
+    .project-nav a:hover,.project-nav a[aria-current] { background:rgba(242,188,112,.08); border-color:#68563D; color:var(--primary); }
+    .project-nav a[aria-current] .project-nav-number { color:var(--primary); }
+    .sidebar-contact { display:block; font-size:12px; color:var(--text-muted); padding:24px 10px 0; text-underline-offset:4px; }
+    .menu-toggle { display:none; }
+    .project-card[id] { scroll-margin-top:28px; }
+    @media(min-width:1001px) and (max-width:1250px) {
+      .container { padding-inline:28px; }
+      .project-card-featured > div:first-child,.video-featured > div:first-child { grid-template-columns:1fr; }
+      .project-card-featured .project-cover,.video-featured .project-cover { grid-row:auto; aspect-ratio:1.9; min-height:0; }
+      .project-card-featured .project-screenshots { aspect-ratio:auto; }
+      .hero-visual { display:none; }
+      .hero-layout { display:block; }
+    }
+    @media(max-width:1000px) {
+      html { scroll-padding-top:88px; }
+      body { padding-left:0; padding-top:76px; }
+      header.sidebar { width:100%; height:auto; max-height:100dvh; inset:0 0 auto; border-right:0; border-bottom:1px solid var(--border-color); }
+      .sidebar .nav-inner { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:12px 20px; gap:0; }
+      .sidebar .logo { font-size:14px; }
+      .sidebar-intro { display:none; }
+      .menu-toggle { display:flex; align-items:center; gap:10px; min-height:44px; border:1px solid var(--border-color); border-radius:8px; background:var(--bg-surface); color:var(--text-main); font-size:13px; padding:8px 12px; }
+      .sidebar-menu { display:none; width:100%; padding-top:16px; max-height:calc(100dvh - 84px); overflow-y:auto; }
+      .sidebar-menu.is-open { display:block; }
+      .sidebar .nav-links { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .project-nav ul { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .project-nav a { height:100%; }
+      .sidebar-contact { padding-bottom:16px; }
+      .project-card[id] { scroll-margin-top:88px; }
+    }
+    @media(max-width:360px) { .project-nav ul { grid-template-columns:1fr; } }
+    @media print { body { padding:0; } header.sidebar { display:none; } }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#projects">프로젝트로 바로 가기</a>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <header>
-    <div class="container nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-badge"></span>
-        MINSUN.PARK
-      </a>
-      <nav aria-label="주요 메뉴"><ul class="nav-links">
-        <li><a href="#projects">대표 작업</a></li>
-        <li><a href="#video">영상</a></li>
-        <li><a href="#more-work">더 많은 작업</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#tools">Tools</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul></nav>
+  <header class="sidebar">
+    <div class="nav-inner">
+      <a href="#top" class="logo"><span class="logo-badge"></span>MINSUN.PARK</a>
+      <p class="sidebar-intro">UI/UX · WEB DESIGNER<br><span>설계에서 구현까지</span></p>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebar-menu">프로젝트 메뉴 <span aria-hidden="true">☰</span></button>
+      <div id="sidebar-menu" class="sidebar-menu">
+        <nav aria-label="주요 메뉴"><ul class="nav-links">
+          <li><a href="#projects">대표 작업</a></li><li><a href="#video">영상 작업</a></li><li><a href="#more-work">더 많은 작업</a></li>
+          <li><a href="#about">프로필</a></li><li><a href="#tools">사용 도구</a></li><li><a href="#contact">연락처</a></li>
+        </ul></nav>
+        <nav class="project-nav" aria-label="프로젝트 바로가기"><h2>PROJECT INDEX <span>09</span></h2><ul><li><a href="#work-ateliera"><span class="project-nav-number">01</span><span>Ateliera<small>3D 화실</small></span></a></li>
+<li><a href="#work-gyeongseong-yarok"><span class="project-nav-number">02</span><span>경성야록<small>DB · 웹·모바일 게임</small></span></a></li>
+<li><a href="#work-senior-helper"><span class="project-nav-number">03</span><span>시니어 뇌건강 헬퍼<small>모바일 UX</small></span></a></li>
+<li><a href="#work-video-production"><span class="project-nav-number">04</span><span>촬라의 상상<small>AI 영상</small></span></a></li>
+<li><a href="#work-my-ai-life"><span class="project-nav-number">05</span><span>MY AI LIFE<small>인생 시뮬레이터</small></span></a></li>
+<li><a href="#work-seoul-data"><span class="project-nav-number">06</span><span>서울 핫플 데이터 분석<small>상권 분석</small></span></a></li>
+<li><a href="#work-csi-lab"><span class="project-nav-number">07</span><span>CSI LAB<small>범죄 데이터</small></span></a></li>
+<li><a href="#work-echo-chamber"><span class="project-nav-number">08</span><span>EchoChamber<small>AI 에이전트</small></span></a></li>
+<li><a href="#work-morningblock"><span class="project-nav-number">09</span><span>모닝블록<small>오디오 루틴</small></span></a></li></ul></nav>
+        <a class="sidebar-contact" href="mailto:minsunpark3421@gmail.com">이메일로 연락하기 ↗</a>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <main>
+  <main id="top">
     <section class="hero">
       <div class="container">
         <div class="hero-layout">
@@ -365,7 +421,7 @@
       <div class="container">
         <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">문제를 경험으로 바꾼 대표 작업</h2><p class="section-desc">공간 인터랙션, 데이터와 게임, 시니어 UX. 세 가지 작업에서 문제·담당 역할·구현 결과를 먼저 살펴보세요.</p></div></div>
         <div class="project-grid selected-grid">
-<article class="reveal project-card project-card-featured">
+<article id="work-ateliera" tabindex="-1" class="reveal project-card project-card-featured">
             <div>
 <div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="room" x2="1" y2="1"><stop stop-color="#263F4C"/><stop offset="1" stop-color="#0F1926"/></linearGradient><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#6691A5"/><stop offset="1" stop-color="#D9C8AD"/></linearGradient><linearGradient id="floor" x2="1" y2="1"><stop stop-color="#A57750"/><stop offset="1" stop-color="#50392D"/></linearGradient></defs>
 <rect width="640" height="400" fill="url(#room)"/><circle cx="380" cy="105" r="160" fill="#38BDF8" opacity=".035"/>
@@ -413,7 +469,7 @@
               <a href="https://ateliera.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">화실 입장하기 (Demo) ↗</a>
             </div>
           </article>
-<article class="reveal project-card project-card-featured">
+<article id="work-gyeongseong-yarok" tabindex="-1" class="reveal project-card project-card-featured">
             <div>
               <div class="project-cover project-screenshots">
                 <figure><img src="assets/gyeongseong-main.png" alt="실제 구현된 경성야록 메인: 신문 지면 형태의 사건 탐색 화면" width="669" height="724" loading="lazy"><figcaption>실제 구현 화면 · 메인 지면</figcaption></figure>
@@ -440,7 +496,7 @@
               <a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">경성야록 체험하기 ↗</a>
             </div>
           </article>
-<article class="reveal project-card project-card-featured">
+<article id="work-senior-helper" tabindex="-1" class="reveal project-card project-card-featured">
             <div>
 <div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#18232D"/><circle cx="320" cy="210" r="145" fill="#F59E0B" fill-opacity=".035"/><text x="36" y="52" fill="#F59E0B" font-size="11" letter-spacing="4">SENIOR HELPER / EVERYDAY CARE</text><rect x="231" y="83" width="178" height="276" rx="28" fill="#0B0F19" stroke="#536478" stroke-width="2"/><rect x="243" y="96" width="154" height="249" rx="18" fill="#F4EDE0"/><rect x="291" y="102" width="58" height="8" rx="4" fill="#192536"/><circle cx="320" cy="165" r="28" fill="#E4B48C"/><path d="M293 159Q293 128 320 136Q346 128 347 160L333 148L305 150Z" fill="#503D32"/><circle cx="310" cy="164" r="2" fill="#503D32"/><circle cx="329" cy="164" r="2" fill="#503D32"/><path d="M311 175Q320 183 329 175" stroke="#9C6450" stroke-width="2" fill="none"/>
 <g fill="#D8E3D8"><rect x="255" y="208" width="59" height="48" rx="10"/><rect x="326" y="208" width="59" height="48" rx="10"/><rect x="255" y="268" width="59" height="48" rx="10"/><rect x="326" y="268" width="59" height="48" rx="10"/></g><g fill="#31534E" font-size="19" text-anchor="middle"><text x="284" y="239">✳</text><text x="356" y="239">?</text><text x="284" y="299">♡</text><text x="356" y="299">◎</text></g><text x="70" y="204" fill="#CBD5E1" font-size="13">Small moments.</text><text x="438" y="259" fill="#F59E0B" font-size="13">Warm connections.</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
@@ -485,7 +541,7 @@
       <div class="container">
         <div class="section-header reveal"><div><div class="section-kicker">02 / VIDEO STORIES</div><h2 class="section-title">사진에서 시작해, 움직이는 이야기로</h2><p class="section-desc">직접 촬영한 일상에 상상을 더합니다. 스토리 구상부터 AI 영상 생성과 편집까지 이어지는 영상 작업입니다.</p></div></div>
         <div class="video-grid">
-<article class="reveal project-card video-featured">
+<article id="work-video-production" tabindex="-1" class="reveal project-card video-featured">
             <div>
               <div class="project-cover" aria-hidden="true">
                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
@@ -533,7 +589,7 @@
       <div class="container">
         <div class="section-header reveal"><div><div class="section-kicker">03 / MORE WORK</div><h2 class="section-title">데이터와 AI로 넓혀온 작업 영역</h2><p class="section-desc">인생 시뮬레이션, 데이터 분석, AI 에이전트와 오디오 루틴 앱까지. 다섯 가지 프로젝트로 작업 영역을 넓혀갑니다.</p></div></div>
         <div class="project-grid secondary-grid">
-<article class="reveal project-card">
+<article id="work-my-ai-life" tabindex="-1" class="reveal project-card">
             <div>
 <div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="life"><stop stop-color="#111C32"/><stop offset="1" stop-color="#1F2640"/></linearGradient></defs><rect width="640" height="400" fill="url(#life)"/>
 <text x="44" y="58" fill="#38BDF8" font-size="11" letter-spacing="4">MY AI LIFE</text><text x="44" y="99" fill="#F8FAFC" font-size="28">Every choice, a new story.</text>
@@ -572,7 +628,7 @@
               <a href="https://min8309.github.io/my_ai_life/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
             </div>
           </article>
-<article class="reveal project-card">
+<article id="work-seoul-data" tabindex="-1" class="reveal project-card">
             <div>
 <div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#111E2B"/><text x="40" y="52" fill="#38BDF8" font-size="11" letter-spacing="4">SEOUL / DATA LANDSCAPE</text><g fill="none" stroke="#2D4355" stroke-width="1"><path d="M75 150L200 110L315 140L460 105L575 175L540 285L390 335L230 300L105 325Z"/><path d="M200 110L230 300M315 140L390 335M460 105L540 285M75 150L540 285M105 325L460 105M315 140L105 325"/></g><path d="M80 235Q160 160 270 225T555 215" fill="none" stroke="#38BDF8" stroke-width="15" opacity=".35"/>
 <g fill="#38BDF8"><rect x="160" y="160" width="16" height="45" rx="3"/><rect x="225" y="130" width="16" height="72" rx="3"/><rect x="330" y="167" width="16" height="48" rx="3"/><rect x="465" y="152" width="16" height="67" rx="3"/></g><rect x="380" y="100" width="20" height="104" rx="3" fill="#F59E0B"/><circle cx="390" cy="95" r="5" fill="#F59E0B"/><text x="423" y="95" fill="#F8FAFC" font-size="23">84,675</text><text x="423" y="115" fill="#94A3B8" font-size="9" letter-spacing="2">DATA POINTS, ONE CITY</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
@@ -609,7 +665,7 @@
               <a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">서비스 바로가기 ↗</a>
             </div>
           </article>
-<article class="reveal project-card">
+<article id="work-csi-lab" tabindex="-1" class="reveal project-card">
             <div>
 <div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#101D24"/><g stroke="#1C333E" stroke-width="1"><path d="M0 80H640M0 160H640M0 240H640M0 320H640M80 0V400M160 0V400M240 0V400M320 0V400M400 0V400M480 0V400M560 0V400"/></g><text x="40" y="54" fill="#38BDF8" font-size="11" letter-spacing="4">CSI LAB / EVIDENCE ANALYSIS</text><circle cx="300" cy="219" r="105" fill="#38BDF8" fill-opacity=".03" stroke="#38BDF8" stroke-opacity=".3"/><circle cx="300" cy="219" r="65" fill="none" stroke="#38BDF8" stroke-opacity=".15"/><path d="M300 219L376 143" stroke="#38BDF8" stroke-width="2"/><g stroke="#F59E0B" fill="none" stroke-width="2"><path d="M225 157V138H246M354 138H375V157M225 270V289H246M354 289H375V270"/></g><path d="M280 189Q278 165 299 165Q321 165 322 189L315 205L334 254H265L284 205Z" fill="#94A3B8" fill-opacity=".4"/><text x="419" y="186" fill="#F59E0B" font-size="10">01 / DETECT</text><text x="419" y="219" fill="#CBD5E1" font-size="10">02 / CONNECT</text><text x="419" y="252" fill="#CBD5E1" font-size="10">03 / DISCOVER</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
               <div class="project-card-header">
@@ -645,7 +701,7 @@
               <a href="https://csilab-kr.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
             </div>
           </article>
-<article class="reveal project-card">
+<article id="work-echo-chamber" tabindex="-1" class="reveal project-card">
             <div>
 <div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#181C2C"/><text x="40" y="54" fill="#38BDF8" font-size="11" letter-spacing="4">ECHOCHAMBER / RUMOR LAB</text><g fill="none" stroke="#59768E" stroke-opacity=".6"><path d="M110 230L210 130L320 210L430 115L540 230L425 310L320 210L210 320L110 230M210 130L425 310M210 320L430 115M110 230L540 230"/></g><g fill="#223A51" stroke="#38BDF8"><circle cx="110" cy="230" r="18"/><circle cx="210" cy="130" r="25"/><circle cx="430" cy="115" r="20"/><circle cx="540" cy="230" r="24"/><circle cx="425" cy="310" r="17"/><circle cx="210" cy="320" r="15"/></g><circle cx="320" cy="210" r="44" fill="#F59E0B" fill-opacity=".1" stroke="#F59E0B"/><circle cx="320" cy="210" r="9" fill="#F59E0B"/><path d="M304 194Q320 178 336 194M296 186Q320 162 344 186" fill="none" stroke="#F59E0B"/><text x="292" y="277" fill="#94A3B8" font-size="9" letter-spacing="2">SIGNAL → STORY</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
               <div class="project-card-header">
@@ -681,7 +737,7 @@
             </div>
           </article>
 
-          <article class="reveal project-card">
+          <article id="work-morningblock" tabindex="-1" class="reveal project-card">
             <div>
               <div class="project-cover morningblock-cover"><img src="assets/morningblock-characters.png" alt="모닝블록의 파스텔 색상과 모드별 블로키 캐릭터" loading="lazy" width="1774" height="887"></div>
               <div class="project-card-header"><span class="project-num">더 많은 작업 05</span><span class="project-category">MOBILE UX & AUDIO ROUTINE</span></div>
@@ -947,6 +1003,29 @@
       }
     };
 
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebarMenu = document.getElementById('sidebar-menu');
+    function setMenuOpen(open) {
+      menuToggle.setAttribute('aria-expanded', String(open));
+      sidebarMenu.classList.toggle('is-open', open);
+    }
+    menuToggle.addEventListener('click', () => setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true'));
+    document.querySelectorAll('.sidebar a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const target = document.querySelector(link.getAttribute('href'));
+        setMenuOpen(false);
+        if (target) { target.setAttribute('tabindex', '-1'); target.focus({preventScroll:true}); }
+      });
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false); menuToggle.focus();
+      }
+    });
+    const desktopMenu = window.matchMedia('(min-width:1001px)');
+    desktopMenu.addEventListener('change', () => setMenuOpen(false));
+
     const modal = document.getElementById('detailModal');
     const modalBox = modal.querySelector('.modal-box');
     const closeButton = modal.querySelector('.modal-close');
@@ -1018,6 +1097,12 @@
       if (total > 0 && window.scrollY >= total - 2) active = sections[sections.length - 1];
       document.querySelectorAll('.nav-links a').forEach(link => {
         if (active && link.getAttribute('href') === '#' + active.id) link.setAttribute('aria-current','location');
+        else link.removeAttribute('aria-current');
+      });
+      const workItems = Array.from(document.querySelectorAll('.project-card[id]'));
+      const visibleWork = workItems.filter(item => item.getBoundingClientRect().top <= window.innerHeight * .45 && item.getBoundingClientRect().bottom > 80).pop();
+      document.querySelectorAll('.project-nav a').forEach(link => {
+        if (visibleWork && link.getAttribute('href') === '#' + visibleWork.id) link.setAttribute('aria-current','location');
         else link.removeAttribute('aria-current');
       });
       scrollQueued = false;
