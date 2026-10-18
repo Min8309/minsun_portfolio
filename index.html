@@ -234,6 +234,79 @@
     }
     .morningblock-cover { background:#F7F4EE; }
     .morningblock-cover img { width:100%; height:100%; display:block; object-fit:contain; }
+
+    .hero-visual { min-width:0; width:100%; }
+    .hero-visual .hero-art { margin-inline:auto; }
+    .strength-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; list-style:none; position:relative; margin-top:4px; }
+    .strength-card { display:flex; align-items:center; gap:12px; min-width:0; padding:18px 16px; border:1px solid #435065; border-radius:12px; background:linear-gradient(135deg,rgba(242,188,112,.05),transparent),var(--bg-surface); }
+    .strength-icon { flex:0 0 24px; text-align:center; color:var(--primary); font-size:24px; }
+    .strength-label { display:block; font:11px/1.6 var(--mono-font); color:var(--primary); letter-spacing:.05em; margin-bottom:6px; }
+    .strength-card h2 { font-size:15px; line-height:1.65; font-weight:600; letter-spacing:-.025em; color:var(--text-main); }
+    @media(min-width:701px) and (max-width:1000px) {
+      .strength-cards { grid-template-columns:1fr; }
+    }
+    @media(max-width:700px) {
+      .strength-cards { margin-top:20px; gap:10px; }
+      .strength-card { padding:16px 12px; gap:8px; align-items:flex-start; }
+      .strength-icon { flex-basis:18px; font-size:20px; }
+      .strength-card h2 { font-size:14px; }
+    }
+    @media(max-width:360px) { .strength-cards { grid-template-columns:1fr; } }
+    @media print { .strength-card { break-inside:avoid; background:transparent; } }
+    .project-card-featured .project-screenshots { display:grid; grid-template-columns:1.15fr 1fr; gap:12px; padding:20px; align-content:center; background:#121B25; }
+    .project-screenshots figure { min-width:0; margin:0; align-self:center; }
+    .project-screenshots img { display:block; width:100%; height:auto; border:1px solid #697079; border-radius:6px; }
+    .project-screenshots figcaption { font-size:12px; line-height:1.7; color:#D7DEE7; padding-top:10px; }
+    @media(max-width:1000px) { .project-card-featured .project-screenshots { aspect-ratio:auto; } }
+    @media(max-width:700px) { .project-card-featured .project-screenshots { padding:16px; gap:10px; } }
+    .presentation-links { display:flex; flex-wrap:wrap; gap:12px; margin:20px 0; }
+
+    /* Keep the introduction compact and let the work lead. */
+    .hero { padding-top:36px; }
+    .hero-layout { grid-template-columns:1.25fr .75fr; gap:32px; }
+    .hero-title { font-size:clamp(52px,5vw,72px); line-height:1.05; }
+    .hero-meta { margin-bottom:20px; }
+    .hero-lead { margin:20px 0; font-size:17px; max-width:600px; }
+    .hero-art { max-width:330px; }
+    .hero-footer-stats { margin-top:28px; padding-block:20px; }
+    #projects { padding-top:48px; }
+    .section { padding-bottom:72px; }
+    .project-num,.section-kicker,.skill-title,.tool-entry dt { color:var(--text-sub); }
+    .project-tech .tech-pill { color:var(--text-muted); font-size:12px; border-color:var(--border-color); }
+    .strength-heading { margin-top:40px; }
+    .strength-heading h3 { font-size:23px; line-height:1.5; }
+    .strength-heading p { color:var(--text-muted); margin-top:8px; }
+    #about .strength-cards { margin-top:20px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .strength-card { align-items:flex-start; padding:22px; }
+    .strength-card h3 { font-size:18px; line-height:1.5; margin-bottom:10px; }
+    .strength-card p { font-size:15px; line-height:1.85; color:var(--text-sub); }
+    .design-note { margin:24px 0; padding:20px; border:1px solid var(--border-color); border-radius:12px; }
+    .design-note h4 { font-size:18px; margin-bottom:12px; }
+    .design-note p:last-child { margin-bottom:0; }
+    .tool-grid { gap:16px; }
+    .tool-card { padding:22px; }
+    .tool-card h3 { font-size:19px; margin-bottom:16px; }
+    .tool-entry + .tool-entry { margin-top:12px; padding-top:12px; }
+    @media(max-width:1000px) { .hero-layout { grid-template-columns:1.2fr .8fr; gap:20px; } .hero-art { max-width:280px; } }
+    @media(max-width:700px) {
+      .hero { padding-top:28px; }
+      .hero-layout { display:block; }
+      .hero-visual { display:none; }
+      .hero-title { font-size:48px; letter-spacing:-.055em; }
+      .hero-title > span { display:inline; }
+      .hero-title > span::after { content:' '; }
+      .hero-lead { font-size:16px; line-height:1.8; }
+      .hero-footer-stats { display:none; }
+      .hero-actions .btn-action { padding-inline:16px; }
+      #projects { padding-top:32px; }
+      .section-header { margin-bottom:22px; }
+      #about .strength-cards { grid-template-columns:1fr; }
+      .strength-card { padding:20px; }
+    }
+    @media print { .hero-layout { display:block; } .hero-visual { display:none; } }
+    .hero-footer-stats { display:none; }
+    @media(min-width:701px) { .hero-title > span { display:inline; } .hero-title > span:first-child { margin-right:.16em; } .hero-title > .highlight { display:block; } }
+    @media(max-width:360px) { .hero-title { font-size:40px; } #projects .section-title { font-size:26px; } }
   </style>
 </head>
 <body>
@@ -266,14 +339,17 @@
           <div class="hero-copy">
             <div class="hero-meta"><span class="tag">UI/UX & WEB DESIGNER</span><span>PORTFOLIO / 2026</span></div>
             <h1 class="hero-title"><span>Human<span class="period">.</span></span><span class="outline">Code.</span><span class="highlight">Clarity.</span></h1>
-            <p class="hero-lead"><strong>삶의 깊이로 질문하고,<br>복잡한 기술을 사람의 언어로 설계합니다.</strong><br>42세, 경험의 깊이에 새로운 배움을 더하는<br>UI/UX · 웹 디자이너 박민선입니다.</p>
+            <p class="hero-lead"><strong>복잡한 정보와 기술을,<br>이해하고 사용할 수 있는 경험으로 만듭니다.</strong><br>데이터 구조를 이해하고 웹·모바일 인터랙션을 직접 구현하는 UI/UX·웹 디자이너 박민선입니다.</p>
             <div class="hero-actions"><a class="btn-action btn-primary" href="#projects">대표 작업 보기 <span aria-hidden="true">↘</span></a><a class="btn-action btn-outline" href="#video">영상 작업 보기 <span aria-hidden="true">↗</span></a></div>
           </div>
+          <div class="hero-visual">
           <div class="hero-art" aria-hidden="true">
             <div class="art-grid"></div><div class="orbit"></div><div class="orbit two"></div><div class="orbit three"></div><div class="art-core"></div><span class="art-cross">+</span>
             <span class="art-label top">HUMAN × TECHNOLOGY</span><span class="art-label bottom">DESIGNED TO MAKE SENSE</span>
             <div class="floating-note note-a"><i>⌘</i><span><small>01 / SYSTEM</small>복잡함을 명료하게</span></div>
             <div class="floating-note note-b"><i>✳</i><span><small>02 / EXPERIENCE</small>기술에 사람의 온기를</span></div>
+          </div>
+
           </div>
         </div>
 
@@ -308,7 +384,7 @@
               <div class="project-card-body">
                 <h3 class="project-title" >Ateliera — 한강변의 3D 화실</h3>
                 <p class="project-summary project-hook">공간을 탐색하고, 직접 그리는 웹 경험</p>
-                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>평면 드로잉 도구에 공간을 둘러보는 즐거움을 더하고자 했습니다.</dd></div><div class="case-role"><dt>내가 맡은 일</dt><dd>3D 화실 · 드로잉 브러시 · 쇼룸 인터랙션 구현</dd></div><div><dt>구현 결과</dt><dd>가상 화실에서 그림을 그리고 미술용품을 탐색하는 흐름을 연결했습니다.</dd></div></dl>
+                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>평면 드로잉 도구에 공간을 둘러보는 즐거움을 더하고자 했습니다.</dd></div><div class="case-role"><dt>내가 맡은 일</dt><dd>3D 화실 · 드로잉 브러시 · 쇼룸 인터랙션 구현</dd></div><div><dt>구현 결과</dt><dd>가상 화실에서 그림을 그리고 미술용품을 탐색하는 흐름을 연결했습니다.</dd></div><div><dt>설계 선택</dt><dd>공간 탐색·그리기·미술용품 선택을 하나의 화실 안에서 이어가도록 구성했습니다.</dd></div></dl>
                 <div class="project-metrics" style="grid-template-columns: repeat(3, 1fr);">
                   <div>
                     <div class="metric-key">3D ENVIRONMENT</div>
@@ -339,24 +415,9 @@
           </article>
 <article class="reveal project-card project-card-featured">
             <div>
-              <div class="project-cover" aria-hidden="true">
-                <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif">
-                  <rect width="640" height="400" fill="#171E26"/>
-                  <rect x="72" y="46" width="328" height="310" rx="3" fill="#E8DDC5"/>
-                  <text x="96" y="79" fill="#64513D" font-size="10" letter-spacing="3">1930s / ARCHIVE TO EXPERIENCE</text>
-                  <text x="96" y="134" fill="#292722" font-size="43" font-weight="700">경성야록</text>
-                  <path d="M96 151H376M96 156H376" stroke="#64513D"/>
-                  <rect x="96" y="177" width="124" height="92" fill="#B8A58A"/>
-                  <path d="M105 250L136 214L157 233L186 195L212 250Z" fill="#64513D"/>
-                  <g stroke="#8A7861" stroke-width="3"><path d="M240 181H376M240 196H376M240 211H362M240 226H376M240 241H350M240 256H376M96 289H376M96 305H376M96 321H320"/></g>
-                  <rect x="430" y="112" width="142" height="220" rx="18" fill="#0B0F19" stroke="#8A7861" stroke-width="2"/>
-                  <rect x="442" y="135" width="118" height="174" rx="6" fill="#29313B"/>
-                  <text x="501" y="171" fill="#E8DDC5" font-size="18" text-anchor="middle">식자실</text>
-                  <path d="M454 202L501 182L548 202V260L501 283L454 260ZM501 222V283M454 202L501 222L548 202" stroke="#B8A58A" fill="none"/>
-                  <circle cx="463" cy="289" r="12" fill="#F59E0B" fill-opacity=".25" stroke="#F59E0B"/>
-                  <text x="437" y="79" fill="#F59E0B" font-size="11" letter-spacing="2">WEB + MOBILE</text>
-                </svg>
-                <span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span>
+              <div class="project-cover project-screenshots">
+                <figure><img src="assets/gyeongseong-main.png" alt="실제 구현된 경성야록 메인: 신문 지면 형태의 사건 탐색 화면" width="669" height="724" loading="lazy"><figcaption>실제 구현 화면 · 메인 지면</figcaption></figure>
+                <figure class="mobile-game-shot"><img src="assets/gyeongseong-game-mobile.jpg" alt="직접 구현한 식자실 모바일 게임: 이동 조이스틱과 조사·수집 버튼" width="620" height="1050" loading="lazy"><figcaption>담당 구현 · 모바일 식자실</figcaption></figure>
               </div>
               <div class="project-card-header">
                 <span class="project-num">대표 작업 02</span>
@@ -366,7 +427,7 @@
                 <h3 class="project-title">경성야록</h3>
                 <p class="project-summary project-hook">읽기 어려운 옛 신문을, 체험하는 콘텐츠로</p>
 
-                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>한자와 빽빽한 옛 지면을 오늘의 독자가 탐색할 수 있는 경험으로 확장했습니다.</dd></div><div class="case-role"><dt>내가 맡은 일</dt><dd>팀 프로젝트 · 전체 DB 및 사건 자료 정리, 웹·모바일 게임 구현</dd></div><div><dt>구현 결과</dt><dd>PC 키보드와 모바일 조이스틱으로 단서를 모으는 3D 게임 ‘식자실’을 구현했습니다.</dd></div></dl>
+                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>한자와 빽빽한 옛 지면을 오늘의 독자가 탐색할 수 있는 경험으로 확장했습니다.</dd></div><div class="case-role"><dt>내가 맡은 일</dt><dd>팀 프로젝트 · 전체 DB 및 사건 자료 정리, 웹·모바일 게임 구현</dd></div><div><dt>구현 결과</dt><dd>PC 키보드와 모바일 조이스틱으로 단서를 모으는 3D 게임 ‘식자실’을 구현했습니다.</dd></div><div><dt>설계 선택</dt><dd>같은 3D 게임을 PC에서는 키보드, 모바일에서는 조이스틱으로 조작하도록 구현했습니다.</dd></div></dl>
                 <div class="project-metrics">
                   <div><div class="metric-key">MY ROLE</div><div class="metric-val">DB · 웹·모바일 게임 구현</div></div>
                   <div><div class="metric-key">TEAM OUTPUT</div><div class="metric-val">사건 4편 · 확장 코너 6개 · 3D 게임</div></div>
@@ -390,7 +451,7 @@
               <div class="project-card-body">
                 <h3 class="project-title">시니어 뇌건강 헬퍼</h3>
                 <p class="project-summary project-hook">시니어의 일상에 가까운, 쉬운 모바일 경험</p>
-                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>복잡한 메뉴 대신 짧은 활동과 익숙한 안내로 접근하도록 구성했습니다.</dd></div><div class="case-role"><dt>내가 맡은 일</dt><dd>모바일 화면 · 단계별 두뇌 운동 · 음성 입력 및 기억 기록 구현</dd></div><div><dt>구현 결과</dt><dd>네 가지 주요 기능을 큰 2×2 버튼으로 묶고 터치와 음성으로 사용할 수 있게 했습니다.</dd></div></dl>
+                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>복잡한 메뉴 대신 짧은 활동과 익숙한 안내로 접근하도록 구성했습니다.</dd></div><div class="case-role"><dt>내가 맡은 일</dt><dd>모바일 화면 · 단계별 두뇌 운동 · 음성 입력 및 기억 기록 구현</dd></div><div><dt>구현 결과</dt><dd>네 가지 주요 기능을 큰 2×2 버튼으로 묶고 터치와 음성으로 사용할 수 있게 했습니다.</dd></div><div><dt>설계 선택</dt><dd>주요 기능 네 개를 2×2 버튼으로 묶고, 글 입력 외에 음성과 터치로 접근할 수 있도록 구성했습니다.</dd></div></dl>
                 <div class="project-metrics">
                   <div>
                     <div class="metric-key">CORE EXPERIENCE</div>
@@ -544,6 +605,7 @@
             </div>
             <div class="project-card-footer">
               <button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">설계 상세 보기</button>
+              <a class="btn-action btn-outline" href="presentations/seoul-hotplace.pdf" target="_blank" rel="noopener noreferrer" aria-label="서울 핫플 데이터 분석 PPT 발표자료 37쪽 PDF로 보기">PPT 발표자료 보기 ↗</a>
               <a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">서비스 바로가기 ↗</a>
             </div>
           </article>
@@ -579,6 +641,7 @@
             </div>
             <div class="project-card-footer">
               <button class="btn-action btn-outline" onclick="openDetailModal('csi-lab')">설계 상세 보기</button>
+              <a class="btn-action btn-outline" href="presentations/csi-lab.pdf" target="_blank" rel="noopener noreferrer" aria-label="CSI LAB PPT 발표자료 42쪽 PDF로 보기">PPT 발표자료 보기 ↗</a>
               <a href="https://csilab-kr.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
             </div>
           </article>
@@ -648,19 +711,11 @@
 
         <div class="about-box reveal">
           <div class="about-story">
-            <h3>“42년의 삶에서 얻은 질문을,<br>사람을 위한 디자인으로 풀어냅니다.”</h3>
-            <p>
-              삶의 여러 전환점에서 마주한 선택과 고민은 <strong>‘사람은 왜 결정을 망설이고, 어떤 도움에서 안심하는가’</strong>를 관찰하는 바탕이 되었습니다. 이 경험에서 얻은 깊이 있는 문제의식이 제 디자인의 출발점입니다.
-            </p>
-            <p>
-              저의 강점은 <strong>복잡한 기술과 데이터를 사람의 언어로 풀어내는 설계력</strong>입니다. AI의 예측과 방대한 데이터, 새로운 인터랙션을 사용자가 이해하고 선택할 수 있는 화면과 흐름으로 연결합니다. 기술을 보여주는 데서 한 걸음 더 나아가, 그 기술이 사람의 일상에 어떤 도움을 주는지 묻습니다.
-            </p>
-            <p>
-              <strong>경험에 머무르지 않고, 변화에 맞춰 꾸준히 배우고 있습니다.</strong> 빠르게 바뀌는 AI 도구와 웹 기술을 직접 사용하며, 3D 공간·프론트엔드·데이터 처리의 원리를 익히고 프로젝트에 적용합니다. 낯선 기술을 만나면 질문하고, 구현하고, 오류를 확인하며 이해의 범위를 넓혀갑니다.
-            </p>
-            <p>
-              삶을 바라보는 깊이와 새롭게 배우는 태도를 함께 갖춘 디자이너로서, 기획의 의도를 이해하고 개발자와 소통하며 <strong>사람에게 명쾌하고 따뜻한 경험</strong>을 만드는 파트너가 되겠습니다.
-            </p>
+            <h3>사용자의 상황을 이해하고,<br>설계한 흐름을 직접 구현합니다.</h3>
+            <p>UI/UX·웹 디자이너 박민선입니다. 복잡한 데이터와 콘텐츠를 사용자가 이해하고 선택할 수 있는 화면으로 정리하고, 웹·모바일 인터랙션으로 연결합니다.</p>
+            <p>3D 창작 공간, 신문 아카이브 게임, 시니어 서비스와 오디오 루틴 앱을 만들며 서로 다른 사용 상황을 다뤘습니다. 경성야록 팀 프로젝트에서는 <strong>전체 DB와 웹·모바일 게임 구현</strong>을 담당했습니다.</p>
+            <p><strong>방송 소품 대여실에서 8년간</strong> 소품 제작·출고·대여·물류관리와 고객 응대, 홈페이지 관리 및 간단한 세무업무를 맡았습니다. 스튜디오에서는 촬영 보조·사진 이미지 수정 및 편집·고객 응대를 경험했습니다.</p>
+            <p>삶에서 얻은 관찰과 새로운 기술에 대한 배움을 함께 가져갑니다. 기능을 구현한 범위와 추가 검증이 필요한 부분을 구분하고, 결과를 확인하며 개선하는 태도를 중요하게 생각합니다.</p>
           </div>
 
           <div class="about-skills">
@@ -684,6 +739,13 @@
             </div>
           </div>
         </div>
+        <div class="strength-heading"><h3>경험을 작업으로 연결하는 네 가지 강점</h3><p>프로젝트에서 드러나는 접근 방식과 구현 사례입니다.</p></div>
+          <ul class="strength-cards" aria-label="박민선의 네 가지 강점">
+            <li class="strength-card"><span class="strength-icon" aria-hidden="true">✓</span><div><span class="strength-label">01 / RIGOR</span><h3>8년의 꼼꼼함과 체계</h3><p>방송 소품 대여실에서 8년간 소품 제작, 물품 출고·대여와 물류관리, 홈페이지 관리 및 간단한 세무업무를 맡았습니다. 여러 업무의 일정과 물품 흐름을 챙긴 경험을 작업의 체계성과 꼼꼼함으로 이어갑니다.</p></div></li>
+            <li class="strength-card"><span class="strength-icon" aria-hidden="true">↔</span><div><span class="strength-label">02 / EMPATHY</span><h3>장벽을 낮추는 실천적 소통</h3><p>소품 대여실과 스튜디오에서 고객을 응대하며 요청을 듣고 필요한 안내를 전달했습니다. 이 경험을 바탕으로 시니어 헬퍼의 큰 버튼·음성 입력처럼 사용자의 상황을 고려하는 화면을 구성합니다.</p></div></li>
+            <li class="strength-card"><span class="strength-icon" aria-hidden="true">◈</span><div><span class="strength-label">03 / SENSE</span><h3>스튜디오 기반 시각 감각</h3><p>스튜디오에서 촬영 보조와 사진 이미지 수정·편집을 맡았습니다. 촬영과 이미지 편집 경험을 웹 화면의 시각 구성과 사진 기반 영상 작업으로 연결합니다.</p></div></li>
+            <li class="strength-card"><span class="strength-icon" aria-hidden="true">⌘</span><div><span class="strength-label">04 / CODE</span><h3>AI &amp; 데이터 인터페이스 구현</h3><p>경성야록의 전체 DB와 웹·모바일 게임 구현을 맡아 데이터 정리부터 인터랙션까지 연결했습니다.</p></div></li>
+          </ul>
       </div>
     </section>
 
@@ -702,43 +764,43 @@
             <div class="tool-category">01 / DEVELOPMENT ENVIRONMENT</div>
             <h3>개발 환경 & 에이전트 워크스페이스</h3>
             <dl>
-              <div class="tool-entry"><dt>Visual Studio Code</dt><dd>코드 편집, 프로젝트 파일 관리와 터미널 실행을 위한 개발 환경입니다. 프론트엔드 화면과 백엔드 코드를 작성하고 실행하는 작업 기반으로 활용했습니다.</dd></div>
-              <div class="tool-entry"><dt>Google Antigravity</dt><dd>AI 에이전트와 함께 구현 작업을 진행하는 개발 환경입니다. 작업 계획부터 코드 작성·실행·검토로 이어지는 개발 흐름을 지원합니다.</dd></div>
+              <div class="tool-entry"><dt>Visual Studio Code</dt><dd>프론트엔드·백엔드 코드 편집, 파일 관리와 터미널 실행.</dd></div>
+              <div class="tool-entry"><dt>Google Antigravity</dt><dd>AI 에이전트와 작업 계획·구현·실행 결과 검토.</dd></div>
             </dl>
           </article>
           <article class="tool-card reveal">
             <div class="tool-category">02 / GENERATIVE AI & CODING</div>
             <h3>기획·문제 해결 & AI 코딩</h3>
             <dl>
-              <div class="tool-entry"><dt>ChatGPT</dt><dd>아이디어 구체화, 사용자 흐름과 문구 정리, 기술 개념 이해를 돕는 생성형 AI입니다. 기획과 구현 과정의 질문을 정리하고 대안을 탐색하는 데 활용했습니다.</dd></div>
-              <div class="tool-entry"><dt>OpenAI Codex</dt><dd>저장소의 코드를 읽고 수정하며 명령 실행과 오류 확인을 지원하는 코딩 에이전트입니다. 기능 구현, 코드 수정과 검증을 돕는 도구로 활용했습니다.</dd></div>
-              <div class="tool-entry"><dt>Claude</dt><dd>긴 문맥을 바탕으로 문서·코드와 요구사항을 검토하는 생성형 AI입니다. 구현 방향과 코드 구조를 비교하고 문제 해결의 대안을 검토하는 데 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>ChatGPT</dt><dd>기획과 문구 정리, 사용자 흐름·기술 대안 탐색.</dd></div>
+              <div class="tool-entry"><dt>OpenAI Codex</dt><dd>저장소 코드 수정, 오류 진단과 실행 검증 보조.</dd></div>
+              <div class="tool-entry"><dt>Claude</dt><dd>문서·코드 검토, 구현 방향과 구조 비교.</dd></div>
             </dl>
           </article>
           <article class="tool-card reveal">
             <div class="tool-category">03 / VISION AI & MODEL PLATFORM</div>
             <h3>객체 탐지 & AI 모델 생태계</h3>
             <dl>
-              <div class="tool-entry"><dt>Ultralytics YOLO</dt><dd>이미지와 영상에서 객체를 탐지하는 컴퓨터 비전 모델입니다. CSI LAB에서 YOLO11n을 활용한 시각 단서 탐지 경험을 구현했습니다.</dd></div>
-              <div class="tool-entry"><dt>Hugging Face</dt><dd>공개 AI 모델, 데이터셋과 데모를 탐색하는 플랫폼입니다. 프로젝트에 적합한 모델과 적용 방법을 조사·비교하는 데 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>Ultralytics YOLO</dt><dd>CSI LAB의 이미지 속 객체 탐지와 시각 단서 관찰.</dd></div>
+              <div class="tool-entry"><dt>Hugging Face</dt><dd>프로젝트에 활용할 공개 모델·데이터셋 조사.</dd></div>
             </dl>
           </article>
           <article class="tool-card reveal">
             <div class="tool-category">04 / BACKEND & API</div>
             <h3>서비스 연결 & 데이터 흐름</h3>
             <dl>
-              <div class="tool-entry"><dt>FastAPI</dt><dd>Python 기반 API 프레임워크입니다. EchoChamber의 메모리·대화·관계망 라우터 등 프론트엔드와 데이터 처리 기능을 연결하는 백엔드 구성에 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>FastAPI</dt><dd>EchoChamber의 메모리·대화·관계망 API 연결.</dd></div>
             </dl>
           </article>
           <article class="tool-card reveal">
             <div class="tool-category">05 / UI/UX DESIGN</div>
             <h3>화면 설계 & 시각 디자인</h3>
             <dl>
-              <div class="tool-entry"><dt>Figma</dt><dd>화면 구성, 컴포넌트와 인터랙션 흐름을 설계하는 디자인 도구입니다. UI/UX 아이디어를 시각화하고 구현 전에 화면의 일관성과 사용 흐름을 검토하는 데 활용했습니다.</dd></div>
+              <div class="tool-entry"><dt>Figma</dt><dd>화면·컴포넌트·인터랙션 흐름 설계와 일관성 검토.</dd></div>
             </dl>
           </article>
         </div>
-        <p class="tool-note reveal">AI 모델과 개발 도구는 역할이 다릅니다. ChatGPT·Claude는 생성형 AI, Codex는 코딩 에이전트, YOLO는 객체 탐지 모델입니다. VS Code·Antigravity는 개발 환경, FastAPI는 백엔드 프레임워크, Figma는 디자인 도구이며, 모든 도구가 각 프로젝트에 동일하게 사용된 것은 아닙니다.</p>
+        <p class="tool-note reveal">도구는 프로젝트에 필요한 역할에 맞춰 사용합니다. 모든 도구가 각 프로젝트에 동일하게 사용된 것은 아닙니다.</p>
       </div>
     </section>
 
@@ -806,6 +868,7 @@
           <p><strong>협업:</strong> 김소이는 전체 디자인·UI·인터랙션과 오프닝·박람회·광고·납량 코너를, 이경민은 사건 네 편의 서브페이지와 독자 참여 콘텐츠를 담당했습니다. 페이지 연결 점검과 디자인 톤 통일은 팀 공동 작업입니다.</p>
           <p><strong>기록을 다루는 원칙:</strong> 사건별 기사 제목·날짜·지면과 출처를 밝히고, AI 삽화와 창작 글에는 「재현」「재구성」을 표기했습니다. 피해자의 얼굴·시신·피 표현 없이 기록을 전달했습니다. 구독·굿즈 확장은 제안 단계이며, 구독 전환이나 신규 독자 유입은 측정된 성과가 아닙니다.</p>
           <p><a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">경성야록 체험하기 ↗</a></p>
+          <div class="design-note"><h4>설계 판단 · 기기에 따라 조작을 나누기</h4><p><strong>선택:</strong> 같은 3D 게임을 PC에서는 키보드, 모바일에서는 조이스틱으로 조작하도록 구현했습니다.</p><p><strong>확인 범위:</strong> PPT의 실제 게임 화면에서 모바일 이동·조사·수집 UI를 확인할 수 있습니다. 원문과 재현 콘텐츠는 출처·표기를 구분했습니다.</p></div>
         `
       },
       'video-production': {
@@ -828,6 +891,7 @@
           <p><strong>기획 의도:</strong> 디지털 환경에서도 실제 아틀리에에 머무는 듯한 아날로그적 온기와 몰입감을 전달하고자 기획한 3D 가상 작업실 플랫폼입니다. 서울 한강의 수려한 전망과 햇살이 비치는 화실을 배경으로 창작(그리기)과 탐색(공간 둘러보기), 선택(미술용품 담기)을 하나의 유기적인 인터랙션으로 통합했습니다.</p>
           <p><strong>캔버스 및 브러시 엔진:</strong> 브라우저 위에서 수채화의 맑은 번짐, 물감의 도톰한 두께감, 연필과 목탄의 거친 흑연 입자, 에어브러시 분사는 물론, 튜브 형태의 메쉬로 발광하는 3D 입체 붓질까지 구현했습니다. 캔버스 비율 유지, 필압/기울기 반응, 낮/밤 모드에 따른 한강물 반사와 조명 변화를 지원합니다.</p>
           <p><strong>가상 쇼룸 인터페이스:</strong> 화실 왼쪽 문을 열고 들어가 실제 진열장 속 캔버스, 종이, 붓, 물감 등의 상품 정보를 확인하고 장바구니에 담는 쇼룸 동선을 설계하여 디지털 페인팅 툴과 커머스 경험을 결합했습니다.</p>
+          <div class="design-note"><h4>설계 판단 · 공간과 도구를 한 흐름으로</h4><p><strong>선택:</strong> 공간 탐색·그리기·미술용품 선택을 하나의 화실 안에서 이어가도록 구성했습니다.</p><p><strong>확인 범위:</strong> 화면 비율을 바꿔도 캔버스 비율이 유지되는 구조를 적용했습니다. 실제 사용자의 도구 발견성과 창작 흐름 검증은 다음 과제입니다.</p></div>
         `
       },
       'my-ai-life': {
@@ -845,6 +909,9 @@
         content: `
           <p><strong>기획 의도:</strong> 방대한 서울시 상권 데이터를 일반 사용자 목적에 맞게 재해석했습니다. 창업자(수익/안정성)와 소비자(2030/주말·야간 핫플)의 시선에 맞춰 듀얼 모드 UI를 제공합니다.</p>
           <p><strong>데이터 및 UI 설계:</strong> 8.4만 건의 데이터를 정제·병합하고 Random Forest 모델(R² 0.5227)로 점포당 월매출을 추정했습니다. AI 수치를 '확정된 정답'이 아닌 '참고 예측치'로 인지하도록 정보 경계를 투명하게 명시했습니다.</p>
+          <p><strong>발표자료 추가:</strong> 84,675개 관측값·1,577개 상권·62개 업종을 바탕으로 데이터 병합, 지표 설계, 규칙 기반 추천과 Random Forest 매출 추정을 설명합니다. 방문·창업 목적에 따른 해석과 실제 코드 흐름을 함께 담았습니다.</p>
+          <p>발표자료 37쪽 · 웹 열람용 PDF와 편집 가능한 원본 PowerPoint를 제공합니다.</p>
+          <div class="presentation-links"><a class="btn-action btn-outline" href="presentations/seoul-hotplace.pdf" target="_blank" rel="noopener noreferrer" aria-label="서울 핫플 데이터 분석 PPT 발표자료 37쪽 PDF로 보기">PPT 발표자료 보기 ↗</a><a class="btn-action btn-outline" href="presentations/seoul-hotplace.pptx" download>PPT 원본 다운로드 ↓</a></div>
         `
       },
       'csi-lab': {
@@ -853,6 +920,9 @@
         content: `
           <p><strong>기획 의도:</strong> 난해한 공공 범죄 통계를 일반 시민이 능동적으로 체감할 수 있도록 '수사관이 되어 사건을 해결하는' 게이미피케이션 구조를 도입했습니다.</p>
           <p><strong>인터페이스 구현:</strong> 가상 CCTV 화면 속에서 YOLO11 딥러닝 객체 탐지로 시각 단서를 수집하고 목격자 진술과 대조하는 증거 분석실(Evidence LAB) 인터페이스를 구축했습니다. 사건 해결 후에는 1990–2024년 지역 범죄 데이터와 예방 가이드로 연결됩니다.</p>
+          <p><strong>발표자료 추가:</strong> 사건 관찰과 증거 수집에서 실제 범죄 통계 읽기로 이어지는 교육 프로젝트입니다. YOLO 객체 관찰, 가설·추리, 지역·장기 비교와 예방 가이드를 소개하며, 구현 기능과 아직 측정하지 않은 교육 효과를 구분합니다.</p>
+          <p>발표자료 42쪽 · 웹 열람용 PDF와 편집 가능한 원본 PowerPoint를 제공합니다.</p>
+          <div class="presentation-links"><a class="btn-action btn-outline" href="presentations/csi-lab.pdf" target="_blank" rel="noopener noreferrer" aria-label="CSI LAB PPT 발표자료 42쪽 PDF로 보기">PPT 발표자료 보기 ↗</a><a class="btn-action btn-outline" href="presentations/csi-lab.pptx" download>PPT 원본 다운로드 ↓</a></div>
         `
       },
       'senior-helper': {
@@ -864,6 +934,7 @@
           <p><strong>대화와 기억 기록:</strong> 음성 인식과 글 입력으로 질문하고, 글과 실제 음성 녹음으로 하루의 경험을 저장·재생합니다. 일반 대화는 준비된 응답을 사용하며, 기억의 기본 저장 위치는 현재 브라우저입니다. 저장 오류 시 입력을 유지하고 오류를 안내합니다.</p>
           <p><strong>생활 정보와 외부 연동:</strong> Open-Meteo로 기온·체감온도·습도를 조회하며 지역 선택과 위치 권한을 지원합니다. 기기 사진은 촬영·확인·분석 요청 흐름으로 구성했으며, 분석에는 n8n 서버와 AI 모델 연결이 필요합니다. 연결 실패 시 사용법을 임의로 생성하지 않습니다.</p>
           <p><strong>구현 범위와 다음 단계:</strong> 모바일 홈, 다섯 가지 훈련, 로컬 기억 저장, 날씨 조회와 촬영 화면을 구현했습니다. Supabase 클라우드 저장은 선택 사항이며 환경변수·익명 인증·RLS 설정이 필요합니다. 사진 분석 운영 웹훅·HTTPS·CORS 연결과 실제 기기 권한, AI 안내 정확성 및 시니어 사용성 검증은 추가 확인 항목입니다.</p>
+          <div class="design-note"><h4>설계 판단 · 선택지를 줄이고 입력 방식을 넓히기</h4><p><strong>선택:</strong> 주요 기능 네 개를 2×2 버튼으로 묶고, 글 입력 외에 음성과 터치로 접근할 수 있도록 구성했습니다.</p><p><strong>확인 범위:</strong> 실제 기기의 음성·카메라 권한과 시니어 사용성 검증은 추가 확인 항목입니다. 구현한 화면을 검증된 사용성 성과로 표현하지 않습니다.</p></div>
         `
       },
       'echo-chamber': {
