@@ -1052,6 +1052,10 @@
     }
     .video-tool-note { margin-top:16px; padding-top:16px; border-top:1px solid var(--border-color); font-size:14px; line-height:1.85; color:var(--text-sub); }
     .video-tool-note a { display:inline-flex; align-items:center; min-height:44px; color:var(--primary); text-underline-offset:4px; }
+    .interactive-role-button { display:inline-flex; align-items:center; justify-content:space-between; gap:8px; width:fit-content; max-width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border-color); border-radius:10px; background:rgba(56,189,248,.07); color:var(--text-main); font-size:12px; line-height:1.6; text-decoration:none; transition:background .2s,border-color .2s; }
+    .interactive-role-button:hover { border-color:var(--primary); background:rgba(56,189,248,.14); }
+    .interactive-role-button span { color:var(--primary); }
+    .logo-group { min-width:0; }
   </style>
 </head>
 <body>
@@ -1064,6 +1068,7 @@
       <div class="logo-group">
         <a href="#top" class="logo"><span class="logo-badge"></span>MINSUN.PARK</a>
         <div class="status-badge"><span class="status-dot"></span><span>UI/UX DESIGNER</span></div>
+        <a class="interactive-role-button" href="#projects">인터랙티브 웹 콘텐츠 제작 <span aria-hidden="true">↗</span></a>
       </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebarScrollArea" aria-label="메뉴 열기">
         ☰
