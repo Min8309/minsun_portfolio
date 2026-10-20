@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="오픈갤러리 React UI 구현 프로젝트의 메인·작품·상품·로그인 화면을 탭으로 살펴보세요.">
+  <title>오픈갤러리 | 페이지별 화면 보기</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" media="print" onload="this.media='all'">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #070b14; color: #cbd5e1; font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif; line-height: 1.75; overflow-wrap: anywhere; }
+    main { max-width: 1240px; margin: auto; padding: 32px 24px 64px; }
+    a { color: #7dd3fc; text-underline-offset: 4px; }
+    h1, h2 { color: #f8fafc; line-height: 1.4; }
+    h1 { font-size: clamp(28px, 4vw, 44px); margin: 12px 0; }
+    h2 { font-size: 20px; }
+    p { margin: 12px 0; }
+    .eyebrow { color: #38bdf8; font-size: 12px; letter-spacing: .12em; margin-top: 28px; }
+    .back { display: inline-flex; align-items: center; min-height: 44px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .actions a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border: 1px solid #334155; border-radius: 10px; text-decoration: none; }
+    .actions a:first-child { color: #070b14; background: #38bdf8; border-color: #38bdf8; font-weight: 700; }
+    .viewer { margin-top: 28px; border: 1px solid #334155; border-radius: 16px; overflow: hidden; background: #0f172a; }
+    .tabs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .tabs button { min-width: 0; min-height: 52px; padding: 12px 8px; border: 0; border-bottom: 3px solid transparent; background: #111b2d; color: #cbd5e1; font: inherit; font-size: 14px; cursor: pointer; }
+    .tabs button:hover { background: #1e293b; }
+    .tabs button[aria-selected="true"] { color: #7dd3fc; background: #172c43; border-bottom-color: #38bdf8; font-weight: 700; }
+    :focus-visible { outline: 2px solid #fbbf24; outline-offset: -4px; }
+    [hidden] { display: none !important; }
+    .panel { padding: 20px; }
+    .panel h2 { margin: 0; }
+    .panel p { color: #94a3b8; font-size: 14px; }
+    figure { margin: 20px 0 0; }
+    figure a { display: block; }
+    figure img { display: block; width: 100%; height: auto; background: white; border-radius: 8px; }
+    figcaption { margin-top: 10px; color: #94a3b8; font-size: 13px; }
+    .notes { margin-top: 28px; padding: 20px 24px; border: 1px solid #334155; border-radius: 12px; }
+    .notes ul { padding-left: 20px; }
+    .notes li { margin: 8px 0; }
+    footer { margin-top: 32px; color: #94a3b8; font-size: 13px; }
+    @media (max-width: 680px) { main { padding: 20px 16px 40px; } .tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); } .panel { padding: 16px 12px; } .actions a { justify-content: center; width: 100%; } }
+  </style>
+</head>
+<body>
+<main>
+  <a class="back" href="../index.html#work-open-gallery">← 포트폴리오로 돌아가기</a>
+  <header>
+    <p class="eyebrow">OPEN GALLERY / REACT UI</p>
+    <h1>작품 탐색에서 상품 선택까지</h1>
+    <p>오픈갤러리 UI 구현 프로젝트의 페이지별 화면입니다. 탭을 눌러 여섯 화면과 각 화면의 역할을 살펴보세요.</p>
+    <div class="actions">
+      <a href="https://min8309.github.io/" target="_blank" rel="noopener noreferrer">실제 사이트 보기 ↗</a>
+      <a href="../presentations/open-gallery-technology.pptx" download>PPT 발표자료 다운로드 ↓</a>
+    </div>
+  </header>
+  <section class="viewer" aria-label="오픈갤러리 페이지별 화면">
+    <div class="tabs" role="tablist" aria-label="미리 볼 페이지">
+      <button type="button" role="tab" id="tab-main" aria-controls="panel-main" aria-selected="true">메인 페이지</button>
+      <button type="button" role="tab" id="tab-art-tech" aria-controls="panel-art-tech" aria-selected="false" tabindex="-1">작품 목록</button>
+      <button type="button" role="tab" id="tab-artwork" aria-controls="panel-artwork" aria-selected="false" tabindex="-1">작품 상세</button>
+      <button type="button" role="tab" id="tab-goods" aria-controls="panel-goods" aria-selected="false" tabindex="-1">아트굿즈</button>
+      <button type="button" role="tab" id="tab-product" aria-controls="panel-product" aria-selected="false" tabindex="-1">상품 상세</button>
+      <button type="button" role="tab" id="tab-login" aria-controls="panel-login" aria-selected="false" tabindex="-1">로그인</button>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-main" aria-labelledby="tab-main" tabindex="0">
+      <h2>메인 페이지</h2><p>배너와 작품 카드, 후기·서비스 소개를 통해 작품 탐색을 시작하는 화면입니다. <span>경로: /</span></p>
+      <figure><a href="../assets/open-gallery/main.webp" target="_blank" rel="noopener noreferrer" aria-label="메인 페이지 캡처 크게 보기 (새 탭)"><img src="../assets/open-gallery/main.webp" width="1440" height="1000" alt="오픈갤러리 메인 페이지 실제 로컬 실행 화면" fetchpriority="high" decoding="async"></a><figcaption>화면을 누르면 큰 이미지로 볼 수 있습니다.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-art-tech" aria-labelledby="tab-art-tech" tabindex="0" hidden>
+      <h2>작품 목록</h2><p>작품 이미지와 정보를 카드로 나열하고 상세 화면으로 연결합니다. <span>경로: /art-tech</span></p>
+      <figure><a href="../assets/open-gallery/art-tech.webp" target="_blank" rel="noopener noreferrer" aria-label="작품 목록 캡처 크게 보기 (새 탭)"><img src="../assets/open-gallery/art-tech.webp" width="1440" height="1000" alt="오픈갤러리 작품 목록 실제 로컬 실행 화면" loading="lazy" decoding="async"></a><figcaption>화면을 누르면 큰 이미지로 볼 수 있습니다.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-artwork" aria-labelledby="tab-artwork" tabindex="0" hidden>
+      <h2>작품 상세</h2><p>작품 이미지, 작가, 크기·재료·연도와 작품·렌탈 가격을 확인하는 화면입니다. <span>경로: /artwork/1</span></p>
+      <figure><a href="../assets/open-gallery/artwork.webp" target="_blank" rel="noopener noreferrer" aria-label="작품 상세 캡처 크게 보기 (새 탭)"><img src="../assets/open-gallery/artwork.webp" width="1440" height="1000" alt="오픈갤러리 작품 상세 실제 로컬 실행 화면" loading="lazy" decoding="async"></a><figcaption>화면을 누르면 큰 이미지로 볼 수 있습니다.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-goods" aria-labelledby="tab-goods" tabindex="0" hidden>
+      <h2>아트굿즈</h2><p>굿즈 배너와 카테고리, 상품 카드를 통해 관심 상품을 찾는 화면입니다. <span>경로: /goods</span></p>
+      <figure><a href="../assets/open-gallery/goods.webp" target="_blank" rel="noopener noreferrer" aria-label="아트굿즈 캡처 크게 보기 (새 탭)"><img src="../assets/open-gallery/goods.webp" width="1440" height="1000" alt="오픈갤러리 아트굿즈 실제 로컬 실행 화면" loading="lazy" decoding="async"></a><figcaption>화면을 누르면 큰 이미지로 볼 수 있습니다.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-product" aria-labelledby="tab-product" tabindex="0" hidden>
+      <h2>상품 상세</h2><p>썸네일과 기기·기종 옵션, 수량·총액을 연결한 상품 선택 화면입니다. <span>경로: /goods/1</span></p>
+      <figure><a href="../assets/open-gallery/product.webp" target="_blank" rel="noopener noreferrer" aria-label="상품 상세 캡처 크게 보기 (새 탭)"><img src="../assets/open-gallery/product.webp" width="1440" height="1000" alt="오픈갤러리 상품 상세 실제 로컬 실행 화면" loading="lazy" decoding="async"></a><figcaption>화면을 누르면 큰 이미지로 볼 수 있습니다.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-login" aria-labelledby="tab-login" tabindex="0" hidden>
+      <h2>로그인</h2><p>로그인 입력과 소셜 로그인 진입 UI입니다. 실제 인증 연동은 별도 구현이 필요합니다. <span>경로: /login</span></p>
+      <figure><a href="../assets/open-gallery/login.webp" target="_blank" rel="noopener noreferrer" aria-label="로그인 캡처 크게 보기 (새 탭)"><img src="../assets/open-gallery/login.webp" width="1440" height="1000" alt="오픈갤러리 로그인 실제 로컬 실행 화면" loading="lazy" decoding="async"></a><figcaption>화면을 누르면 큰 이미지로 볼 수 있습니다.</figcaption></figure>
+    </div>
+  </section>
+  <aside class="notes" aria-labelledby="scope-heading">
+    <h2 id="scope-heading">구현 범위와 확인 내용</h2>
+    <ul>
+      <li>React·React Router 기반의 화면 전환, 작품·상품 조회와 상태 기반 인터랙션을 소개합니다.</li>
+      <li>기존 서비스 UI를 구현한 포트폴리오 프로젝트입니다. 공식 서비스 운영 실적이나 실제 결제·인증 구축 경험을 의미하지 않습니다. 브랜드·작품 이미지의 권리는 각 권리자에게 있습니다.</li>
+      <li>2026-10-20 기준 GitHub 저장소의 배포 파일을 로컬 실행해 데스크톱 화면을 캡처했습니다. 이미지 안의 버튼은 작동하지 않으며, 직접 조작하려면 상단의 실제 사이트 버튼을 이용해 주세요.</li>
+      <li>원본 사이트는 모바일 390px에서 콘텐츠가 860px까지 넘치는 문제가 확인되었습니다. 이 화면 보기 페이지는 모바일에서도 크기에 맞게 표시됩니다.</li>
+    </ul>
+  </aside>
+  <noscript><p>전체 화면을 보려면 JavaScript를 활성화해 주세요. <a href="../assets/open-gallery/art-tech.webp">작품 목록</a> · <a href="../assets/open-gallery/artwork.webp">작품 상세</a> · <a href="../assets/open-gallery/goods.webp">아트굿즈</a> · <a href="../assets/open-gallery/product.webp">상품 상세</a> · <a href="../assets/open-gallery/login.webp">로그인</a></p></noscript>
+  <footer>© 2026 Park Min Sun. <a href="../index.html#work-open-gallery">포트폴리오로 돌아가기</a></footer>
+</main>
+<script>
+  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+  function activateTab(tab, focus = false) {
+    tabs.forEach(item => {
+      const selected = item === tab;
+      item.setAttribute('aria-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = tabs.length - 1;
+      if (next !== undefined) { event.preventDefault(); activateTab(tabs[next], true); }
+    });
+  });
+</script>
+</body>
+</html>
