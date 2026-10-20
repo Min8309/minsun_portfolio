@@ -906,6 +906,10 @@
       display: flex; justify-content: space-between; flex-wrap: wrap;
       gap: 16px; color: var(--text-muted); font-size: 12px; font-family: var(--mono-font);
     }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--body-font); }
+    .footer-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
+    .footer-links a:hover { color: var(--primary); text-decoration: underline; }
+    .footer-links a:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
 
     /* Modal for Details */
     .modal-backdrop {
@@ -1746,6 +1750,10 @@
     <div class="container footer-inner">
       <div>© 2026 Park Min Sun. All rights reserved. • TEL: 010-5309-3871 • minsunpark3421@gmail.com</div>
       <div>MBC ACADEMY AI & WEB DESIGN CAPSTONE</div>
+      <nav class="footer-links" aria-label="사이트 안내">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="#contact">문의</a>
+      </nav>
     </div>
   </footer>
 
