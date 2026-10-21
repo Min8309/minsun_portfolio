@@ -1101,6 +1101,44 @@
       .sidebar-top-bar .logo-group { width: 100%; }
       .interactive-role-button { align-self: center; width: 60%; padding-inline: 16px; }
     }
+    /* Brighter mobile palette; desktop retains the original dark theme. */
+    @media (max-width: 900px) {
+      :root {
+        color-scheme: light;
+        --bg-ground: #F1F6FC;
+        --bg-surface: #FFFFFF;
+        --bg-surface-elevated: #E8F0FA;
+        --bg-card: #FFFFFF;
+        --text-main: #14243B;
+        --text-sub: #34465E;
+        --text-muted: #52647B;
+        --primary: #00689D;
+        --primary-light: #075985;
+        --primary-glow: rgba(0, 104, 157, .12);
+        --accent-violet: #5B46B2;
+        --pop-amber: #9A5700;
+        --pop-emerald: #08775D;
+        --border-color: #CBD8E8;
+        --border-hover: #00689D;
+      }
+      body { background: #F1F6FC; }
+      header.sidebar-nav { background: #FFFFFF; box-shadow: 0 3px 18px rgba(34, 65, 100, .08); }
+      .sidebar-scroll-area, .modal-box { background: #FFFFFF; box-shadow: 0 14px 40px rgba(34, 65, 100, .18); }
+      .hero-title .white-glow, .hero-title .gradient-code {
+        background: none; color: #14243B; -webkit-text-fill-color: #14243B; text-shadow: none;
+      }
+      .hero-title .highlight { background: none; color: #0075AD; -webkit-text-fill-color: #0075AD; }
+      .hero-title .period { color: #9A5700; -webkit-text-fill-color: #9A5700; }
+      .floating-note, .floating-note:hover { background: #FFFFFF; color: var(--text-main); border-color: #BDCEE2; box-shadow: 0 6px 18px rgba(34, 65, 100, .12); }
+      .art-label, .cover-label { color: #EAF4FF; }
+      .contact-box { background: #E7F1FB; box-shadow: none; }
+      .contact-info-card, .contact-info-card:hover, .modal-close { background: #FFFFFF; }
+      .contact-card-icon, .tech-pill, .project-metrics, .case-brief > div { background: #EDF3FA; border-color: #D6E1EE; }
+      .contact-card-hint { color: #52647B; }
+      footer { background: #E4EDF7; }
+      .btn-outline { background: #F2F6FC; border-color: #B9CBE0; }
+      .modal-backdrop { background: rgba(28, 47, 70, .42); }
+    }
   </style>
 </head>
 <body>
