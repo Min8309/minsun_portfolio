@@ -436,24 +436,20 @@
     .art-label.bottom { bottom: 8%; right: 8%; }
 
     .floating-note {
-      position: absolute; z-index: 3; display: flex; align-items: center; gap: 14px;
-      padding: 14px 20px; border: 1px solid rgba(255, 255, 255, 0.12);
+      position: absolute; z-index: 3; display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px; min-height: 44px; border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-md); background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: var(--glass-blur); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: var(--glass-blur); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       font-size: 13px; font-weight: 500; animation: note-float 5s ease-in-out infinite alternate;
-      width: 245px; max-width: 100%; transition: border-color .2s, background .2s;
+      width: max-content; max-width: 100%; transition: border-color .2s, background .2s;
     }
     .floating-note:hover { border-color: var(--primary); background: rgba(22, 33, 58, .98); }
     .floating-note:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-    .floating-note > span { min-width: 0; }
-    .floating-note em { display: block; margin-top: 4px; color: var(--text-sub); font-size: 11px; font-style: normal; font-weight: 400; }
+    .floating-note > span { min-width: 0; white-space: nowrap; }
     .floating-note i {
-      color: var(--primary); font: 22px var(--mono-font); font-style: normal;
-      background: rgba(56, 189, 248, 0.12); width: 36px; height: 36px;
+      color: var(--primary); font: 18px var(--mono-font); font-style: normal;
+      background: rgba(56, 189, 248, 0.12); width: 28px; height: 28px;
       display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;
-    }
-    .floating-note small {
-      display: block; color: var(--text-muted); font: 10px var(--mono-font); margin-bottom: 2px;
     }
     .note-a { top: 4%; right: 0; }
     .note-b { top: 28%; left: 0; animation-delay: -2.5s; }
@@ -1202,10 +1198,10 @@
               <span class="art-cross" aria-hidden="true">+</span>
               <span class="art-label top">HUMAN × TECHNOLOGY</span>
               <span class="art-label bottom">DESIGNED TO MAKE SENSE</span>
-              <a class="floating-note note-a" href="#work-seoul-data"><i aria-hidden="true">⌘</i><span><small>01 / SYSTEM</small>복잡함을 명료하게<em>데이터 대시보드 / 정보 구조화</em></span></a>
-              <a class="floating-note note-b" href="#work-senior-helper"><i aria-hidden="true">✳</i><span><small>02 / EXPERIENCE</small>기술에 사람의 온기를<em>시니어 UX / 인간 중심 기획</em></span></a>
-              <a class="floating-note note-c" href="#work-ateliera"><i aria-hidden="true">◇</i><span><small>03 / IMMERSION</small>공간과 감각의 인터랙션<em>3D WebGL / 게이미피케이션</em></span></a>
-              <a class="floating-note note-d" href="#video"><i aria-hidden="true">↗</i><span><small>04 / EXECUTION</small>기획을 코드로 실현<em>AI 미디어 / 프론트엔드 연동</em></span></a>
+              <a class="floating-note note-a" href="#work-seoul-data"><i aria-hidden="true">⌘</i><span>복잡함을 명료하게</span></a>
+              <a class="floating-note note-b" href="#work-senior-helper"><i aria-hidden="true">✳</i><span>기술에 사람의 온기를</span></a>
+              <a class="floating-note note-c" href="#work-ateliera"><i aria-hidden="true">◇</i><span>공간과 감각의 인터랙션</span></a>
+              <a class="floating-note note-d" href="#video"><i aria-hidden="true">↗</i><span>기획을 코드로 실현</span></a>
             </div>
           </div>
         </div>
