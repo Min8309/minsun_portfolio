@@ -1036,6 +1036,17 @@
         padding: 24px 20px; z-index: 999;
       }
       .sidebar-scroll-area.is-open { display: flex; flex-direction: column; }
+      .sidebar-scroll-area .nav-links {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+      }
+      .sidebar-scroll-area .nav-links a {
+        min-height: 52px; justify-content: space-between; padding: 12px 14px;
+        background: rgba(56, 189, 248, 0.05); border-color: var(--border-color);
+      }
+      .sidebar-scroll-area .nav-links a::after { content: '↗'; color: var(--primary); }
+      .sidebar-scroll-area .nav-links a[aria-current] {
+        background: rgba(56, 189, 248, 0.12); border-color: var(--primary);
+      }
       .sidebar-footer { padding: 16px 0 0; }
       .project-card-featured { grid-template-columns: 1fr; min-height: 0; max-height: none; }
       .project-card-featured .project-cover { aspect-ratio: 16/9; max-height: 200px; height: auto; border-right: 0; border-bottom: 1px solid var(--border-color); }
@@ -1103,7 +1114,7 @@
 
     <div id="sidebarScrollArea" class="sidebar-scroll-area">
       <div>
-        <div class="sidebar-section-title">NAVIGATION</div>
+        <div class="sidebar-section-title">카테고리 바로가기</div>
         <nav aria-label="주요 메뉴">
           <ul class="nav-links">
             <li><a href="#projects">대표 작업</a></li>
