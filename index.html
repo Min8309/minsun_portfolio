@@ -271,15 +271,6 @@
       border-color: var(--primary); color: var(--primary);
       background: rgba(56, 189, 248, 0.08); transform: translateY(-2px);
     }
-    .btn-amber {
-      background: linear-gradient(135deg, var(--pop-amber) 0%, #D97706 100%);
-      color: #070B14; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 18px rgba(251, 191, 36, 0.3);
-    }
-    .btn-amber:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5);
-    }
 
     /* Hero Section */
     .hero {
@@ -340,7 +331,6 @@
     .hero-lead strong {
       color: var(--text-main); font-weight: 600; display: block; margin-bottom: 6px;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
     /* Hero Visual Graphics (Orb & Orbits) */
     .hero-art {
@@ -852,9 +842,6 @@
     .tool-card h3 {
       font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--text-main);
     }
-    .tool-entry dt { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
-    .tool-entry dd { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
-    .tool-entry + .tool-entry { border-top: 1px solid var(--border-color); margin-top: 14px; padding-top: 14px; }
     .tool-note {
       margin-top: 24px; font-size: 13px; color: var(--text-muted); text-align: center;
     }
@@ -874,7 +861,7 @@
 
     .contact-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
       gap: 14px;
       margin: 28px 0;
     }
@@ -996,20 +983,7 @@
     }
     .design-note h4 { font-size: 16px; margin-bottom: 10px; color: var(--primary); }
 
-    /* Screenshots in projects */
-    .project-screenshots {
-      display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px;
-      padding: 18px; background: #070B14;
-    }
-    .project-screenshots figure { margin: 0; }
-    .project-screenshots img {
-      width: 100%; height: auto; border-radius: 6px;
-      border: 1px solid var(--border-color);
-    }
-    .project-screenshots figcaption {
-      font-size: 11px; font-family: var(--mono-font); color: var(--text-muted);
-      margin-top: 8px; text-align: center;
-    }
+    /* Senior service screenshot */
     .senior-screen-cover {
       display: flex; align-items: center; justify-content: center;
       padding: 20px; background: #070B14;
@@ -1071,7 +1045,7 @@
       .case-brief { grid-template-columns: 1fr; gap: 6px; margin-bottom: 10px; }
       .project-metrics { grid-template-columns: 1fr 1fr; gap: 6px; padding: 8px 10px; margin-bottom: 10px; }
       .project-card-footer { flex-direction: column; width: 100%; gap: 8px; padding-top: 10px; }
-      .project-card-footer .btn-action { width: 100%; min-height: 40px; }
+      .project-card-footer .btn-action { width: 100%; min-height: 44px; }
       .video-featured { grid-template-columns: 1fr; min-height: 0; max-height: none; }
       .video-stage-column { border-right: 0; border-bottom: 1px solid var(--border-color); padding: 18px 16px; }
       .video-info-column { padding: 18px 16px; }
@@ -1086,7 +1060,6 @@
     @media (max-width: 480px) {
       .hero-title { font-size: 42px; }
       .hero-lead { font-size: 16px; }
-      .hero-actions .btn-action { width: 100%; }
       .project-card-header, .project-card-body, .project-card-footer { padding-inline: 18px; }
       .project-metrics { grid-template-columns: 1fr; }
       .modal-box { padding: 48px 20px 24px; }
@@ -1099,8 +1072,6 @@
       }
       .motion-ready .reveal { opacity: 1 !important; transform: none !important; }
     }
-    .video-tool-note { margin-top:16px; padding-top:16px; border-top:1px solid var(--border-color); font-size:14px; line-height:1.85; color:var(--text-sub); }
-    .video-tool-note a { display:inline-flex; align-items:center; min-height:44px; color:var(--primary); text-underline-offset:4px; }
     .interactive-role-button { display:inline-flex; align-items:center; justify-content:space-between; gap:8px; width:fit-content; max-width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border-color); border-radius:10px; background:rgba(56,189,248,.07); color:var(--text-main); font-size:12px; line-height:1.6; text-decoration:none; transition:background .2s,border-color .2s,transform .2s ease; }
     .interactive-role-button:hover { border-color:var(--primary); background:rgba(56,189,248,.14); }
     @media (hover: hover) and (pointer: fine) {
@@ -1444,7 +1415,7 @@
 
     <section id="more-work" class="section">
       <div class="container">
-        <div class="section-header reveal"><div><div class="section-kicker">03 / MORE WORK</div><h2 class="section-title">데이터와 AI로 넓혀온 작업 영역</h2><p class="section-desc">인생 시뮬레이션, 데이터 분석, AI 에이전트와 오디오 루틴 앱까지. 다섯 가지 프로젝트로 작업 영역을 넓혀갑니다.</p></div></div>
+        <div class="section-header reveal"><div><div class="section-kicker">03 / MORE WORK</div><h2 class="section-title">데이터와 AI로 넓혀온 작업 영역</h2><p class="section-desc">인생 시뮬레이션, 데이터 분석, AI 에이전트와 오디오 루틴 앱까지. 여섯 가지 프로젝트로 작업 영역을 넓혀갑니다.</p></div></div>
         <div class="project-grid secondary-grid">
 <article id="work-my-ai-life" tabindex="-1" class="reveal project-card">
             <div>
@@ -1905,10 +1876,14 @@
     function toggleMobileMenu(show) {
       if (!sidebarScrollArea || !menuToggle) return;
       const isVisible = show !== undefined ? show : !sidebarScrollArea.classList.contains('is-open');
+      if (isVisible === sidebarScrollArea.classList.contains('is-open')) return;
+      const restoreMenuFocus = !isVisible && sidebarScrollArea.contains(document.activeElement);
       sidebarScrollArea.classList.toggle('is-open', isVisible);
       menuToggle.setAttribute('aria-expanded', String(isVisible));
+      menuToggle.setAttribute('aria-label', isVisible ? '메뉴 닫기' : '메뉴 열기');
       menuToggle.textContent = isVisible ? '✕' : '☰';
       document.body.style.overflow = isVisible ? 'hidden' : '';
+      if (restoreMenuFocus) menuToggle.focus();
     }
 
     if (menuToggle && sidebarScrollArea) {
