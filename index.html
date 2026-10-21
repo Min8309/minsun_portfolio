@@ -552,6 +552,10 @@
     .project-card:hover .project-cover img {
       transform: scale(1.03);
     }
+    .ateliera-video-cover video {
+      display: block; width: 100%; height: 100%; object-fit: contain;
+      background: #070B14; pointer-events: none; user-select: none;
+    }
     .cover-label {
       position: absolute; left: 16px; bottom: 14px;
       color: var(--text-main); font: 9px var(--mono-font); letter-spacing: 0.1em;
@@ -1178,11 +1182,6 @@
               <strong>복잡한 정보와 기술을, 이해하고 사용할 수 있는 경험으로 만듭니다.</strong>
               데이터 구조를 이해하고 웹·모바일 인터랙션을 직접 구현하는 UI/UX & 웹 디자이너 박민선입니다.
             </p>
-            <div class="hero-actions">
-              <a class="btn-action btn-primary" href="#projects">대표 작업 살펴보기 <span aria-hidden="true">↘</span></a>
-              <a class="btn-action btn-outline" href="#video">영상 작업 보기 <span aria-hidden="true">↗</span></a>
-              <a class="btn-action btn-outline" href="mailto:minsunpark3421@gmail.com">이메일 연락 <span aria-hidden="true">✉</span></a>
-            </div>
           </div>
           <div class="hero-visual">
             <div class="hero-art" role="group" aria-label="작업 역량별 프로젝트 바로가기">
@@ -1228,19 +1227,11 @@
         <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">문제를 경험으로 바꾼 대표 작업</h2><p class="section-desc">공간 인터랙션, 데이터와 게임, 시니어 UX. 세 가지 작업에서 문제·담당 역할·구현 결과를 먼저 살펴보세요.</p></div></div>
         <div class="project-grid selected-grid">
 <article id="work-ateliera" tabindex="-1" class="reveal project-card project-card-featured">
-  <div class="project-cover" aria-hidden="true">
-    <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="room" x2="1" y2="1"><stop stop-color="#263F4C"/><stop offset="1" stop-color="#0F1926"/></linearGradient><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#6691A5"/><stop offset="1" stop-color="#D9C8AD"/></linearGradient><linearGradient id="floor" x2="1" y2="1"><stop stop-color="#A57750"/><stop offset="1" stop-color="#50392D"/></linearGradient></defs>
-    <rect width="640" height="400" fill="url(#room)"/><circle cx="380" cy="105" r="160" fill="#38BDF8" opacity=".035"/>
-    <path d="M75 250L350 155L590 263L315 380Z" fill="url(#floor)"/><path d="M75 250V78L350 25V155Z" fill="#293948"/><path d="M350 25L590 135V263L350 155Z" fill="#172535"/>
-    <path d="M105 104L317 60V156L105 224Z" fill="url(#sky)"/><path d="M110 182L310 125V155L110 218Z" fill="#608598"/><path d="M110 183L136 166L160 166L173 154L194 154L210 139L245 143L264 129L310 123" fill="none" stroke="#324D5E" stroke-width="12"/><path d="M175 90V201M245 75V179M105 163L317 107" stroke="#253442" stroke-width="6"/>
-    <path d="M368 82L560 168V198L368 111Z" fill="#314352"/><path d="M368 127L560 213" stroke="#42535D" stroke-width="4"/>
-    <path d="M117 242L315 181L403 220L205 287Z" fill="#9B7454"/><path d="M127 247V283M380 227V267M205 287V326" stroke="#614835" stroke-width="8"/>
-    <path d="M267 197L273 105L338 134L331 226Z" fill="#DAC6A6" stroke="#594D40" stroke-width="4"/><path d="M279 119L326 139L322 204L275 183Z" fill="#C1D6D4"/><path d="M280 160Q300 125 321 162L321 201L277 182Z" fill="#598B89"/><path d="M282 175Q302 152 322 180" stroke="#F1BC69" stroke-width="5" fill="none"/><path d="M273 200L252 274M328 222L345 285" stroke="#926848" stroke-width="6"/>
-    <ellipse cx="480" cy="260" rx="41" ry="15" fill="#553E31"/><path d="M456 258L450 310M498 258L506 298" stroke="#674A36" stroke-width="8"/>
-    <circle cx="390" cy="194" r="8" fill="#F59E0B"/><circle cx="408" cy="201" r="6" fill="#38BDF8"/><circle cx="420" cy="207" r="6" fill="#9FB7A7"/>
-    <text x="34" y="42" fill="#D6DEE6" font-size="13" letter-spacing="4">ATELIERA</text><text x="34" y="63" fill="#94A3B8" font-size="8" letter-spacing="2">SPACE FOR YOUR IMAGINATION</text>
-    </svg>
-    <span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span>
+  <div class="project-cover ateliera-video-cover">
+    <video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" preload="metadata" poster="assets/ateliera-preview.webp" aria-label="Ateliera 3D 화실 실제 구동 영상">
+      <source src="videos/ateliera-demo.mp4" type="video/mp4">
+      <a href="videos/ateliera-demo.mp4">Ateliera 시연 영상 보기</a>
+    </video>
   </div>
   <div class="project-card-main">
     <div class="project-card-header">
@@ -1292,7 +1283,7 @@
         <div><dt>문제와 목표</dt><dd>한자와 빽빽한 옛 지면을 오늘의 독자가 탐색할 수 있는 경험으로 확장했습니다.</dd></div>
         <div class="case-role"><dt>내가 맡은 일</dt><dd>팀 프로젝트 · 전체 DB 및 사건 자료 정리, 웹·모바일 게임 구현, 굿즈 그래픽 디자인</dd></div>
         <div><dt>구현 결과</dt><dd>PC 키보드와 모바일 조이스틱으로 단서를 모으는 3D 게임 ‘식자실’을 구현했습니다.</dd></div>
-        <div><dt>설계 선택</dt><dd>같은 3D 게임을 PC에서는 키보드, 모바일에서는 조이스틱으로 조작하도록 구현했습니다.</dd></div>
+        <div><dt>설계 선택</dt><dd>신문 자료를 읽는 데서 그치지 않고, 단서를 직접 찾고 조합하는 게임으로 탐색 흐름을 확장했습니다.</dd></div>
       </dl>
       <div class="project-metrics" style="grid-template-columns: repeat(2, 1fr);">
         <div><div class="metric-key">MY ROLE</div><div class="metric-val">DB · 게임 구현 · 굿즈 디자인</div></div>
@@ -1309,7 +1300,7 @@
     <div class="project-card-footer">
       <button class="btn-action btn-outline" onclick="openDetailModal('gyeongseong-yarok')">프로젝트 · 담당 업무 보기</button>
       <a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">경성야록 체험하기 ↗</a>
-      <a href="http://192.168.0.93:8765/sikjasil/" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">식자실 게임 체험하기 ↗</a>
+      <a href="assets/gyeongseong-game-mobile.jpg" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">식자실 구현 화면 보기 ↗</a>
       <a href="presentations/gyeongseong-goods.pdf" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">굿즈 디자인 보기 ↗</a>
     </div>
   </div>
@@ -1673,7 +1664,7 @@
         </div>
         <div class="strength-heading"><h3>경험을 작업으로 연결하는 네 가지 강점</h3><p>프로젝트에서 드러나는 접근 방식과 구현 사례입니다.</p></div>
           <ul class="strength-cards" aria-label="박민선의 네 가지 강점">
-            <li class="strength-card"><span class="strength-icon" aria-hidden="true">✓</span><div><span class="strength-label">01 / RIGOR</span><h3>8년간 다져진 체계성과 꼼꼼함</h3><p>자산 관리와 일정 조율로 다진 꼼꼼함을 UI 구조화와 일관된 마크업으로 이어갑니다.</p></div></li>
+            <li class="strength-card"><span class="strength-icon" aria-hidden="true">✓</span><div><span class="strength-label">01 / RIGOR</span><h3>8년간 다져진 체계성과 꼼꼼함</h3><p>자산 관리와 일정 조율로 다진 체계성을 UI 구조화에, 꼼꼼함을 일관된 마크업과 화면 디테일에 담습니다.</p></div></li>
             <li class="strength-card"><span class="strength-icon" aria-hidden="true">↔</span><div><span class="strength-label">02 / EMPATHY</span><h3>사용자의 눈높이에 맞춘 설계</h3><p>고객 소통에서 배운 공감으로 사용 장벽을 낮춥니다. 시니어 헬퍼의 큰 버튼과 음성 입력에 이 관점을 담았습니다.</p></div></li>
             <li class="strength-card"><span class="strength-icon" aria-hidden="true">◈</span><div><span class="strength-label">03 / SENSE</span><h3>이미지를 다루는 시각 감각</h3><p>촬영과 이미지 편집 경험을 웹 화면의 시각 구성과 사진 기반 영상 제작에 활용합니다.</p></div></li>
             <li class="strength-card"><span class="strength-icon" aria-hidden="true">⌘</span><div><span class="strength-label">04 / CODE</span><h3>데이터를 경험으로 연결하는 구현</h3><p>경성야록의 전체 DB와 웹·모바일 게임을 구현하며, 데이터 정리부터 사용자 인터랙션까지 연결했습니다.</p></div></li>
@@ -1863,8 +1854,8 @@
           <p><strong>협업:</strong> 김소이는 전체 디자인·UI·인터랙션과 오프닝·박람회·광고·납량 코너를, 이경민은 사건 네 편의 서브페이지와 독자 참여 콘텐츠를 담당했습니다. 페이지 연결 점검과 디자인 톤 통일은 팀 공동 작업입니다.</p>
           <p><strong>기록을 다루는 원칙:</strong> 사건별 기사 제목·날짜·지면과 출처를 밝히고, AI 삽화와 창작 글에는 「재현」「재구성」을 표기했습니다. 피해자의 얼굴·시신·피 표현 없이 기록을 전달했습니다. 굿즈 그래픽 디자인을 진행했으며, 실제 제작·판매와 구독 확장은 별도 과제입니다. 구독 전환이나 신규 독자 유입은 측정된 성과가 아닙니다.</p>
           <p><a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">경성야록 체험하기 ↗</a></p>
-          <p><a href="http://192.168.0.93:8765/sikjasil/" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">식자실 게임 체험하기 ↗</a></p>
-          <div class="design-note"><h4>설계 판단 · 기기에 따라 조작을 나누기</h4><p><strong>선택:</strong> 같은 3D 게임을 PC에서는 키보드, 모바일에서는 조이스틱으로 조작하도록 구현했습니다.</p><p><strong>확인 범위:</strong> PPT의 실제 게임 화면에서 모바일 이동·조사·수집 UI를 확인할 수 있습니다. 원문과 재현 콘텐츠는 출처·표기를 구분했습니다.</p></div>
+          <p><a href="assets/gyeongseong-game-mobile.jpg" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">식자실 구현 화면 보기 ↗</a></p>
+          <div class="design-note"><h4>설계 판단 · 기기에 따라 조작을 나누기</h4><p><strong>선택:</strong> 신문 자료를 읽는 데서 그치지 않고, 단서를 직접 찾고 조합하는 게임으로 탐색 흐름을 확장했습니다.</p><p><strong>확인 범위:</strong> PPT의 실제 게임 화면에서 모바일 이동·조사·수집 UI를 확인할 수 있습니다. 원문과 재현 콘텐츠는 출처·표기를 구분했습니다.</p></div>
         `
       },
       'video-production': {
