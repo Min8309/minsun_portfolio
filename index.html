@@ -1094,13 +1094,16 @@
     }
     .video-tool-note { margin-top:16px; padding-top:16px; border-top:1px solid var(--border-color); font-size:14px; line-height:1.85; color:var(--text-sub); }
     .video-tool-note a { display:inline-flex; align-items:center; min-height:44px; color:var(--primary); text-underline-offset:4px; }
-    .interactive-role-button { display:inline-flex; align-items:center; justify-content:space-between; gap:8px; width:fit-content; max-width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border-color); border-radius:10px; background:rgba(56,189,248,.07); color:var(--text-main); font-size:12px; line-height:1.6; text-decoration:none; transition:background .2s,border-color .2s; }
+    .interactive-role-button { display:inline-flex; align-items:center; justify-content:space-between; gap:8px; width:fit-content; max-width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border-color); border-radius:10px; background:rgba(56,189,248,.07); color:var(--text-main); font-size:12px; line-height:1.6; text-decoration:none; transition:background .2s,border-color .2s,transform .2s ease; }
     .interactive-role-button:hover { border-color:var(--primary); background:rgba(56,189,248,.14); }
+    @media (hover: hover) and (pointer: fine) {
+      .interactive-role-button:hover { transform: scale(1.04); }
+    }
     .interactive-role-button span { color:var(--primary); }
     .logo-group { min-width:0; }
     @media (min-width: 901px) {
       .sidebar-top-bar .logo-group { width: 100%; }
-      .interactive-role-button { align-self: center; }
+      .interactive-role-button { align-self: center; width: 60%; padding-inline: 16px; }
     }
   </style>
 </head>
