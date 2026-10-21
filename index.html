@@ -556,6 +556,14 @@
       display: block; width: 100%; height: 100%; object-fit: contain;
       background: #070B14; pointer-events: none; user-select: none;
     }
+    .seoul-map-cover img {
+      object-fit: contain;
+      animation: seoul-map-float 5s ease-in-out infinite alternate;
+    }
+    @keyframes seoul-map-float {
+      from { transform: translateY(3px); }
+      to { transform: translateY(-3px); }
+    }
     .cover-label {
       position: absolute; left: 16px; bottom: 14px;
       color: var(--text-main); font: 9px var(--mono-font); letter-spacing: 0.1em;
@@ -1469,8 +1477,7 @@
           </article>
 <article id="work-seoul-data" tabindex="-1" class="reveal project-card">
             <div>
-<div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#111E2B"/><text x="40" y="52" fill="#38BDF8" font-size="11" letter-spacing="4">SEOUL / DATA LANDSCAPE</text><g fill="none" stroke="#2D4355" stroke-width="1"><path d="M75 150L200 110L315 140L460 105L575 175L540 285L390 335L230 300L105 325Z"/><path d="M200 110L230 300M315 140L390 335M460 105L540 285M75 150L540 285M105 325L460 105M315 140L105 325"/></g><path d="M80 235Q160 160 270 225T555 215" fill="none" stroke="#38BDF8" stroke-width="15" opacity=".35"/>
-<g fill="#38BDF8"><rect x="160" y="160" width="16" height="45" rx="3"/><rect x="225" y="130" width="16" height="72" rx="3"/><rect x="330" y="167" width="16" height="48" rx="3"/><rect x="465" y="152" width="16" height="67" rx="3"/></g><rect x="380" y="100" width="20" height="104" rx="3" fill="#F59E0B"/><circle cx="390" cy="95" r="5" fill="#F59E0B"/><text x="423" y="95" fill="#F8FAFC" font-size="23">84,675</text><text x="423" y="115" fill="#94A3B8" font-size="9" letter-spacing="2">DATA POINTS, ONE CITY</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
+<div class="project-cover seoul-map-cover"><img src="assets/seoul-map-logo.webp" alt="서울 지도와 한강 위에 떠 있는 서울어디가 로고" width="1586" height="992" loading="lazy" decoding="async"><span class="cover-label">SEOUL EODIGA / MAP VISUAL</span></div>
               <div class="project-card-header">
                 <span class="project-num">더 많은 작업 02</span>
                 <span class="project-category">DATA PRODUCT</span>
