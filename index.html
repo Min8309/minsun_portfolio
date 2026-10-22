@@ -1173,6 +1173,11 @@
     .representative-card .project-card-main { min-width: 0; overflow: visible; height: auto; }
     .representative-card .project-title { font-size: clamp(23px, 2.3vw, 30px); }
     .representative-card .project-card-footer { flex-wrap: wrap; }
+    @media (min-width: 901px) {
+      .representative-card:nth-child(even) { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+      .representative-card:nth-child(even) > .project-card-main { grid-column: 1; grid-row: 1; }
+      .representative-card:nth-child(even) > .project-cover { grid-column: 2; grid-row: 1; border-right: 0; border-left: 1px solid var(--border-color); }
+    }
     .project-category-group { margin-top: 64px; scroll-margin-top: calc(var(--header-height) + 24px); }
     .category-heading { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); }
     .category-heading h3 { font-size: clamp(25px, 3vw, 34px); margin: 12px 0; }
