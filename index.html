@@ -424,6 +424,15 @@ header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #C
       .featured-visual .visual-primary { max-height: 300px; }
       .featured-visual .visual-inset { max-height: 190px; }
     }
+    .gallery-stage { position: relative; width: 100%; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
+    .gallery-stage .gallery-slide { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .gallery-stage .gallery-slide[hidden] { display: none; }
+    .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 52px; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #E8B4BD; border-radius: 10px; color: #B65269; box-shadow: 0 3px 12px rgba(23,38,61,.12); }
+    .gallery-arrow:hover { background: #FFF0F3; }
+    .gallery-arrow svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .gallery-prev { left: 8px; }
+    .gallery-next { right: 8px; }
+    .gallery-source { display: block; margin-top: 6px; }
   </style>
 </head>
 <body>
@@ -513,7 +522,23 @@ header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #C
 <section id="projects" class="section"><div class="container">
       <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">네 가지 관점으로 풀어낸 대표 작업</h2><p class="section-desc">문제를 해석하고, 사용자 흐름과 화면으로 구현한 네 가지 작업입니다.</p></div></div>
       <div class="representative-grid">
-<article id="work-seoul-data" tabindex="-1" class="representative-card reveal project-card project-card-featured"><div class="project-cover featured-visual"><figure><div class="visual-stage has-inset"><img class="visual-primary" src="assets/seoul-dashboard.webp" alt="서울 상권 AI 추천의 모드 선택과 업종별 추천 결과 화면" loading="lazy" decoding="async"><img class="visual-inset" src="assets/seoul-map-results.webp" alt="추천 상권 TOP 10을 지도에서 비교하는 화면" loading="lazy" decoding="async"></div><figcaption>기존 발표자료 속 실제 서비스 화면 · 과거 데이터 예시</figcaption></figure></div><div class="project-card-main"><div class="project-card-header"><span class="project-num">01 / 데이터 기반 인사이트</span></div><div class="project-card-body"><h3 class="project-title">서울 핫플 분석</h3><p class="project-summary">창업자와 소비자의 목적에 맞춰 상권 데이터를 탐색합니다.</p><p class="featured-decision"><span>설계 판단</span>같은 데이터를, 창업자와 소비자의 서로 다른 질문에 맞춰 구성했습니다.</p><p class="featured-role"><span>담당 역할·구현</span>공공 데이터 정제·시각화, 목적별 대시보드 구현</p></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">프로젝트 자세히 보기 ↗</button><a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" aria-label="서울 핫플 분석 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
+<article id="work-seoul-data" tabindex="-1" class="representative-card reveal project-card project-card-featured"><div class="project-cover featured-visual seoul-gallery" data-gallery role="region" aria-roledescription="슬라이드" aria-label="서울어디가 서비스 화면" tabindex="0">
+  <figure>
+    <div class="gallery-stage" id="seoul-gallery-slides">
+      <img class="gallery-slide" src="assets/seoul-gallery/01.gif" alt="사장님 모드 · 창업 추천 대시보드" decoding="async" width="1920" height="1080">
+      <img class="gallery-slide" src="assets/seoul-gallery/02.gif" alt="사장님 모드 · AI 매출 예측과 추천 근거" decoding="async" width="1920" height="1080" hidden>
+      <img class="gallery-slide" src="assets/seoul-gallery/03.gif" alt="사장님 모드 · 추천 상권 TOP 10 지도" decoding="async" width="1920" height="1080" hidden>
+      <img class="gallery-slide" src="assets/seoul-gallery/04.gif" alt="사장님 모드 · 추천 상권 상세 데이터" decoding="async" width="1920" height="1080" hidden>
+      <img class="gallery-slide" src="assets/seoul-gallery/05.gif" alt="소비자 모드 · 서울 핫플 추천" decoding="async" width="1920" height="1080" hidden>
+      <img class="gallery-slide" src="assets/seoul-gallery/06.gif" alt="소비자 모드 · 핫플 점수 비교" decoding="async" width="1920" height="1080" hidden>
+      <img class="gallery-slide" src="assets/seoul-gallery/07.gif" alt="소비자 모드 · 서울 핫플 TOP 20 지도" decoding="async" width="1920" height="1080" hidden>
+      <img class="gallery-slide" src="assets/seoul-gallery/08.gif" alt="소비자 모드 · 핫플 상세 데이터" decoding="async" width="1920" height="1080" hidden>
+      <button type="button" class="gallery-arrow gallery-prev" data-gallery-step="-1" aria-label="이전 이미지" aria-controls="seoul-gallery-slides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button type="button" class="gallery-arrow gallery-next" data-gallery-step="1" aria-label="다음 이미지" aria-controls="seoul-gallery-slides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+    </div>
+    <figcaption><span data-gallery-status role="status" aria-live="polite" aria-atomic="true">1 / 8 · 사장님 모드 · 창업 추천 대시보드</span><span class="gallery-source">서비스 화면 · 사장님 모드 4장 / 소비자 모드 4장</span></figcaption>
+  </figure>
+</div><div class="project-card-main"><div class="project-card-header"><span class="project-num">01 / 데이터 기반 인사이트</span></div><div class="project-card-body"><h3 class="project-title">서울 핫플 분석</h3><p class="project-summary">창업자와 소비자의 목적에 맞춰 상권 데이터를 탐색합니다.</p><p class="featured-decision"><span>설계 판단</span>같은 데이터를, 창업자와 소비자의 서로 다른 질문에 맞춰 구성했습니다.</p><p class="featured-role"><span>담당 역할·구현</span>공공 데이터 정제·시각화, 목적별 대시보드 구현</p></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">프로젝트 자세히 보기 ↗</button><a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" aria-label="서울 핫플 분석 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
 <article id="work-maljup" tabindex="-1" class="representative-card reveal project-card project-card-featured"><div class="project-cover featured-visual"><figure><div class="visual-stage has-inset"><img class="visual-primary" src="assets/maljup-dashboard.jpg" alt="말줍의 자막 입력과 학습 대시보드" loading="lazy" decoding="async"><img class="visual-inset" src="assets/maljup-expression-editor.png" alt="표현·뜻·학습 메모를 저장하는 말줍 입력 화면" loading="lazy" decoding="async"></div><figcaption>실제 구현 화면 · 대시보드와 표현 저장</figcaption></figure></div><div class="project-card-main"><div class="project-card-header"><span class="project-num">02 / AI 서비스와 제품 기획</span></div><div class="project-card-body"><h3 class="project-title">말줍 — 나만의 표현 수집함</h3><p class="project-summary">영상에서 발견한 표현을 수집하고, 말하며 복습합니다.</p><p class="featured-decision"><span>설계 판단</span>표현을 저장하는 데서 끝나지 않고, 말하기와 복습으로 이어지게 설계했습니다.</p><p class="featured-role"><span>담당 역할·구현</span>표현 수집·녹음·복습 흐름 기획 및 웹앱 구현</p></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('maljup')">프로젝트 자세히 보기 ↗</button><button disabled="" title="서비스 주소 준비 중" aria-label="말줍 서비스 주소 준비 중" class="btn-action btn-primary service-link">서비스 바로가기 ↗</button></div></div></article>
 <article id="work-senior-helper" tabindex="-1" class="representative-card reveal project-card project-card-featured">
   <div class="project-cover featured-visual"><figure><div class="visual-stage"><img class="visual-primary" src="assets/senior-helper-screen.webp" alt="시니어 헬퍼 홈의 큰 버튼 네 개와 캐릭터 안내" loading="lazy" decoding="async"></div><figcaption>실제 구현 화면 · 주요 기능을 큰 버튼 네 개로 구성</figcaption></figure></div>
@@ -769,6 +794,28 @@ header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #C
     "content": "<h3 class=\"project-title\">오픈갤러리 — 작품·상품 탐색 UI</h3>\n                <p class=\"project-summary\">그림 렌탈·아트테크·아트굿즈를 탐색하는 React 프런트엔드 구현 프로젝트입니다. 목록에서 상세 화면으로 이동하고, 이미지·기종·수량 선택에 따라 화면과 금액이 바뀌는 경험을 연결했습니다.</p>\n                <dl class=\"case-brief\"><div><dt>사용 흐름</dt><dd>작품·상품 목록 → 상세 정보 → 이미지·옵션 선택</dd></div><div><dt>구현 내용</dt><dd>페이지 라우팅, 배너 전환, 썸네일 선택, 연관 옵션 초기화, 수량·금액 계산</dd></div><div><dt>확인 범위</dt><dd>배포 파일의 로컬 실행 화면을 확인했습니다. 구매·로그인은 시연 UI이며 실제 결제·인증 연동은 별도입니다.</dd></div></dl>\n                <div class=\"project-tech\"><span class=\"tech-pill\">React</span><span class=\"tech-pill\">React Router</span><span class=\"tech-pill\">useState / useEffect</span><span class=\"tech-pill\">CSS Grid / Flex</span></div>\n              <div class=\"project-card-footer\">\n              <a href=\"projects/open-gallery.html\" class=\"btn-action btn-outline\">페이지별 화면 보기 ↗</a>\n              <a href=\"presentations/open-gallery-technology.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-outline\">발표자료 보기 ↗</a>\n              <a href=\"https://min8309.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">사이트 보기 ↗</a>\n            </div>"
   }
 };
+
+    document.querySelectorAll('[data-gallery]').forEach(gallery => {
+      const slides = Array.from(gallery.querySelectorAll('.gallery-slide'));
+      const status = gallery.querySelector('[data-gallery-status]');
+      if (!slides.length) return;
+      let current = 0;
+      function showSlide(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => { slide.hidden = i !== current; });
+        status.textContent = `${current + 1} / ${slides.length} · ${slides[current].alt}`;
+      }
+      gallery.querySelectorAll('[data-gallery-step]').forEach(button => {
+        button.hidden = slides.length < 2;
+        button.addEventListener('click', () => showSlide(current + Number(button.dataset.galleryStep)));
+      });
+      gallery.addEventListener('keydown', event => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        showSlide(current + (event.key === 'ArrowRight' ? 1 : -1));
+      });
+      showSlide(0);
+    });
 
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebarScrollArea = document.getElementById('sidebarScrollArea');
