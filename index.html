@@ -1165,6 +1165,27 @@
       .sidebar-nav .project-index-list a { min-height: 44px; padding-inline: 8px; }
       .sidebar-nav .project-index-desc { font-size: 10px; }
     }
+    /* Category-led navigation and four representative projects. */
+    .representative-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+    .representative-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: #FFFFFF; transition: var(--transition-base); }
+    .representative-card:hover { border-color: var(--primary); box-shadow: 0 12px 28px rgba(23, 38, 61, .1); transform: translateY(-3px); }
+    .representative-card > img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; object-position: top; background: #EAF0F8; }
+    .representative-card > div { padding: 24px; }
+    .representative-card h3 { font-size: 24px; line-height: 1.4; margin: 12px 0; }
+    .representative-card p { color: var(--text-sub); }
+    .representative-link { display: inline-block; margin-top: 20px; color: var(--primary); font-size: 14px; font-weight: 600; }
+    .project-category-group { margin-top: 64px; scroll-margin-top: calc(var(--header-height) + 24px); }
+    .category-heading { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); }
+    .category-heading h3 { font-size: clamp(25px, 3vw, 34px); margin: 12px 0; }
+    .category-heading p { color: var(--text-sub); }
+    .project-category-group .project-card-featured { display: flex; min-height: 0; max-height: none; }
+    .project-category-group .project-card-featured .project-cover { height: auto; min-height: 0; aspect-ratio: 16/9; border-right: 0; }
+    .project-category-group .project-card-main { height: auto; overflow: visible; padding: 0; flex: 1; }
+    .category-video { grid-column: 1 / -1; min-width: 0; }
+    .sidebar-nav .index-category { margin-top: 18px; }
+    .sidebar-nav .index-category:first-child { margin-top: 0; }
+    .sidebar-nav .index-category > a { padding: 8px 10px; font-size: 11px; font-weight: 700; color: #CFDDEF; border-bottom: 1px solid #6B87AA; border-radius: 0; }
+    @media (max-width: 900px) { .representative-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -1187,19 +1208,24 @@
       <div class="project-index-section">
         <div class="project-index-header">
           <span>PROJECT INDEX</span>
-          <span class="badge">10</span>
+          <span class="badge">11</span>
         </div>
         <ul class="project-index-list">
-          <li><a href="#work-ateliera"><span class="project-index-num">01</span><span>Ateliera</span><span class="project-index-desc">3D 화실</span></a></li>
-          <li><a href="#work-gyeongseong-yarok"><span class="project-index-num">02</span><span>경성야록</span><span class="project-index-desc">DB · 게임</span></a></li>
-          <li><a href="#work-senior-helper"><span class="project-index-num">03</span><span>시니어 헬퍼</span><span class="project-index-desc">모바일 UX</span></a></li>
-          <li><a href="#work-video-production"><span class="project-index-num">04</span><span>촬라의 상상</span><span class="project-index-desc">AI 영상</span></a></li>
+          <li class="index-category"><a href="#category-insights">데이터 기반 인사이트</a></li>
+          <li><a href="#work-seoul-data"><span class="project-index-num">01</span><span>서울 핫플 분석</span><span class="project-index-desc">상권 분석</span></a></li>
+          <li><a href="#work-csi-lab"><span class="project-index-num">02</span><span>CSI LAB</span><span class="project-index-desc">범죄 데이터</span></a></li>
+          <li><a href="#work-echo-chamber"><span class="project-index-num">03</span><span>EchoChamber</span><span class="project-index-desc">AI 에이전트</span></a></li>
+          <li class="index-category"><a href="#category-product">AI 서비스와 제품 기획</a></li>
+          <li><a href="#work-maljup"><span class="project-index-num">04</span><span>말줍</span><span class="project-index-desc">표현 수집·복습</span></a></li>
           <li><a href="#work-my-ai-life"><span class="project-index-num">05</span><span>MY AI LIFE</span><span class="project-index-desc">시뮬레이터</span></a></li>
-          <li><a href="#work-seoul-data"><span class="project-index-num">06</span><span>서울 핫플 분석</span><span class="project-index-desc">상권 분석</span></a></li>
-          <li><a href="#work-csi-lab"><span class="project-index-num">07</span><span>CSI LAB</span><span class="project-index-desc">범죄 데이터</span></a></li>
-          <li><a href="#work-echo-chamber"><span class="project-index-num">08</span><span>EchoChamber</span><span class="project-index-desc">AI 에이전트</span></a></li>
-          <li><a href="#work-morningblock"><span class="project-index-num">09</span><span>모닝블록</span><span class="project-index-desc">오디오 루틴</span></a></li>
-          <li><a href="#work-open-gallery"><span class="project-index-num">10</span><span>오픈갤러리</span><span class="project-index-desc">React UI</span></a></li>
+          <li><a href="#work-morningblock"><span class="project-index-num">06</span><span>모닝블록</span><span class="project-index-desc">오디오 루틴</span></a></li>
+          <li><a href="#work-ateliera"><span class="project-index-num">07</span><span>Ateliera</span><span class="project-index-desc">3D 화실</span></a></li>
+          <li class="index-category"><a href="#category-experience">고객 경험과 커머스</a></li>
+          <li><a href="#work-senior-helper"><span class="project-index-num">08</span><span>시니어 헬퍼</span><span class="project-index-desc">모바일 UX</span></a></li>
+          <li><a href="#work-open-gallery"><span class="project-index-num">09</span><span>오픈갤러리</span><span class="project-index-desc">React UI</span></a></li>
+          <li class="index-category"><a href="#category-content">브랜드와 콘텐츠</a></li>
+          <li><a href="#work-gyeongseong-yarok"><span class="project-index-num">10</span><span>경성야록</span><span class="project-index-desc">DB · 게임</span></a></li>
+          <li><a href="#work-video-production"><span class="project-index-num">11</span><span>촬라의 상상</span><span class="project-index-desc">AI 영상</span></a></li>
         </ul>
       </div>
 
@@ -1208,8 +1234,11 @@
         <nav aria-label="주요 메뉴">
           <ul class="nav-links">
             <li><a href="#projects">대표 작업</a></li>
-            <li><a href="#video">영상 작업</a></li>
-            <li><a href="#more-work">더 많은 작업</a></li>
+            <li><a href="#more-work">프로젝트 모아보기</a></li>
+            <li><a href="#category-insights">데이터 기반 인사이트</a></li>
+            <li><a href="#category-product">AI 서비스와 제품 기획</a></li>
+            <li><a href="#category-experience">고객 경험과 커머스</a></li>
+            <li><a href="#category-content">브랜드와 콘텐츠</a></li>
             <li><a href="#about">프로필</a></li>
             <li><a href="#tools">사용 도구</a></li>
             <li><a href="#contact">연락처</a></li>
@@ -1268,25 +1297,211 @@
 
         <div class="hero-footer-stats">
           <div class="stat-item">
-            <div class="stat-num">03 <span>대표 작업</span></div>
-            <div class="stat-label">3D 공간 · 인터랙티브 아카이브 · 시니어 UX</div>
+            <div class="stat-num">04 <span>카테고리별 대표작</span></div>
+            <div class="stat-label">서울 핫플 분석 · 말줍 · 시니어 헬퍼 · 경성야록</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">Video <span>스토리 & AI</span></div>
-            <div class="stat-label">일상 사진 → 독창적 스토리 → AI 영상 제작</div>
+            <div class="stat-num">04 <span>프로젝트 카테고리</span></div>
+            <div class="stat-label">데이터 · AI 서비스 · 고객 경험 · 콘텐츠</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">06 <span>확장 작업</span></div>
-            <div class="stat-label">상권 분석 · AI 시뮬레이터 · 루틴 · 작품 탐색 UI</div>
+            <div class="stat-num">11 <span>전체 프로젝트</span></div>
+            <div class="stat-label">기획 판단부터 화면·콘텐츠 구현까지</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">문제를 경험으로 바꾼 대표 작업</h2><p class="section-desc">공간 인터랙션, 데이터와 게임, 시니어 UX. 세 가지 작업에서 문제·담당 역할·구현 결과를 먼저 살펴보세요.</p></div></div>
-        <div class="project-grid selected-grid">
+    <section id="projects" class="section"><div class="container">
+      <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">네 가지 관점으로 풀어낸 대표 작업</h2><p class="section-desc">데이터 기반 인사이트 → AI 서비스와 제품 기획 → 고객 경험과 커머스 → 브랜드와 콘텐츠. 각 분야의 대표 프로젝트를 먼저 살펴보세요.</p></div></div>
+      <div class="representative-grid">
+        <a class="representative-card reveal" href="#work-seoul-data"><img src="assets/seoul-map-logo.webp" alt="서울 핫플 분석 프로젝트 화면" width="720" height="400" loading="lazy"><div><span class="section-kicker">01 / 데이터 기반 인사이트</span><h3>서울 핫플 분석</h3><p>창업자와 소비자의 목적에 맞춰 상권 데이터를 탐색하는 경험</p><span class="representative-link">프로젝트 살펴보기 ↗</span></div></a>
+        <a class="representative-card reveal" href="#work-maljup"><img src="assets/maljup-dashboard.jpg" alt="말줍 — 나만의 표현 수집함 프로젝트 화면" width="720" height="400" loading="lazy"><div><span class="section-kicker">02 / AI 서비스와 제품 기획</span><h3>말줍 — 나만의 표현 수집함</h3><p>영상 속 표현 수집 → 말하기 → 복습으로 이어지는 학습 흐름</p><span class="representative-link">프로젝트 살펴보기 ↗</span></div></a>
+        <a class="representative-card reveal" href="#work-senior-helper"><img src="assets/senior-helper-screen.webp" alt="시니어 뇌건강 헬퍼 프로젝트 화면" width="720" height="400" loading="lazy"><div><span class="section-kicker">03 / 고객 경험과 커머스</span><h3>시니어 뇌건강 헬퍼</h3><p>큰 버튼과 음성·터치로 접근하는 시니어의 일상 경험</p><span class="representative-link">프로젝트 살펴보기 ↗</span></div></a>
+        <a class="representative-card reveal" href="#work-gyeongseong-yarok"><img src="assets/gyeongseong-preview.webp" alt="경성야록 프로젝트 화면" width="720" height="400" loading="lazy"><div><span class="section-kicker">04 / 브랜드와 콘텐츠</span><h3>경성야록</h3><p>신문 아카이브를 웹·모바일 게임과 참여형 콘텐츠로 확장</p><span class="representative-link">프로젝트 살펴보기 ↗</span></div></a>
+      </div></div></section>
+
+    <section id="more-work" class="section"><div class="container">
+      <div class="section-header reveal"><div><div class="section-kicker">02 / PROJECT COLLECTION</div><h2 class="section-title">프로젝트 모아보기</h2><p class="section-desc">네 가지 카테고리에서 총 11개 프로젝트의 문제와 목표, 담당 역할, 구현 내용을 살펴보세요.</p></div></div>
+      <section id="category-insights" class="project-category-group" aria-labelledby="heading-insights"><div class="category-heading reveal"><span class="section-kicker">01 / CATEGORY</span><h3 id="heading-insights">데이터 기반 인사이트</h3><p>데이터를 목적에 맞게 해석하고, 탐색과 의사결정을 돕는 경험입니다.</p></div><div class="project-grid secondary-grid">
+<article id="work-seoul-data" tabindex="-1" class="reveal project-card">
+            <div>
+<div class="project-cover seoul-map-cover"><img src="assets/seoul-map-logo.webp" alt="서울 지도와 한강 위에 떠 있는 서울어디가 로고" width="1586" height="992" loading="lazy" decoding="async"><span class="cover-label">SEOUL EODIGA / MAP VISUAL</span></div>
+              <div class="project-card-header">
+                <span class="project-num">대표 프로젝트</span>
+                <span class="project-category">DATA PRODUCT</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">서울, 어디서 놀고 어디서 벌까?</h3>
+                <p class="project-summary">
+                  서울시 8.4만 건의 상권 데이터를 정제하여, 창업자(수익성/폐업 안정성)와 소비자(2030/주말 야간 핫플)의 시선에 맞춰 완전히 다른 UI 대시보드와 Random Forest 월매출 예측치를 제공합니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">DATA MART</div>
+                    <div class="metric-val">84,675행 데이터 통합</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">ML MODEL</div>
+                    <div class="metric-val">Random Forest (R² 0.5227)</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">Streamlit</span>
+                  <span class="tech-pill">Pandas</span>
+                  <span class="tech-pill">Machine Learning</span>
+                  <span class="tech-pill">Public Data</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">설계 상세 보기</button>
+              <a class="btn-action btn-outline" href="presentations/seoul-hotplace.pdf" target="_blank" rel="noopener noreferrer" aria-label="서울 핫플 데이터 분석 PPT 발표자료 37쪽 PDF로 보기">PPT 발표자료 보기 ↗</a>
+              <a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">서비스 바로가기 ↗</a>
+            </div>
+          </article>
+<article id="work-csi-lab" tabindex="-1" class="reveal project-card">
+            <div>
+<div class="project-cover"><img src="assets/csi-lab-cover.webp" alt="CSI LAB: 지문 스캔과 증거 연결망으로 표현한 범죄 데이터 수사 콘셉트" width="1672" height="941" loading="lazy" decoding="async"><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
+              <div class="project-card-header">
+                <span class="project-num">데이터 기반 인사이트</span>
+                <span class="project-category">GAMIFIED CRIME DATA</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">CSI LAB : 범죄 데이터 수사 솔루션</h3>
+                <p class="project-summary">
+                  거시적 범죄 통계를 가상 사건 해결 게임으로 재해석했습니다. YOLO11 시각 객체 탐지와 목격자 진술을 비교해 사건을 해결하면 1990–2024년 지역 범죄 데이터와 예방 가이드가 잠금 해제됩니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">COMPUTER VISION</div>
+                    <div class="metric-val">YOLO11n 객체 탐지</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">PIPELINE</div>
+                    <div class="metric-val">1990–2024 시계열 데이터</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">YOLO11</span>
+                  <span class="tech-pill">Streamlit</span>
+                  <span class="tech-pill">Session State</span>
+                  <span class="tech-pill">Gamification</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('csi-lab')">설계 상세 보기</button>
+              <a class="btn-action btn-outline" href="presentations/csi-lab.pdf" target="_blank" rel="noopener noreferrer" aria-label="CSI LAB PPT 발표자료 42쪽 PDF로 보기">PPT 발표자료 보기 ↗</a>
+              <a href="https://csilab-kr.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
+            </div>
+          </article>
+<article id="work-echo-chamber" tabindex="-1" class="reveal project-card">
+            <div>
+<div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#181C2C"/><text x="40" y="54" fill="#38BDF8" font-size="11" letter-spacing="4">ECHOCHAMBER / RUMOR LAB</text><g fill="none" stroke="#59768E" stroke-opacity=".6"><path d="M110 230L210 130L320 210L430 115L540 230L425 310L320 210L210 320L110 230M210 130L425 310M210 320L430 115M110 230L540 230"/></g><g fill="#223A51" stroke="#38BDF8"><circle cx="110" cy="230" r="18"/><circle cx="210" cy="130" r="25"/><circle cx="430" cy="115" r="20"/><circle cx="540" cy="230" r="24"/><circle cx="425" cy="310" r="17"/><circle cx="210" cy="320" r="15"/></g><circle cx="320" cy="210" r="44" fill="#F59E0B" fill-opacity=".1" stroke="#F59E0B"/><circle cx="320" cy="210" r="9" fill="#F59E0B"/><path d="M304 194Q320 178 336 194M296 186Q320 162 344 186" fill="none" stroke="#F59E0B"/><text x="292" y="277" fill="#94A3B8" font-size="9" letter-spacing="2">SIGNAL → STORY</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
+              <div class="project-card-header">
+                <span class="project-num">데이터 기반 인사이트</span>
+                <span class="project-category">AI AGENT NETWORK</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">EchoChamber : Rumor Lab</h3>
+                <p class="project-summary">
+                  자율 생성형 AI 에이전트 간의 대화 속에서 가십이 전파되고 왜곡되는 과정을 관찰합니다. FastAPI 백엔드 라우터와 연동하여 정보의 신뢰도 하락과 평판 손실을 관계망 그래프로 시각화했습니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">BACKEND ARCH</div>
+                    <div class="metric-val">FastAPI RESTful Routers</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">VISUALIZATION</div>
+                    <div class="metric-val">NetworkX & Plotly 그래프</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">FastAPI</span>
+                  <span class="tech-pill">Generative Agents</span>
+                  <span class="tech-pill">NetworkX</span>
+                  <span class="tech-pill">PII Masking</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('echo-chamber')">설계 상세 보기</button>
+              <a href="https://min8309.github.io/echoChamber/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
+            </div>
+          </article>
+      </div></section>
+      <section id="category-product" class="project-category-group" aria-labelledby="heading-product"><div class="category-heading reveal"><span class="section-kicker">02 / CATEGORY</span><h3 id="heading-product">AI 서비스와 제품 기획</h3><p>사용자 문제를 기능과 흐름으로 구체화한 서비스·시제품입니다. 프로젝트별 AI 적용 범위를 구분해 소개합니다.</p></div><div class="project-grid secondary-grid">
+<article id="work-maljup" tabindex="-1" class="reveal project-card">
+            <div>
+              <div class="project-cover"><img src="assets/maljup-dashboard.jpg" alt="말줍 학습 대시보드: 영상 주소로 자막을 불러오고 표현 수집과 복습을 시작하는 화면" width="1440" height="1000" loading="lazy" decoding="async" style="object-position:top"></div>
+              <div class="project-card-header"><span class="project-num">대표 프로젝트</span><span class="project-category">LANGUAGE LEARNING & WEB APP</span></div>
+              <div class="project-card-body">
+                <h3 class="project-title">말줍 — 나만의 표현 수집함</h3>
+                <p class="project-summary">좋아하는 한마디를 주워, 내 말로. 영상 속 표현을 골라 저장하고, 직접 따라 말하며 다음 3일 동안 복습하는 개인 학습 웹앱 시제품입니다.</p>
+                <dl class="case-brief">
+                  <div><dt>문제와 목표</dt><dd>영상에서 발견한 표현을 흘려보내지 않고, 수집 → 말하기 → 복습으로 이어지는 학습 흐름을 기획했습니다.</dd></div>
+                  <div><dt>구현 내용</dt><dd>SRT·VTT 자막 불러오기, 색상별 형광펜·드래그 수집, 녹음 저장, 빈칸 퀴즈, 학습 달력·암기 체크리스트, JSON 백업·복원</dd></div>
+                  <div><dt>저장과 외부 연동</dt><dd>카드·녹음은 브라우저의 IndexedDB에 저장합니다. Google Sheets 내보내기는 별도 연결이 필요하며, 유튜브 주소로 자막 가져오기는 Node.js·Python 서버 기능입니다.</dd></div>
+                </dl>
+                <div class="project-tech"><span class="tech-pill">JavaScript</span><span class="tech-pill">IndexedDB</span><span class="tech-pill">MediaRecorder</span><span class="tech-pill">Node.js / Python</span></div>
+              </div>
+            </div>
+            <div class="project-card-footer"><a href="https://github.com/Min8309/esl_101" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">GitHub · 프로젝트 보기 ↗</a></div>
+          </article>
+<article id="work-my-ai-life" tabindex="-1" class="reveal project-card">
+            <div>
+<div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="life"><stop stop-color="#111C32"/><stop offset="1" stop-color="#1F2640"/></linearGradient></defs><rect width="640" height="400" fill="url(#life)"/>
+<text x="44" y="58" fill="#38BDF8" font-size="11" letter-spacing="4">MY AI LIFE</text><text x="44" y="99" fill="#F8FAFC" font-size="28">Every choice, a new story.</text>
+<path d="M60 280H180Q220 280 250 240L305 165M180 280Q240 280 280 305L375 325M250 240H390L475 200M390 240L475 280" stroke="#38BDF8" opacity=".65" fill="none" stroke-width="2"/>
+<g fill="#162D44" stroke="#38BDF8"><circle cx="75" cy="280" r="20"/><circle cx="180" cy="280" r="12"/><circle cx="305" cy="165" r="20"/><circle cx="390" cy="240" r="18"/><circle cx="475" cy="200" r="13"/><circle cx="475" cy="280" r="13"/></g><circle cx="375" cy="325" r="20" fill="#F59E0B"/>
+<text x="294" y="169" fill="#CBD5E1" font-size="10">AI</text><text x="354" y="363" fill="#F59E0B" font-size="10">HUMAN</text><g transform="translate(515 142)" stroke="#697791" fill="none"><path d="M0 0L45 26V78L0 104L-45 78V26Z"/><path d="M0 14L32 32V70L0 89L-32 70V32Z" opacity=".5"/><path d="M0 52L0 0M0 52L45 26M0 52L45 78M0 52L0 104M0 52L-45 78M0 52L-45 26" opacity=".4"/><path d="M0 10L36 31L29 68L0 94L-20 64L-37 30Z" stroke="#F59E0B" fill="#F59E0B" fill-opacity=".1"/></g></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
+              <div class="project-card-header">
+                <span class="project-num">AI 서비스와 제품 기획</span>
+                <span class="project-category">INTERACTIVE ENGINE</span>
+              </div>
+              <div class="project-card-body">
+                <h3 class="project-title">MY AI LIFE (나의 AI 인생 시뮬레이터)</h3>
+                <p class="project-summary">
+                  AI의 극효율 권고와 인간의 주관적 가치관이 충돌하는 생애주기 분기점을 설계했습니다. 기회비용을 6대 실시간 라이프 HUD와 나비효과 큐로 가시화하며 OSMU 스토리 대본을 자동 렌더링합니다.
+                </p>
+                <div class="project-metrics">
+                  <div>
+                    <div class="metric-key">CORE MECHANIC</div>
+                    <div class="metric-val">6대 라이프 HUD & 나비효과</div>
+                  </div>
+                  <div>
+                    <div class="metric-key">ARCHITECTURE</div>
+                    <div class="metric-val">Zero-Dependency ES6+</div>
+                  </div>
+                </div>
+                <div class="project-tech">
+                  <span class="tech-pill">Vanilla JS</span>
+                  <span class="tech-pill">CSS Grid</span>
+                  <span class="tech-pill">Glassmorphism</span>
+                  <span class="tech-pill">OSMU Engine</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-action btn-outline" onclick="openDetailModal('my-ai-life')">설계 상세 보기</button>
+              <a href="https://min8309.github.io/my_ai_life/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
+            </div>
+          </article>
+<article id="work-morningblock" tabindex="-1" class="reveal project-card">
+            <div>
+              <div class="project-cover morningblock-cover"><img src="assets/morningblock-characters.webp" alt="모닝블록의 파스텔 색상과 모드별 블로키 캐릭터" loading="lazy" width="1774" height="887"></div>
+              <div class="project-card-header"><span class="project-num">AI 서비스와 제품 기획</span><span class="project-category">MOBILE UX & AUDIO ROUTINE</span></div>
+              <div class="project-card-body">
+                <h3 class="project-title">모닝블록</h3>
+                <p class="project-summary">내 아침을 블록처럼 조립하다. 바쁜 직장인이 스트레칭·뉴스·외국어·명상·팟캐스트의 시간과 순서를 정하고, 화면을 오래 보지 않고 음성으로 따라가는 모듈형 모닝 루틴 앱입니다.</p>
+                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>출근 준비 중 여러 앱을 오가는 조작과 선택을 줄이는 아침 경험을 기획했습니다.</dd></div><div class="case-role"><dt>기획·구현 영역</dt><dd>루틴 편집·실행과 상태 분리, 오디오 콘텐츠 연결, 모닝콜 설정, 완료 기록</dd></div><div><dt>구현 결과</dt><dd>모듈별 1~30분 설정과 순서 변경, 오늘만 변경, 일시정지·재개·완료 기록을 연결했습니다.</dd></div></dl>
+                <div class="project-tech"><span class="tech-pill">React Native / Expo</span><span class="tech-pill">TypeScript</span><span class="tech-pill">AsyncStorage</span><span class="tech-pill">Audio / TTS</span></div>
+              </div>
+            </div>
+            <div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('morningblock')">기획 · 구현 상세 보기</button><a href="projects/morningblock.html" class="btn-action btn-outline">프로젝트 소개 보기 ↗</a><a href="presentations/morningblock-project.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">PPT 발표자료 보기 ↗</a><a href="https://mornigblock.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a></div>
+          </article>
 <article id="work-ateliera" tabindex="-1" class="reveal project-card project-card-featured">
   <div class="project-cover project-video-cover">
     <video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" preload="metadata" poster="assets/ateliera-preview.webp" aria-label="Ateliera 3D 화실 실제 구동 영상">
@@ -1296,7 +1511,7 @@
   </div>
   <div class="project-card-main">
     <div class="project-card-header">
-      <span class="project-num">대표 작업 01</span>
+      <span class="project-num">AI 서비스와 제품 기획</span>
       <span class="project-category">3D WEB CANVAS & VIRTUAL STUDIO</span>
     </div>
     <div class="project-card-body">
@@ -1326,54 +1541,15 @@
     </div>
   </div>
 </article>
-
-<article id="work-gyeongseong-yarok" tabindex="-1" class="reveal project-card project-card-featured">
-  <div class="project-cover project-video-cover">
-    <video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" preload="metadata" poster="assets/gyeongseong-preview.webp" aria-label="경성야록 실제 구동 영상">
-      <source src="videos/gyeongseong-demo.mp4" type="video/mp4">
-      <a href="videos/gyeongseong-demo.mp4">경성야록 시연 영상 보기</a>
-    </video>
-  </div>
-  <div class="project-card-main">
-    <div class="project-card-header">
-      <span class="project-num">대표 작업 02</span>
-      <span class="project-category">ARCHIVE & INTERACTIVE GAME</span>
-    </div>
-    <div class="project-card-body">
-      <h3 class="project-title">경성야록</h3>
-      <p class="project-hook">읽기 어려운 옛 신문을, 체험하는 콘텐츠로</p>
-      <dl class="case-brief">
-        <div><dt>문제와 목표</dt><dd>한자와 빽빽한 옛 지면을 오늘의 독자가 탐색할 수 있는 경험으로 확장했습니다.</dd></div>
-        <div class="case-role"><dt>내가 맡은 일</dt><dd>팀 프로젝트 · 전체 DB 및 사건 자료 정리, 웹·모바일 게임 구현, 굿즈 그래픽 디자인</dd></div>
-        <div><dt>구현 결과</dt><dd>PC 키보드와 모바일 조이스틱으로 단서를 모으는 3D 게임 ‘식자실’을 구현했습니다.</dd></div>
-        <div><dt>설계 선택</dt><dd>신문 자료를 읽는 데서 그치지 않고, 단서를 직접 찾고 조합하는 게임으로 탐색 흐름을 확장했습니다.</dd></div>
-      </dl>
-      <div class="project-metrics" style="grid-template-columns: repeat(2, 1fr);">
-        <div><div class="metric-key">MY ROLE</div><div class="metric-val">DB · 게임 구현 · 굿즈 디자인</div></div>
-        <div><div class="metric-key">TEAM OUTPUT</div><div class="metric-val">사건 4편 · 코너 6개 · 3D 게임</div></div>
-      </div>
-      <div class="project-tech">
-        <span class="tech-pill">Three.js / WebGL</span>
-        <span class="tech-pill">JavaScript (ES6)</span>
-        <span class="tech-pill">Vite</span>
-        <span class="tech-pill">Web Audio API</span>
-        <span class="tech-pill">Adobe Illustrator</span>
-      </div>
-    </div>
-    <div class="project-card-footer">
-      <button class="btn-action btn-outline" onclick="openDetailModal('gyeongseong-yarok')">프로젝트 · 담당 업무 보기</button>
-      <a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">경성야록 체험하기 ↗</a>
-    </div>
-  </div>
-</article>
-
+      </div></section>
+      <section id="category-experience" class="project-category-group" aria-labelledby="heading-experience"><div class="category-heading reveal"><span class="section-kicker">03 / CATEGORY</span><h3 id="heading-experience">고객 경험과 커머스</h3><p>사용자의 상황을 이해하고, 쉬운 이용과 상품 탐색을 설계합니다.</p></div><div class="project-grid secondary-grid">
 <article id="work-senior-helper" tabindex="-1" class="reveal project-card project-card-featured">
   <div class="project-cover senior-screen-cover">
     <figure><img src="assets/senior-helper-screen.webp" alt="시니어 뇌건강 헬퍼 실제 홈 화면: 큰 버튼 네 개" width="1212" height="823" loading="lazy"><figcaption>실제 구현 화면 · 시니어 뇌건강 헬퍼</figcaption></figure>
   </div>
   <div class="project-card-main">
     <div class="project-card-header">
-      <span class="project-num">대표 작업 03</span>
+      <span class="project-num">대표 프로젝트</span>
       <span class="project-category">SENIOR-FRIENDLY UX</span>
     </div>
     <div class="project-card-body">
@@ -1405,15 +1581,65 @@
     </div>
   </div>
 </article>
-        </div>
+<article id="work-open-gallery" tabindex="-1" class="reveal project-card">
+            <div>
+              <div class="project-cover"><img src="assets/open-gallery/cover.webp" alt="오픈갤러리 메인: 작품 렌탈 배너와 작품 탐색 화면" width="720" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+              <div class="project-card-header"><span class="project-num">고객 경험과 커머스</span><span class="project-category">REACT UI & PRODUCT EXPLORATION</span></div>
+              <div class="project-card-body">
+                <h3 class="project-title">오픈갤러리 — 작품·상품 탐색 UI</h3>
+                <p class="project-summary">그림 렌탈·아트테크·아트굿즈를 탐색하는 React 프런트엔드 구현 프로젝트입니다. 목록에서 상세 화면으로 이동하고, 이미지·기종·수량 선택에 따라 화면과 금액이 바뀌는 경험을 연결했습니다.</p>
+                <dl class="case-brief"><div><dt>사용 흐름</dt><dd>작품·상품 목록 → 상세 정보 → 이미지·옵션 선택</dd></div><div><dt>구현 내용</dt><dd>페이지 라우팅, 배너 전환, 썸네일 선택, 연관 옵션 초기화, 수량·금액 계산</dd></div><div><dt>확인 범위</dt><dd>배포 파일의 로컬 실행 화면을 확인했습니다. 구매·로그인은 시연 UI이며 실제 결제·인증 연동은 별도입니다.</dd></div></dl>
+                <div class="project-tech"><span class="tech-pill">React</span><span class="tech-pill">React Router</span><span class="tech-pill">useState / useEffect</span><span class="tech-pill">CSS Grid / Flex</span></div>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="projects/open-gallery.html" class="btn-action btn-outline">페이지별 화면 보기 ↗</a>
+              <a href="presentations/open-gallery-technology.pdf" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">발표자료 보기 ↗</a>
+              <a href="https://min8309.github.io/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">사이트 보기 ↗</a>
+            </div>
+          </article>
+      </div></section>
+      <section id="category-content" class="project-category-group" aria-labelledby="heading-content"><div class="category-heading reveal"><span class="section-kicker">04 / CATEGORY</span><h3 id="heading-content">브랜드와 콘텐츠</h3><p>자료와 일상의 관찰을 이야기와 비주얼 콘텐츠로 연결합니다.</p></div><div class="project-grid secondary-grid">
+<article id="work-gyeongseong-yarok" tabindex="-1" class="reveal project-card project-card-featured">
+  <div class="project-cover project-video-cover">
+    <video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" preload="metadata" poster="assets/gyeongseong-preview.webp" aria-label="경성야록 실제 구동 영상">
+      <source src="videos/gyeongseong-demo.mp4" type="video/mp4">
+      <a href="videos/gyeongseong-demo.mp4">경성야록 시연 영상 보기</a>
+    </video>
+  </div>
+  <div class="project-card-main">
+    <div class="project-card-header">
+      <span class="project-num">대표 프로젝트</span>
+      <span class="project-category">ARCHIVE & INTERACTIVE GAME</span>
+    </div>
+    <div class="project-card-body">
+      <h3 class="project-title">경성야록</h3>
+      <p class="project-hook">읽기 어려운 옛 신문을, 체험하는 콘텐츠로</p>
+      <dl class="case-brief">
+        <div><dt>문제와 목표</dt><dd>한자와 빽빽한 옛 지면을 오늘의 독자가 탐색할 수 있는 경험으로 확장했습니다.</dd></div>
+        <div class="case-role"><dt>내가 맡은 일</dt><dd>팀 프로젝트 · 전체 DB 및 사건 자료 정리, 웹·모바일 게임 구현, 굿즈 그래픽 디자인</dd></div>
+        <div><dt>구현 결과</dt><dd>PC 키보드와 모바일 조이스틱으로 단서를 모으는 3D 게임 ‘식자실’을 구현했습니다.</dd></div>
+        <div><dt>설계 선택</dt><dd>신문 자료를 읽는 데서 그치지 않고, 단서를 직접 찾고 조합하는 게임으로 탐색 흐름을 확장했습니다.</dd></div>
+      </dl>
+      <div class="project-metrics" style="grid-template-columns: repeat(2, 1fr);">
+        <div><div class="metric-key">MY ROLE</div><div class="metric-val">DB · 게임 구현 · 굿즈 디자인</div></div>
+        <div><div class="metric-key">TEAM OUTPUT</div><div class="metric-val">사건 4편 · 코너 6개 · 3D 게임</div></div>
       </div>
-    </section>
-
-    <section id="video" class="section">
-      <div class="container">
-        <div class="section-header reveal"><div><div class="section-kicker">02 / VIDEO STORIES</div><h2 class="section-title">사진에서 시작해, 움직이는 이야기로</h2><p class="section-desc">직접 촬영한 일상에 상상을 더합니다. 스토리 구상부터 AI 영상 생성과 편집까지 이어지는 영상 작업입니다.</p></div></div>
-        <div class="video-grid">
-          <article id="work-video-production" tabindex="-1" class="reveal project-card video-featured">
+      <div class="project-tech">
+        <span class="tech-pill">Three.js / WebGL</span>
+        <span class="tech-pill">JavaScript (ES6)</span>
+        <span class="tech-pill">Vite</span>
+        <span class="tech-pill">Web Audio API</span>
+        <span class="tech-pill">Adobe Illustrator</span>
+      </div>
+    </div>
+    <div class="project-card-footer">
+      <button class="btn-action btn-outline" onclick="openDetailModal('gyeongseong-yarok')">프로젝트 · 담당 업무 보기</button>
+      <a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">경성야록 체험하기 ↗</a>
+    </div>
+  </div>
+</article>
+<div id="video" class="category-video"><article id="work-video-production" tabindex="-1" class="reveal project-card video-featured">
             <div class="video-stage-column">
               <div>
                 <div class="video-player">
@@ -1441,7 +1667,7 @@
             <div class="video-info-column">
               <div>
                 <div class="video-header-top">
-                  <span class="project-num">VIDEO / CREATIVE WORK</span>
+                  <span class="project-num">브랜드와 콘텐츠</span>
                   <span class="project-category">YouTube @MinsunPark-l2r</span>
                 </div>
                 <h3 class="project-title">촬라의 상상 — AI 영상 제작</h3>
@@ -1490,205 +1716,16 @@
                 <a href="https://www.youtube.com/@MinsunPark-l2r" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">YouTube 채널 바로가기 ↗</a>
               </div>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="more-work" class="section">
-      <div class="container">
-        <div class="section-header reveal"><div><div class="section-kicker">03 / MORE WORK</div><h2 class="section-title">데이터와 AI로 넓혀온 작업 영역</h2><p class="section-desc">인생 시뮬레이션, 데이터 분석, AI 에이전트와 오디오 루틴 앱까지. 여섯 가지 프로젝트로 작업 영역을 넓혀갑니다.</p></div></div>
-        <div class="project-grid secondary-grid">
-<article id="work-my-ai-life" tabindex="-1" class="reveal project-card">
-            <div>
-<div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="life"><stop stop-color="#111C32"/><stop offset="1" stop-color="#1F2640"/></linearGradient></defs><rect width="640" height="400" fill="url(#life)"/>
-<text x="44" y="58" fill="#38BDF8" font-size="11" letter-spacing="4">MY AI LIFE</text><text x="44" y="99" fill="#F8FAFC" font-size="28">Every choice, a new story.</text>
-<path d="M60 280H180Q220 280 250 240L305 165M180 280Q240 280 280 305L375 325M250 240H390L475 200M390 240L475 280" stroke="#38BDF8" opacity=".65" fill="none" stroke-width="2"/>
-<g fill="#162D44" stroke="#38BDF8"><circle cx="75" cy="280" r="20"/><circle cx="180" cy="280" r="12"/><circle cx="305" cy="165" r="20"/><circle cx="390" cy="240" r="18"/><circle cx="475" cy="200" r="13"/><circle cx="475" cy="280" r="13"/></g><circle cx="375" cy="325" r="20" fill="#F59E0B"/>
-<text x="294" y="169" fill="#CBD5E1" font-size="10">AI</text><text x="354" y="363" fill="#F59E0B" font-size="10">HUMAN</text><g transform="translate(515 142)" stroke="#697791" fill="none"><path d="M0 0L45 26V78L0 104L-45 78V26Z"/><path d="M0 14L32 32V70L0 89L-32 70V32Z" opacity=".5"/><path d="M0 52L0 0M0 52L45 26M0 52L45 78M0 52L0 104M0 52L-45 78M0 52L-45 26" opacity=".4"/><path d="M0 10L36 31L29 68L0 94L-20 64L-37 30Z" stroke="#F59E0B" fill="#F59E0B" fill-opacity=".1"/></g></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
-              <div class="project-card-header">
-                <span class="project-num">더 많은 작업 01</span>
-                <span class="project-category">INTERACTIVE ENGINE</span>
-              </div>
-              <div class="project-card-body">
-                <h3 class="project-title">MY AI LIFE (나의 AI 인생 시뮬레이터)</h3>
-                <p class="project-summary">
-                  AI의 극효율 권고와 인간의 주관적 가치관이 충돌하는 생애주기 분기점을 설계했습니다. 기회비용을 6대 실시간 라이프 HUD와 나비효과 큐로 가시화하며 OSMU 스토리 대본을 자동 렌더링합니다.
-                </p>
-                <div class="project-metrics">
-                  <div>
-                    <div class="metric-key">CORE MECHANIC</div>
-                    <div class="metric-val">6대 라이프 HUD & 나비효과</div>
-                  </div>
-                  <div>
-                    <div class="metric-key">ARCHITECTURE</div>
-                    <div class="metric-val">Zero-Dependency ES6+</div>
-                  </div>
-                </div>
-                <div class="project-tech">
-                  <span class="tech-pill">Vanilla JS</span>
-                  <span class="tech-pill">CSS Grid</span>
-                  <span class="tech-pill">Glassmorphism</span>
-                  <span class="tech-pill">OSMU Engine</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-card-footer">
-              <button class="btn-action btn-outline" onclick="openDetailModal('my-ai-life')">설계 상세 보기</button>
-              <a href="https://min8309.github.io/my_ai_life/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
-            </div>
-          </article>
-<article id="work-seoul-data" tabindex="-1" class="reveal project-card">
-            <div>
-<div class="project-cover seoul-map-cover"><img src="assets/seoul-map-logo.webp" alt="서울 지도와 한강 위에 떠 있는 서울어디가 로고" width="1586" height="992" loading="lazy" decoding="async"><span class="cover-label">SEOUL EODIGA / MAP VISUAL</span></div>
-              <div class="project-card-header">
-                <span class="project-num">더 많은 작업 02</span>
-                <span class="project-category">DATA PRODUCT</span>
-              </div>
-              <div class="project-card-body">
-                <h3 class="project-title">서울, 어디서 놀고 어디서 벌까?</h3>
-                <p class="project-summary">
-                  서울시 8.4만 건의 상권 데이터를 정제하여, 창업자(수익성/폐업 안정성)와 소비자(2030/주말 야간 핫플)의 시선에 맞춰 완전히 다른 UI 대시보드와 Random Forest 월매출 예측치를 제공합니다.
-                </p>
-                <div class="project-metrics">
-                  <div>
-                    <div class="metric-key">DATA MART</div>
-                    <div class="metric-val">84,675행 데이터 통합</div>
-                  </div>
-                  <div>
-                    <div class="metric-key">ML MODEL</div>
-                    <div class="metric-val">Random Forest (R² 0.5227)</div>
-                  </div>
-                </div>
-                <div class="project-tech">
-                  <span class="tech-pill">Streamlit</span>
-                  <span class="tech-pill">Pandas</span>
-                  <span class="tech-pill">Machine Learning</span>
-                  <span class="tech-pill">Public Data</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-card-footer">
-              <button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">설계 상세 보기</button>
-              <a class="btn-action btn-outline" href="presentations/seoul-hotplace.pdf" target="_blank" rel="noopener noreferrer" aria-label="서울 핫플 데이터 분석 PPT 발표자료 37쪽 PDF로 보기">PPT 발표자료 보기 ↗</a>
-              <a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">서비스 바로가기 ↗</a>
-            </div>
-          </article>
-<article id="work-csi-lab" tabindex="-1" class="reveal project-card">
-            <div>
-<div class="project-cover"><img src="assets/csi-lab-cover.webp" alt="CSI LAB: 지문 스캔과 증거 연결망으로 표현한 범죄 데이터 수사 콘셉트" width="1672" height="941" loading="lazy" decoding="async"><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
-              <div class="project-card-header">
-                <span class="project-num">더 많은 작업 03</span>
-                <span class="project-category">GAMIFIED CRIME DATA</span>
-              </div>
-              <div class="project-card-body">
-                <h3 class="project-title">CSI LAB : 범죄 데이터 수사 솔루션</h3>
-                <p class="project-summary">
-                  거시적 범죄 통계를 가상 사건 해결 게임으로 재해석했습니다. YOLO11 시각 객체 탐지와 목격자 진술을 비교해 사건을 해결하면 1990–2024년 지역 범죄 데이터와 예방 가이드가 잠금 해제됩니다.
-                </p>
-                <div class="project-metrics">
-                  <div>
-                    <div class="metric-key">COMPUTER VISION</div>
-                    <div class="metric-val">YOLO11n 객체 탐지</div>
-                  </div>
-                  <div>
-                    <div class="metric-key">PIPELINE</div>
-                    <div class="metric-val">1990–2024 시계열 데이터</div>
-                  </div>
-                </div>
-                <div class="project-tech">
-                  <span class="tech-pill">YOLO11</span>
-                  <span class="tech-pill">Streamlit</span>
-                  <span class="tech-pill">Session State</span>
-                  <span class="tech-pill">Gamification</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-card-footer">
-              <button class="btn-action btn-outline" onclick="openDetailModal('csi-lab')">설계 상세 보기</button>
-              <a class="btn-action btn-outline" href="presentations/csi-lab.pdf" target="_blank" rel="noopener noreferrer" aria-label="CSI LAB PPT 발표자료 42쪽 PDF로 보기">PPT 발표자료 보기 ↗</a>
-              <a href="https://csilab-kr.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
-            </div>
-          </article>
-<article id="work-echo-chamber" tabindex="-1" class="reveal project-card">
-            <div>
-<div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><rect width="640" height="400" fill="#181C2C"/><text x="40" y="54" fill="#38BDF8" font-size="11" letter-spacing="4">ECHOCHAMBER / RUMOR LAB</text><g fill="none" stroke="#59768E" stroke-opacity=".6"><path d="M110 230L210 130L320 210L430 115L540 230L425 310L320 210L210 320L110 230M210 130L425 310M210 320L430 115M110 230L540 230"/></g><g fill="#223A51" stroke="#38BDF8"><circle cx="110" cy="230" r="18"/><circle cx="210" cy="130" r="25"/><circle cx="430" cy="115" r="20"/><circle cx="540" cy="230" r="24"/><circle cx="425" cy="310" r="17"/><circle cx="210" cy="320" r="15"/></g><circle cx="320" cy="210" r="44" fill="#F59E0B" fill-opacity=".1" stroke="#F59E0B"/><circle cx="320" cy="210" r="9" fill="#F59E0B"/><path d="M304 194Q320 178 336 194M296 186Q320 162 344 186" fill="none" stroke="#F59E0B"/><text x="292" y="277" fill="#94A3B8" font-size="9" letter-spacing="2">SIGNAL → STORY</text></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div>
-              <div class="project-card-header">
-                <span class="project-num">더 많은 작업 04</span>
-                <span class="project-category">AI AGENT NETWORK</span>
-              </div>
-              <div class="project-card-body">
-                <h3 class="project-title">EchoChamber : Rumor Lab</h3>
-                <p class="project-summary">
-                  자율 생성형 AI 에이전트 간의 대화 속에서 가십이 전파되고 왜곡되는 과정을 관찰합니다. FastAPI 백엔드 라우터와 연동하여 정보의 신뢰도 하락과 평판 손실을 관계망 그래프로 시각화했습니다.
-                </p>
-                <div class="project-metrics">
-                  <div>
-                    <div class="metric-key">BACKEND ARCH</div>
-                    <div class="metric-val">FastAPI RESTful Routers</div>
-                  </div>
-                  <div>
-                    <div class="metric-key">VISUALIZATION</div>
-                    <div class="metric-val">NetworkX & Plotly 그래프</div>
-                  </div>
-                </div>
-                <div class="project-tech">
-                  <span class="tech-pill">FastAPI</span>
-                  <span class="tech-pill">Generative Agents</span>
-                  <span class="tech-pill">NetworkX</span>
-                  <span class="tech-pill">PII Masking</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-card-footer">
-              <button class="btn-action btn-outline" onclick="openDetailModal('echo-chamber')">설계 상세 보기</button>
-              <a href="https://min8309.github.io/echoChamber/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a>
-            </div>
-          </article>
-
-          <article id="work-morningblock" tabindex="-1" class="reveal project-card">
-            <div>
-              <div class="project-cover morningblock-cover"><img src="assets/morningblock-characters.webp" alt="모닝블록의 파스텔 색상과 모드별 블로키 캐릭터" loading="lazy" width="1774" height="887"></div>
-              <div class="project-card-header"><span class="project-num">더 많은 작업 05</span><span class="project-category">MOBILE UX & AUDIO ROUTINE</span></div>
-              <div class="project-card-body">
-                <h3 class="project-title">모닝블록</h3>
-                <p class="project-summary">내 아침을 블록처럼 조립하다. 바쁜 직장인이 스트레칭·뉴스·외국어·명상·팟캐스트의 시간과 순서를 정하고, 화면을 오래 보지 않고 음성으로 따라가는 모듈형 모닝 루틴 앱입니다.</p>
-                <dl class="case-brief"><div><dt>문제와 목표</dt><dd>출근 준비 중 여러 앱을 오가는 조작과 선택을 줄이는 아침 경험을 기획했습니다.</dd></div><div class="case-role"><dt>기획·구현 영역</dt><dd>루틴 편집·실행과 상태 분리, 오디오 콘텐츠 연결, 모닝콜 설정, 완료 기록</dd></div><div><dt>구현 결과</dt><dd>모듈별 1~30분 설정과 순서 변경, 오늘만 변경, 일시정지·재개·완료 기록을 연결했습니다.</dd></div></dl>
-                <div class="project-tech"><span class="tech-pill">React Native / Expo</span><span class="tech-pill">TypeScript</span><span class="tech-pill">AsyncStorage</span><span class="tech-pill">Audio / TTS</span></div>
-              </div>
-            </div>
-            <div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('morningblock')">기획 · 구현 상세 보기</button><a href="projects/morningblock.html" class="btn-action btn-outline">프로젝트 소개 보기 ↗</a><a href="presentations/morningblock-project.html" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">PPT 발표자료 보기 ↗</a><a href="https://mornigblock.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">라이브 데모 ↗</a></div>
-          </article>
-
-
-          <article id="work-open-gallery" tabindex="-1" class="reveal project-card">
-            <div>
-              <div class="project-cover"><img src="assets/open-gallery/cover.webp" alt="오픈갤러리 메인: 작품 렌탈 배너와 작품 탐색 화면" width="720" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
-              <div class="project-card-header"><span class="project-num">더 많은 작업 06</span><span class="project-category">REACT UI & PRODUCT EXPLORATION</span></div>
-              <div class="project-card-body">
-                <h3 class="project-title">오픈갤러리 — 작품·상품 탐색 UI</h3>
-                <p class="project-summary">그림 렌탈·아트테크·아트굿즈를 탐색하는 React 프런트엔드 구현 프로젝트입니다. 목록에서 상세 화면으로 이동하고, 이미지·기종·수량 선택에 따라 화면과 금액이 바뀌는 경험을 연결했습니다.</p>
-                <dl class="case-brief"><div><dt>사용 흐름</dt><dd>작품·상품 목록 → 상세 정보 → 이미지·옵션 선택</dd></div><div><dt>구현 내용</dt><dd>페이지 라우팅, 배너 전환, 썸네일 선택, 연관 옵션 초기화, 수량·금액 계산</dd></div><div><dt>확인 범위</dt><dd>배포 파일의 로컬 실행 화면을 확인했습니다. 구매·로그인은 시연 UI이며 실제 결제·인증 연동은 별도입니다.</dd></div></dl>
-                <div class="project-tech"><span class="tech-pill">React</span><span class="tech-pill">React Router</span><span class="tech-pill">useState / useEffect</span><span class="tech-pill">CSS Grid / Flex</span></div>
-              </div>
-            </div>
-            <div class="project-card-footer">
-              <a href="projects/open-gallery.html" class="btn-action btn-outline">페이지별 화면 보기 ↗</a>
-              <a href="presentations/open-gallery-technology.pdf" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">발표자료 보기 ↗</a>
-              <a href="https://min8309.github.io/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">사이트 보기 ↗</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
+          </article></div>
+      </div></section>
+    </div></section>
 
     <!-- About Section -->
     <section id="about" class="section">
       <div class="container">
         <div class="section-header reveal">
           <div>
-            <div class="section-kicker">04 / APPROACH</div><h2 class="section-title">삶의 깊이, 배움의 속도.</h2>
+            <div class="section-kicker">03 / APPROACH</div><h2 class="section-title">삶의 깊이, 배움의 속도.</h2>
             <p class="section-desc">깊이 있는 문제의식과 꾸준한 학습으로, 기술과 사람 사이의 거리를 좁힙니다.</p>
           </div>
         </div>
@@ -1737,7 +1774,7 @@
       <div class="container">
         <div class="section-header reveal">
           <div>
-            <div class="section-kicker">05 / AI & TOOLKIT</div>
+            <div class="section-kicker">04 / AI & TOOLKIT</div>
             <h2 id="tools-title" class="section-title">아이디어를 구현하는 도구들.</h2>
             <p class="section-desc">프로젝트 제작에 활용한 AI와 개발·디자인 도구를 역할별로 정리했습니다.</p>
           </div>
@@ -2079,9 +2116,9 @@
       if (progress) {
         progress.style.transform = `scaleX(${total > 0 ? Math.min(1, window.scrollY / total) : 0})`;
       }
-      const sections = Array.from(document.querySelectorAll('main > section[id]'));
+      const sections = Array.from(document.querySelectorAll('main > section[id], .project-category-group'));
       const marker = window.scrollY + window.innerHeight * 0.35;
-      let active = sections.filter(section => section.offsetTop <= marker).pop();
+      let active = sections.filter(section => section.getBoundingClientRect().top + window.scrollY <= marker).pop();
       if (total > 0 && window.scrollY >= total - 2) active = sections[sections.length - 1];
       
       document.querySelectorAll('.nav-links a').forEach(link => {
