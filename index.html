@@ -1112,6 +1112,59 @@
     .btn-outline { background: #FFFFFF; }
     .contact-card-hint { color: var(--text-muted); }
     .logo-badge { box-shadow: none; animation: none; }
+    /* Stronger blue navigation, scoped to keep the content area light. */
+    header.sidebar-nav {
+      --text-main: #FFFFFF;
+      --text-sub: #EDF3FC;
+      --text-muted: #CFDDEF;
+      --primary: #DCEAFF;
+      --border-color: #6B87AA;
+      background: #355780;
+      border-right-color: #355780;
+      box-shadow: 4px 0 24px rgba(23, 38, 61, .12);
+    }
+    .sidebar-nav .logo-badge { background: #B6CFEE; }
+    .sidebar-nav .interactive-role-button,
+    .sidebar-nav .btn-outline,
+    .sidebar-nav .menu-toggle {
+      background: #42658F;
+      color: #FFFFFF;
+      border-color: #91AACC;
+    }
+    .sidebar-nav .interactive-role-button:hover,
+    .sidebar-nav .btn-outline:hover { background: #4C709B; }
+    .sidebar-nav .btn-primary,
+    .sidebar-nav .btn-primary:hover {
+      background: #EDF3FC;
+      color: #25456E;
+      border-color: #EDF3FC;
+      box-shadow: none;
+    }
+    .sidebar-nav .project-index-section { border-top: 0; padding-top: 0; }
+    .sidebar-nav .category-shortcuts { border-top: 1px solid var(--border-color); padding-top: 22px; }
+    .sidebar-nav .project-index-list a:hover,
+    .sidebar-nav .nav-links a:hover {
+      color: #FFFFFF;
+      background: #42658F;
+      border-color: #91AACC;
+    }
+    .sidebar-nav .project-index-list a[aria-current],
+    .sidebar-nav .nav-links a[aria-current] {
+      --text-muted: #355780;
+      --primary: #25456E;
+      background: #E8F0FC;
+      color: #25456E;
+      border-color: #E8F0FC;
+    }
+    .sidebar-nav .project-index-header span.badge { background: #42658F; }
+    .sidebar-nav :focus-visible { outline-color: #FFFFFF; }
+    .sidebar-nav .sidebar-scroll-area::-webkit-scrollbar-thumb { background: #91AACC; }
+    @media (max-width: 900px) {
+      .sidebar-nav .sidebar-scroll-area { background: #355780; gap: 20px; }
+      .sidebar-nav .sidebar-scroll-area .project-index-section { display: block; }
+      .sidebar-nav .project-index-list a { min-height: 44px; padding-inline: 8px; }
+      .sidebar-nav .project-index-desc { font-size: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -1131,20 +1184,6 @@
     </div>
 
     <div id="sidebarScrollArea" class="sidebar-scroll-area">
-      <div>
-        <div class="sidebar-section-title">카테고리 바로가기</div>
-        <nav aria-label="주요 메뉴">
-          <ul class="nav-links">
-            <li><a href="#projects">대표 작업</a></li>
-            <li><a href="#video">영상 작업</a></li>
-            <li><a href="#more-work">더 많은 작업</a></li>
-            <li><a href="#about">프로필</a></li>
-            <li><a href="#tools">사용 도구</a></li>
-            <li><a href="#contact">연락처</a></li>
-          </ul>
-        </nav>
-      </div>
-
       <div class="project-index-section">
         <div class="project-index-header">
           <span>PROJECT INDEX</span>
@@ -1162,6 +1201,20 @@
           <li><a href="#work-morningblock"><span class="project-index-num">09</span><span>모닝블록</span><span class="project-index-desc">오디오 루틴</span></a></li>
           <li><a href="#work-open-gallery"><span class="project-index-num">10</span><span>오픈갤러리</span><span class="project-index-desc">React UI</span></a></li>
         </ul>
+      </div>
+
+      <div class="category-shortcuts">
+        <div class="sidebar-section-title">카테고리 바로가기</div>
+        <nav aria-label="주요 메뉴">
+          <ul class="nav-links">
+            <li><a href="#projects">대표 작업</a></li>
+            <li><a href="#video">영상 작업</a></li>
+            <li><a href="#more-work">더 많은 작업</a></li>
+            <li><a href="#about">프로필</a></li>
+            <li><a href="#tools">사용 도구</a></li>
+            <li><a href="#contact">연락처</a></li>
+          </ul>
+        </nav>
       </div>
 
       <div class="sidebar-footer">
