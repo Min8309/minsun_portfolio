@@ -48,7 +48,7 @@
     html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 24px); }
     body {
       background-color: var(--bg-ground);
-      background-image: 
+      background-image:
         radial-gradient(ellipse 80% 50% at 50% -20%, rgba(78, 115, 166, 0.12), transparent 70%),
         radial-gradient(ellipse 60% 40% at 90% 20%, rgba(109, 140, 184, 0.08), transparent 60%),
         radial-gradient(ellipse 50% 30% at 10% 60%, rgba(251, 191, 36, 0.04), transparent 50%);
@@ -339,7 +339,7 @@
     }
     .art-grid {
       position: absolute; inset: 4%;
-      background-image: 
+      background-image:
         linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
       background-size: 36px 36px;
@@ -394,7 +394,7 @@
     .art-core {
       position: absolute; inset: 24%; border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, #A9C2E1 0%, #6D8CB8 35%, #355780 65%, #17263D 85%);
-      box-shadow: 
+      box-shadow:
         inset -10px -15px 40px rgba(23, 38, 61, 0.10),
         0 0 80px rgba(78, 115, 166, 0.35),
         0 0 120px rgba(109, 140, 184, 0.2);
@@ -1187,6 +1187,17 @@
     @media (max-width: 900px) {
       .representative-card { grid-template-columns: minmax(0, 1fr); min-height: 0; max-height: none; }
     }
+    /* Matching portrait cards for the two brand and content projects. */
+    #category-content .category-video { grid-column: auto; display: flex; min-height: 0; border: 0; background: transparent; }
+    #category-content .video-featured { display: flex; flex-direction: column; width: 100%; min-height: 0; height: auto; }
+    #category-content .video-stage-column { padding: 0; gap: 0; border-right: 0; border-bottom: 1px solid var(--border-color); }
+    #category-content .video-player { aspect-ratio: 16/9; border: 0; border-radius: 0; box-shadow: none; }
+    #category-content .video-info-column { flex: 1; padding: 24px 26px; }
+    #category-content .video-pipeline-box { margin-top: 18px; }
+    #category-content .project-card-featured .project-cover { flex-shrink: 0; }
+    @media (max-width: 900px) {
+      #category-content .video-info-column { padding: 18px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -1756,25 +1767,11 @@
             <div class="video-stage-column">
               <div>
                 <div class="video-player">
-                  <iframe src="https://www.youtube-nocookie.com/embed/dq6IprFL5II?playsinline=1" title="오래된 집의 작은 정령들 — 촬라의 상상 YouTube 영상" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  <iframe src="https://www.youtube-nocookie.com/embed/dq6IprFL5II?playsinline=1" title="오래된 집의 작은 정령들 — 촬라의 상상 YouTube 영상" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
                 </div>
-                <div class="video-caption-bar" style="margin-top: 8px;">
-                  <span>NOW SHOWING: <strong>오래된 집의 작은 정령들</strong></span>
-                  <a href="https://www.youtube.com/watch?v=dq6IprFL5II" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a>
-                </div>
+
               </div>
-              <div class="video-pipeline-box">
-                <div class="video-pipeline-title">CREATIVE PIPELINE</div>
-                <div class="video-pipeline-steps">
-                  <span>사진 촬영</span>
-                  <span class="arrow">→</span>
-                  <span>AI 스토리 기획</span>
-                  <span class="arrow">→</span>
-                  <span>AI 비디오 생성</span>
-                  <span class="arrow">→</span>
-                  <span>편집 & 연출</span>
-                </div>
-              </div>
+
             </div>
 
             <div class="video-info-column">
@@ -1822,7 +1819,21 @@
                   <span class="tech-pill">Premiere Pro 2025</span>
                   <span class="tech-pill">n8n</span>
                 </div>
-              </div>
+              <div class="video-caption-bar" style="margin-top: 8px;">
+                  <span>NOW SHOWING: <strong>오래된 집의 작은 정령들</strong></span>
+                  <a href="https://www.youtube.com/watch?v=dq6IprFL5II" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a>
+                </div><div class="video-pipeline-box">
+                <div class="video-pipeline-title">CREATIVE PIPELINE</div>
+                <div class="video-pipeline-steps">
+                  <span>사진 촬영</span>
+                  <span class="arrow">→</span>
+                  <span>AI 스토리 기획</span>
+                  <span class="arrow">→</span>
+                  <span>AI 비디오 생성</span>
+                  <span class="arrow">→</span>
+                  <span>편집 &amp; 연출</span>
+                </div>
+              </div></div>
 
               <div class="project-card-footer" style="margin-top: 14px;">
                 <button class="btn-action btn-outline" onclick="openDetailModal('video-production')">작업 소개 보기</button>
@@ -2233,7 +2244,7 @@
       const marker = window.scrollY + window.innerHeight * 0.35;
       let active = sections.filter(section => section.getBoundingClientRect().top + window.scrollY <= marker).pop();
       if (total > 0 && window.scrollY >= total - 2) active = sections[sections.length - 1];
-      
+
       document.querySelectorAll('.nav-links a').forEach(link => {
         if (active && link.getAttribute('href') === '#' + active.id) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
