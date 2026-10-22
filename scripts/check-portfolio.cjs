@@ -49,6 +49,14 @@ const { chromium } = require('playwright');
     for (const width of [1440, 901, 900, 390]) {
       await page.setViewportSize({ width, height: 900 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      const bounds = await gallery.evaluate(item => ({
+        image: item.querySelector('.gallery-viewport').getBoundingClientRect().toJSON(),
+        prev: item.querySelector('.gallery-prev').getBoundingClientRect().toJSON(),
+        next: item.querySelector('.gallery-next').getBoundingClientRect().toJSON()
+      }));
+      assert.ok(bounds.prev.right <= bounds.image.left);
+      assert.ok(bounds.next.left >= bounds.image.right);
+
       const positions = await page.locator('.representative-card').evaluateAll(cards => cards.map(card => ({
         image: card.querySelector('.project-cover').getBoundingClientRect().toJSON(),
         text: card.querySelector('.project-card-main').getBoundingClientRect().toJSON()
