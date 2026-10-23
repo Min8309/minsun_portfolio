@@ -439,6 +439,25 @@ header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #C
       #work-seoul-data .project-card-main { padding-inline: 24px; }
     }
     #work-seoul-data .seoul-gallery { padding: 4px; }
+    /* Give each representative project a full-screen presentation area. */
+    #projects > .container { max-width: 1680px; }
+    #projects .representative-grid { gap: 64px; }
+    @media (min-width: 901px) {
+      #projects .representative-card { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); min-height: calc(100svh - 64px); scroll-margin-top: 32px; }
+      #projects .representative-card:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); }
+      #projects .project-card-main { padding: clamp(24px, 2.5vw, 44px); gap: 32px; }
+      #projects .project-title { font-size: clamp(28px, 2.5vw, 42px); line-height: 1.35; }
+      #projects .featured-role { font-size: 16px; }
+      #projects .featured-decision { font-size: 18px; }
+      #projects .featured-visual .visual-primary { max-height: calc(100svh - 180px); }
+      #projects .project-cover { min-width: 0; }
+      #projects .seoul-gallery, #projects .maljup-gallery { padding: 8px; }
+    }
+    @media (max-width: 900px) {
+      #projects .representative-grid { gap: 40px; }
+      #projects .representative-card { min-height: calc(100svh - 144px); }
+      #projects .project-card-main { gap: 20px; }
+    }
   </style>
 </head>
 <body>
