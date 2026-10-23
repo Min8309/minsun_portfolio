@@ -541,6 +541,9 @@ header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #C
       .media-viewer-content { height: 65dvh; }
     }
     #projects .representative-card .project-card-footer { margin-top: 0; }
+    /* Keep portrait and landscape Maljup slides in the same stable display area. */
+    #projects #work-maljup .gallery-viewport { position: relative; aspect-ratio: 1009 / 790; overflow: hidden; }
+    #projects #work-maljup img.gallery-slide { position: absolute; inset: 0; margin: auto; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
   </style>
 </head>
 <body>
