@@ -29,8 +29,8 @@ const { chromium } = require('playwright');
     assert.notEqual(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).backgroundImage), 'none');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
-    assert.equal(await page.locator('article a.service-link').count(), 10);
-    assert.equal(await page.locator('#work-maljup .service-link').isDisabled(), true);
+    assert.equal(await page.locator('article a.service-link').count(), 11);
+    assert.equal(await page.locator('#work-maljup .service-link').getAttribute('href'), 'https://esl-101.onrender.com/');
     const ids = await page.locator('[id]').evaluateAll(items => items.map(item => item.id));
     assert.equal(new Set(ids).size, ids.length);
     for (const button of await page.locator('article button[onclick]').all()) {
