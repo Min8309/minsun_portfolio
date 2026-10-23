@@ -55,8 +55,6 @@ header.sidebar-nav { position: fixed; left: 0px; top: 0px; bottom: 0px; width: v
 .project-index-list a:hover { background: rgba(78, 115, 166, 0.08); color: var(--primary); border-color: rgba(78, 115, 166, 0.2); }
 .project-index-list a[aria-current] { background: rgba(78, 115, 166, 0.12); color: var(--primary); border-color: rgba(78, 115, 166, 0.35); font-weight: 600; }
 .project-index-num { font: 11px var(--mono-font); color: var(--primary); min-width: 20px; }
-.sidebar-footer { padding: 16px; border-top: 1px solid var(--border-color); margin-top: auto; }
-.sidebar-footer .btn-action { width: 100%; min-height: 42px; font-size: 13px; padding: 8px 14px; }
 .menu-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-main); font-size: 20px; cursor: pointer; }
 .project-popover-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); font: 11px/1 var(--mono-font); letter-spacing: 0.1em; color: var(--text-muted); }
 .project-popover ul { list-style: none; display: flex; flex-direction: column; gap: 4px; max-height: 420px; overflow-y: auto; }
@@ -291,7 +289,6 @@ header.sidebar-nav { width: 100%; height: 112px; bottom: auto; flex-direction: r
 .sidebar-scroll-area .nav-links a { width: 100%; min-height: 46px; justify-content: space-between; gap: 16px; padding: 10px 12px; white-space: nowrap; font-size: 14px; }
 .sidebar-scroll-area .nav-links a::after { content: "↗"; color: var(--primary); }
 .sidebar-scroll-area .nav-links a[aria-current] { background: rgba(78, 115, 166, 0.12); border-color: var(--primary); }
- .sidebar-scroll-area .sidebar-footer { display: none; }
 @keyframes menu-dropdown-in {
   0% { opacity: 0; transform: translateY(-8px) scale(0.98); }
   100% { opacity: 1; transform: translateY(0px) scale(1); }
@@ -473,10 +470,6 @@ header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #C
       </ol></nav>
       <nav class="sidebar-profile-menu" aria-label="프로필 및 연락처"><ul class="nav-links"><li><a href="#about">프로필</a></li><li><a href="#contact">연락처</a></li></ul></nav>
 
-      <div class="sidebar-footer">
-        <a href="tel:010-5309-3871" class="btn-action btn-outline" style="margin-bottom: 8px; font-size: 12px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 6px;" aria-label="전화 걸기: 010-5309-3871"><span>📞</span><span>010-5309-3871</span></a>
-        <a href="mailto:minsunpark3421@gmail.com" class="btn-action btn-primary" style="width: 100%; display: flex; justify-content: center; align-items: center;">이메일로 문의하기 ↗</a>
-      </div>
     </div>
   </header>
 
