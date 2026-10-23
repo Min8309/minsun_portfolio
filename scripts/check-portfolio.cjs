@@ -10,6 +10,13 @@ const { chromium } = require('playwright');
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000', { waitUntil: 'domcontentloaded' });
     assert.equal(await page.locator('#projects article').count(), 4);
+    const featuredFrames = await page.locator('#projects .representative-card').evaluateAll(cards => cards.map(card => {
+      const style = getComputedStyle(card);
+      return { border: style.borderTopWidth, shadow: style.boxShadow, radius: style.borderTopLeftRadius };
+    }));
+    featuredFrames.forEach(frame => assert.deepEqual(frame, { border: '0px', shadow: 'none', radius: '0px' }));
+    assert.notEqual(await page.locator('#more-work .project-card').first().evaluate(card => getComputedStyle(card).borderTopWidth), '0px');
+
     const gallery = page.locator('#work-seoul-data [data-gallery]');
     const slides = gallery.locator('.gallery-slide');
     const slideCount = await slides.count();
@@ -26,6 +33,23 @@ const { chromium } = require('playwright');
 
     const maljupGallery = page.locator('#work-maljup [data-gallery]');
     const maljupSlides = maljupGallery.locator('.gallery-slide');
+    for (const currentGallery of [gallery, maljupGallery]) {
+      const images = currentGallery.locator('img.gallery-slide');
+      for (let i = 0; i < await images.count(); i++) {
+        const image = currentGallery.locator('img.gallery-slide:not([hidden])');
+        const dimensions = await image.evaluate(async item => {
+          await item.decode();
+          const imageBox = item.getBoundingClientRect();
+          const viewport = item.parentElement.getBoundingClientRect();
+          return { ratio: imageBox.width / imageBox.height, originalRatio: item.naturalWidth / item.naturalHeight,
+            fits: imageBox.left >= viewport.left - 1 && imageBox.right <= viewport.right + 1 && imageBox.top >= viewport.top - 1 && imageBox.bottom <= viewport.bottom + 1 };
+        });
+        assert.ok(Math.abs(dimensions.ratio - dimensions.originalRatio) < .01);
+        assert.equal(dimensions.fits, true);
+        await currentGallery.locator('.gallery-next').click();
+      }
+    }
+
     assert.equal(await maljupSlides.count(), 4);
     await maljupGallery.locator('.gallery-prev').click();
     assert.equal(await maljupSlides.last().isVisible(), true);
@@ -36,20 +60,54 @@ const { chromium } = require('playwright');
     await maljupGallery.locator('.gallery-prev').click();
     assert.equal(await maljupSlides.first().isVisible(), true);
     assert.equal(await page.locator('.featured-decision').count(), 4);
-    assert.equal(await page.locator('#projects .featured-summary').count(), 4);
-    assert.equal(await page.locator('#projects .featured-summary > div').count(), 12);
+    assert.equal(await page.locator('#projects .featured-summary').count(), 0);
+    assert.equal(await page.locator('#projects .featured-contribution li').count(), 12);
     assert.ok((await page.locator('.hero-lead').innerText()).includes('8년의 운영'));
     assert.notEqual(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).backgroundImage), 'none');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
     assert.equal(await page.locator('article a.service-link').count(), 11);
     assert.equal(await page.locator('#work-maljup .service-link').getAttribute('href'), 'https://esl-101.onrender.com/');
+
+    assert.equal(await page.locator('#projects [data-expand-project]').count(), 4);
+    assert.equal(await page.locator('#more-work [data-expand-project]').count(), 0);
+    for (const expand of await page.locator('#projects [data-expand-project]').all()) {
+      await expand.click();
+      assert.equal(await page.locator('#mediaViewer').evaluate(dialog => dialog.open), true);
+      if (await page.locator('#mediaContent img').count()) {
+        await page.locator('#mediaContent img').evaluate(image => image.decode());
+        await page.locator('#mediaZoom').click();
+        assert.equal(await page.locator('#mediaZoom').getAttribute('aria-pressed'), 'true');
+        if (await page.locator('#mediaNext').isEnabled()) {
+          await page.locator('#mediaNext').click();
+          assert.equal(await page.locator('#mediaZoom').getAttribute('aria-pressed'), 'false');
+          await page.keyboard.press('ArrowLeft');
+        }
+      } else {
+        assert.equal(await page.locator('#mediaContent video').getAttribute('controls'), '');
+      }
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.getElementById('mediaViewer').open && document.body.style.overflow === '');
+      assert.equal(await expand.evaluate(item => document.activeElement === item), true);
+    }
+    await maljupGallery.locator('.gallery-prev').click();
+    await page.locator('#work-maljup [data-expand-project]').click();
+    assert.ok((await page.locator('#mediaViewerStatus').innerText()).includes('모바일'));
+    const mobileScreen = await page.locator('#mediaContent img').evaluate(async image => {
+      await image.decode(); return { width: image.naturalWidth, height: image.naturalHeight };
+    });
+    assert.ok(mobileScreen.height > mobileScreen.width);
+    await page.locator('#mediaClose').click();
+    await page.waitForFunction(() => document.body.style.overflow === '');
+    await maljupGallery.locator('.gallery-next').click();
     const ids = await page.locator('[id]').evaluateAll(items => items.map(item => item.id));
     assert.equal(new Set(ids).size, ids.length);
     for (const button of await page.locator('article button[onclick]').all()) {
       await button.click();
       assert.equal(await page.locator('#detailModal').isVisible(), true);
       assert.equal(await page.locator('#modalBody button[onclick]').count(), 0);
+      const featured = await button.evaluate(item => !!item.closest('#projects'));
+      assert.equal(await page.locator('#modalBody .project-evidence').count(), featured ? 1 : 0);
       const links = await page.locator('#modalBody a').evaluateAll(items => items.map(item => item.getAttribute('href')));
       assert.equal(new Set(links).size, links.length);
       // Reopening an already open dialog must not overwrite the original page state.
@@ -62,6 +120,9 @@ const { chromium } = require('playwright');
     for (const width of [1440, 901, 900, 390]) {
       await page.setViewportSize({ width, height: 900 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      const imageFits = await page.locator('#work-seoul-data .gallery-slide, #work-maljup .gallery-slide, #work-senior-helper .visual-primary').evaluateAll(images => images.map(image => getComputedStyle(image).objectFit));
+      imageFits.forEach(fit => assert.equal(fit, 'contain'));
+
       const bounds = await gallery.evaluate(item => ({
         image: item.querySelector('.gallery-viewport').getBoundingClientRect().toJSON(),
         prev: item.querySelector('.gallery-prev').getBoundingClientRect().toJSON(),
