@@ -36,6 +36,8 @@ const { chromium } = require('playwright');
     await maljupGallery.locator('.gallery-prev').click();
     assert.equal(await maljupSlides.first().isVisible(), true);
     assert.equal(await page.locator('.featured-decision').count(), 4);
+    assert.equal(await page.locator('#projects .featured-summary').count(), 4);
+    assert.equal(await page.locator('#projects .featured-summary > div').count(), 12);
     assert.ok((await page.locator('.hero-lead').innerText()).includes('8년의 운영'));
     assert.notEqual(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).backgroundImage), 'none');
     assert.equal(await page.locator('#more-work article').count(), 7);
