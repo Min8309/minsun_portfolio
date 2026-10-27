@@ -75,6 +75,9 @@ const { chromium } = require('playwright');
     assert.notEqual(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).backgroundImage), 'none');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
+    assert.deepEqual(await page.locator('.project-index-list a').evaluateAll(links => links.map(link => link.hash.slice(1))),
+      await page.locator('article[id^="work-"]').evaluateAll(cards => cards.map(card => card.id)));
+
     assert.equal(await page.locator('article a.service-link').count(), 11);
     assert.equal(await page.locator('#work-maljup .service-link').getAttribute('href'), 'https://esl-101.onrender.com/');
 
