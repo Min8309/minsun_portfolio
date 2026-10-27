@@ -21,7 +21,7 @@ https://parkminsunportfolio.vercel.app/
 | 02 | MY AI LIFE | 선택과 공공 통계로 살펴보는 AI 인생 시뮬레이터 | [데모](https://min8309.github.io/my_ai_life/) |
 | 03 | 서울, 어디서 놀고 어디서 벌까? | 서울 상권 데이터 분석과 창업자·소비자 맞춤 정보 | [서비스](https://dataseoul.streamlit.app/) |
 | 04 | CSI LAB | 객체 탐지와 범죄 데이터를 결합한 수사 게임 경험 | [데모](https://csilab-kr.streamlit.app/) |
-| 05 | EchoChamber : Rumor Lab | AI 에이전트 간 소문 전파와 왜곡 과정 시각화 | [데모](https://min8309.github.io/echoChamber/) |
+| 05 | EchoChamber : Rumor Lab | AI 에이전트 간 소문 전파와 왜곡 과정 시각화 | [데모](https://echochamber-y3r4.onrender.com/) |
 | 06 | 시니어 뇌건강 헬퍼 | 두뇌 운동·대화·기억 기록·기기 사진 촬영을 제공하는 시니어 생활 도우미 | [서비스](https://senior-helper-seven.vercel.app/) |
 | 07 | 촬라의 상상 — AI 영상 제작 | 일상의 사진을 AI 스토리와 영상으로 확장 | [YouTube](https://www.youtube.com/@MinsunPark-l2r) |
 | 08 | 경성야록 (팀 프로젝트) | 신문 아카이브 기반 인터랙티브 콘텐츠 · DB 및 웹·모바일 게임 구현 담당 | [체험하기](https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html) |
@@ -221,4 +221,4 @@ python -m http.server 8000 --bind 127.0.0.1
 Ateliera·말줍 대표 카드와 CSI LAB·EchoChamber 아카이브/상세 설명은 기술 기여 중심으로 소개합니다. 녹음은 MediaRecorder로 표기하고, 측정하지 않은 성능 향상·실시간성·사용자 효과를 결과로 단정하지 않습니다.
 
 
-Track B는 EchoChamber·말줍으로 구성하며 서울 핫플 분석은 데이터 아카이브로 이동했습니다. EchoChamber 소스 `1f231a0`에서 JavaScript 프론트엔드와 FastAPI·OpenAI 연동 코드를 확인했습니다. React 근거는 없어 해당 배지는 사용하지 않습니다. 공개 GitHub Pages는 정적 프론트엔드 데모이고 백엔드·LLM 연동은 별도 실행과 설정이 필요합니다. 대표 이미지는 기존 관계망 개념도로, 실제 서비스 화면으로 표시하지 않습니다.
+Track B는 EchoChamber·말줍으로 구성하며 서울 핫플 분석은 데이터 아카이브로 이동했습니다. EchoChamber 소스 `1f231a0`에서 JavaScript 프론트엔드와 FastAPI·OpenAI 연동 코드를 확인했습니다. React 근거는 없어 해당 배지는 사용하지 않습니다. 공개 버튼은 Render 배포 주소로 연결됩니다. 백엔드·LLM 기능은 서버와 키 설정이 필요하며 실제 동작 검증과 구분합니다. 대표 이미지는 기존 관계망 개념도로, 실제 서비스 화면으로 표시하지 않습니다.

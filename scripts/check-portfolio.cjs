@@ -80,6 +80,7 @@ const { chromium } = require('playwright');
 
     assert.equal(await page.locator('article a.service-link').count(), 11);
     assert.equal(await page.locator('#work-maljup .service-link').getAttribute('href'), 'https://esl-101.onrender.com/');
+    assert.equal(await page.locator('#work-echo-chamber .service-link').getAttribute('href'), 'https://echochamber-y3r4.onrender.com/');
 
     assert.equal(await page.locator('#projects [data-expand-project]').count(), 4);
     assert.equal(await page.locator('#more-work [data-expand-project]').count(), 0);
