@@ -10,6 +10,13 @@ const { chromium } = require('playwright');
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000', { waitUntil: 'domcontentloaded' });
     assert.equal(await page.locator('#projects article').count(), 4);
+    assert.deepEqual(await page.locator('#projects article').evaluateAll(cards => cards.map(card => card.id)),
+      ['work-gyeongseong-yarok', 'work-ateliera', 'work-maljup', 'work-seoul-data']);
+    assert.deepEqual(await page.locator('#projects article').evaluateAll(cards => cards.map(card => card.dataset.track)), ['A', 'A', 'B', 'B']);
+    assert.equal(await page.locator('#projects .featured-tech .tech-pill').count(), 16);
+    assert.equal(await page.locator('#more-work #work-senior-helper').count(), 1);
+    assert.equal(await page.locator('#more-work #work-ateliera').count(), 0);
+
     const featuredFrames = await page.locator('#projects .representative-card').evaluateAll(cards => cards.map(card => {
       const style = getComputedStyle(card);
       return { border: style.borderTopWidth, shadow: style.boxShadow, radius: style.borderTopLeftRadius };
@@ -62,7 +69,9 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('.featured-decision').count(), 4);
     assert.equal(await page.locator('#projects .featured-summary').count(), 0);
     assert.equal(await page.locator('#projects .featured-contribution li').count(), 12);
-    assert.ok((await page.locator('.hero-lead').innerText()).includes('8년의 운영'));
+    assert.ok((await page.locator('.hero-lead').innerText()).includes('기획을 실제 작동하는 코드로 완주'));
+    assert.equal(await page.locator('.hero-meta .tag').innerText(), 'CREATIVE TECHNOLOGIST & AI FRONTEND DEVELOPER');
+    assert.deepEqual(await page.locator('.floating-note').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['#work-seoul-data', '#work-maljup', '#work-ateliera', '#work-gyeongseong-yarok']);
     assert.notEqual(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).backgroundImage), 'none');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
@@ -100,13 +109,15 @@ const { chromium } = require('playwright');
     await page.locator('#mediaClose').click();
     await page.waitForFunction(() => document.body.style.overflow === '');
     await maljupGallery.locator('.gallery-next').click();
+    assert.equal(await page.locator('.senior-phone-link').getAttribute('href'), 'https://senior-helper-seven.vercel.app/');
+    assert.equal(await page.locator('.senior-phone-link').getAttribute('target'), '_blank');
     const ids = await page.locator('[id]').evaluateAll(items => items.map(item => item.id));
     assert.equal(new Set(ids).size, ids.length);
     for (const button of await page.locator('article button[onclick]').all()) {
       await button.click();
       assert.equal(await page.locator('#detailModal').isVisible(), true);
       assert.equal(await page.locator('#modalBody button[onclick]').count(), 0);
-      const featured = await button.evaluate(item => !!item.closest('#projects'));
+      const featured = await button.evaluate(item => !!item.closest('#projects') || item.closest('article').id === 'work-senior-helper');
       assert.equal(await page.locator('#modalBody .project-evidence').count(), featured ? 1 : 0);
       const links = await page.locator('#modalBody a').evaluateAll(items => items.map(item => item.getAttribute('href')));
       assert.equal(new Set(links).size, links.length);
@@ -131,6 +142,16 @@ const { chromium } = require('playwright');
       assert.ok(bounds.prev.right <= bounds.image.left);
       assert.ok(bounds.next.left >= bounds.image.right);
 
+      const phone = await page.locator('#work-senior-helper .visual-stage').evaluate(async stage => {
+        const image = stage.querySelector('img'); await image.decode();
+        const box = image.getBoundingClientRect();
+        const link = stage.querySelector('.senior-phone-link').getBoundingClientRect();
+        return { ratio: box.width / box.height, naturalRatio: image.naturalWidth / image.naturalHeight,
+          left: (link.left - box.left) / box.width, width: link.width / box.width };
+      });
+      assert.ok(Math.abs(phone.ratio - phone.naturalRatio) < .01);
+      assert.ok(Math.abs(phone.left - .3127) < .01);
+      assert.ok(Math.abs(phone.width - .3218) < .01);
       const positions = await page.locator('.representative-card').evaluateAll(cards => cards.map(card => ({
         image: card.querySelector('.project-cover').getBoundingClientRect().toJSON(),
         text: card.querySelector('.project-card-main').getBoundingClientRect().toJSON()
