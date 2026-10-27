@@ -11,7 +11,7 @@ const { chromium } = require('playwright');
     await page.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000', { waitUntil: 'domcontentloaded' });
     assert.equal(await page.locator('#projects article').count(), 4);
     assert.deepEqual(await page.locator('#projects article').evaluateAll(cards => cards.map(card => card.id)),
-      ['work-gyeongseong-yarok', 'work-ateliera', 'work-maljup', 'work-seoul-data']);
+      ['work-gyeongseong-yarok', 'work-ateliera', 'work-echo-chamber', 'work-maljup']);
     assert.deepEqual(await page.locator('#projects article').evaluateAll(cards => cards.map(card => card.dataset.track)), ['A', 'A', 'B', 'B']);
     assert.equal(await page.locator('#projects .featured-tech .tech-pill').count(), 16);
     assert.equal(await page.locator('#more-work #work-senior-helper').count(), 1);
@@ -24,7 +24,7 @@ const { chromium } = require('playwright');
     featuredFrames.forEach(frame => assert.deepEqual(frame, { border: '0px', shadow: 'none', radius: '0px' }));
     assert.notEqual(await page.locator('#more-work .project-card').first().evaluate(card => getComputedStyle(card).borderTopWidth), '0px');
 
-    const gallery = page.locator('#work-seoul-data [data-gallery]');
+    const gallery = page.locator('#work-maljup [data-gallery]');
     const slides = gallery.locator('.gallery-slide');
     const slideCount = await slides.count();
     await gallery.locator('.gallery-prev').click();
@@ -120,7 +120,7 @@ const { chromium } = require('playwright');
       await button.click();
       assert.equal(await page.locator('#detailModal').isVisible(), true);
       assert.equal(await page.locator('#modalBody button[onclick]').count(), 0);
-      const featured = await button.evaluate(item => !!item.closest('#projects') || item.closest('article').id === 'work-senior-helper');
+      const featured = await button.evaluate(item => !!item.closest('#projects') || ['work-senior-helper', 'work-seoul-data'].includes(item.closest('article').id));
       assert.equal(await page.locator('#modalBody .project-evidence').count(), featured ? 1 : 0);
       const links = await page.locator('#modalBody a').evaluateAll(items => items.map(item => item.getAttribute('href')));
       assert.equal(new Set(links).size, links.length);
