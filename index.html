@@ -594,6 +594,12 @@ header.sidebar-nav { background: #20232B; border-color: #353943; }
 .gallery-arrow, .media-viewer-stage > button { color: var(--primary); }
 #projects #work-seoul-data .featured-visual { flex-direction: column; align-items: stretch; padding: 12px; }
 #projects #work-seoul-data .media-expand { position: relative; z-index: 2; align-self: center; margin-top: 12px; }
+
+/* Text-led project shortcuts in place of the decorative sphere. */
+.hero-art { display: grid; gap: 14px; align-content: center; aspect-ratio: auto; min-height: 0; max-width: 390px; }
+.hero-links-heading { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+.hero-art .floating-note { position: static; width: 100%; max-width: none; animation: none; padding: 16px 18px; box-shadow: none; border: 1px solid var(--border-color); }
+.hero-art .floating-note > span { white-space: normal; }
   </style>
 </head>
 <body>
@@ -638,18 +644,7 @@ header.sidebar-nav { background: #20232B; border-color: #353943; }
           </div>
           <div class="hero-visual">
             <div class="hero-art" role="group" aria-label="작업 역량별 프로젝트 바로가기">
-              <div class="art-grid"></div>
-              <div class="orbit"></div>
-              <div class="orbit two"></div>
-              <div class="orbit three"></div>
-              <div class="orbit-motion" aria-hidden="true">
-                <span class="orbit-particle"></span><span class="orbit-particle"></span>
-                <span class="orbit-particle"></span><span class="orbit-particle"></span>
-              </div>
-              <div class="art-core"></div>
-              <span class="art-cross" aria-hidden="true">+</span>
-              <span class="art-label top">STORY × DATA</span>
-              <span class="art-label bottom">CONTENT THAT INVITES PARTICIPATION</span>
+              <p class="hero-links-heading">기획으로 연결한 네 가지 관점</p>
               <a class="floating-note note-a" href="#work-seoul-data"><i aria-hidden="true">⌘</i><span>데이터에서 발견한 정보</span></a>
               <a class="floating-note note-b" href="#work-maljup"><i aria-hidden="true">✳</i><span>다시 만나는 학습 콘텐츠</span></a>
               <a class="floating-note note-c" href="#work-echo-chamber"><i aria-hidden="true">◇</i><span>이야기의 확산과 왜곡</span></a>
