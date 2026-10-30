@@ -11,11 +11,11 @@ const { chromium } = require('playwright');
     await page.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000', { waitUntil: 'domcontentloaded' });
     assert.equal(await page.locator('#projects article').count(), 4);
     assert.deepEqual(await page.locator('#projects article').evaluateAll(cards => cards.map(card => card.id)),
-      ['work-gyeongseong-yarok', 'work-ateliera', 'work-echo-chamber', 'work-maljup']);
+      ['work-gyeongseong-yarok', 'work-seoul-data', 'work-echo-chamber', 'work-maljup']);
     assert.deepEqual(await page.locator('#projects article').evaluateAll(cards => cards.map(card => card.dataset.track)), ['A', 'A', 'B', 'B']);
     assert.equal(await page.locator('#projects .featured-tech .tech-pill').count(), 16);
     assert.equal(await page.locator('#more-work #work-senior-helper').count(), 1);
-    assert.equal(await page.locator('#more-work #work-ateliera').count(), 0);
+    assert.equal(await page.locator('#more-work #work-ateliera').count(), 1);
 
     const featuredFrames = await page.locator('#projects .representative-card').evaluateAll(cards => cards.map(card => {
       const style = getComputedStyle(card);
@@ -24,7 +24,7 @@ const { chromium } = require('playwright');
     featuredFrames.forEach(frame => assert.deepEqual(frame, { border: '0px', shadow: 'none', radius: '0px' }));
     assert.notEqual(await page.locator('#more-work .project-card').first().evaluate(card => getComputedStyle(card).borderTopWidth), '0px');
 
-    const gallery = page.locator('#work-maljup [data-gallery]');
+    const gallery = page.locator('#work-seoul-data [data-gallery]');
     const slides = gallery.locator('.gallery-slide');
     const slideCount = await slides.count();
     await gallery.locator('.gallery-prev').click();
@@ -69,10 +69,10 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('.featured-decision').count(), 4);
     assert.equal(await page.locator('#projects .featured-summary').count(), 0);
     assert.equal(await page.locator('#projects .featured-contribution li').count(), 12);
-    assert.ok((await page.locator('.hero-lead').innerText()).includes('기획을 실제 작동하는 코드로 완주'));
-    assert.equal(await page.locator('.hero-meta .tag').innerText(), 'CREATIVE TECHNOLOGIST & AI FRONTEND DEVELOPER');
-    assert.deepEqual(await page.locator('.floating-note').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['#work-seoul-data', '#work-maljup', '#work-ateliera', '#work-gyeongseong-yarok']);
-    assert.notEqual(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).backgroundImage), 'none');
+    assert.ok((await page.locator('.hero-lead').innerText()).includes('전달할 메시지를 기획'));
+    assert.equal(await page.locator('.hero-meta .tag').innerText(), '콘텐츠 마케터 · 브랜드 콘텐츠 & 데이터 기반 기획');
+    assert.deepEqual(await page.locator('.floating-note').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['#work-seoul-data', '#work-maljup', '#work-echo-chamber', '#work-gyeongseong-yarok']);
+    assert.equal(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).color), 'rgb(36, 82, 245)');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
     assert.deepEqual(await page.locator('.project-index-list a').evaluateAll(links => links.map(link => link.hash.slice(1))),
@@ -121,7 +121,7 @@ const { chromium } = require('playwright');
       await button.click();
       assert.equal(await page.locator('#detailModal').isVisible(), true);
       assert.equal(await page.locator('#modalBody button[onclick]').count(), 0);
-      const featured = await button.evaluate(item => !!item.closest('#projects') || ['work-senior-helper', 'work-seoul-data'].includes(item.closest('article').id));
+      const featured = await button.evaluate(item => !!item.closest('#projects') || ['work-senior-helper', 'work-ateliera'].includes(item.closest('article').id));
       assert.equal(await page.locator('#modalBody .project-evidence').count(), featured ? 1 : 0);
       const links = await page.locator('#modalBody a').evaluateAll(items => items.map(item => item.getAttribute('href')));
       assert.equal(new Set(links).size, links.length);
