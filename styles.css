@@ -1107,3 +1107,10 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
 .case-schedule dd { font-size: 16px; line-height: 1.85; }
 .modal-content .case-schedule p { font-size: 14px; line-height: 1.8; margin: 16px 0 0; color: var(--text-muted); }
 @media (max-width: 600px) { .case-schedule { padding: 18px; } }
+
+/* Center and strengthen button labels. */
+:is(button, .btn-action, .interactive-role-button, .media-viewer-tools a) {
+ text-align: center;
+ justify-content: center;
+ font-weight: 700;
+}
