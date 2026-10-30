@@ -299,17 +299,8 @@
       const slides = Array.from(gallery.querySelectorAll('.gallery-slide'));
       const status = gallery.querySelector('[data-gallery-status]');
       if (!slides.length) return;
-      const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'gallery-autoplay btn-action btn-outline';
-      toggle.dataset.galleryToggle = '';
-      toggle.setAttribute('aria-controls', gallery.querySelector('.gallery-stage').id);
-      gallery.append(toggle);
       let current = 0;
-      let autoplay = !motion.matches;
       let visible = false;
-      let hovered = false;
       let timer;
       function showSlide(index) {
         current = (index + slides.length) % slides.length;
@@ -319,11 +310,8 @@
       }
       function syncAutoplay() {
         clearInterval(timer);
-        toggle.textContent = autoplay ? '자동 재생 일시정지' : '자동 재생 시작';
-        toggle.setAttribute('aria-label', toggle.textContent);
-        status.setAttribute('aria-live', autoplay ? 'off' : 'polite');
-        const focused = gallery.contains(document.activeElement) && document.activeElement !== toggle;
-        if (!autoplay || !visible || hovered || focused || document.hidden || slides.length < 2) return;
+        status.setAttribute('aria-live', 'off');
+        if (!visible || document.hidden || slides.length < 2) return;
         timer = setInterval(() => {
           if (document.body.style.overflow === 'hidden') return;
           showSlide(current + 1);
@@ -342,19 +330,12 @@
         showSlide(current + (event.key === 'ArrowRight' ? 1 : -1));
         syncAutoplay();
       });
-      toggle.addEventListener('click', () => { autoplay = !autoplay; syncAutoplay(); });
-      gallery.addEventListener('mouseenter', () => { hovered = true; syncAutoplay(); });
-      gallery.addEventListener('mouseleave', () => { hovered = false; syncAutoplay(); });
-      gallery.addEventListener('focusin', syncAutoplay);
-      gallery.addEventListener('focusout', () => queueMicrotask(syncAutoplay));
       document.addEventListener('visibilitychange', syncAutoplay);
-      motion.addEventListener('change', () => { autoplay = !motion.matches; syncAutoplay(); });
       const observer = new IntersectionObserver(entries => {
         visible = entries[0].isIntersecting;
         syncAutoplay();
       });
       observer.observe(gallery);
-      toggle.hidden = slides.length < 2;
       showSlide(0);
       syncAutoplay();
     });

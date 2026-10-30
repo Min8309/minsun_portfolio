@@ -19,33 +19,22 @@ const { chromium } = require('playwright');
         await page.clock.fastForward(5000);
         assert.equal(await index(), (start + step) % count, `${key}: automatic advance and wrap`);
       }
+      assert.equal(await gallery.locator('[data-gallery-toggle]').count(), 0);
       await gallery.hover();
       const hovered = await index();
-      await page.clock.fastForward(10000);
-      assert.equal(await index(), hovered, `${key}: pause on hover`);
-      await page.mouse.move(0, 0);
-      await gallery.focus();
-      await page.clock.fastForward(10000);
-      assert.equal(await index(), hovered, `${key}: pause on keyboard focus`);
-      await page.keyboard.press('ArrowRight');
-      assert.equal(await index(), (hovered + 1) % count, `${key}: manual navigation`);
-      const toggle = gallery.locator('[data-gallery-toggle]');
-      await toggle.click();
-      await page.mouse.move(0, 0);
-      const paused = await index();
-      await page.clock.fastForward(10000);
-      assert.equal(await index(), paused, `${key}: explicit pause`);
-      await toggle.click();
-      await page.mouse.move(0, 0);
       await page.clock.fastForward(5000);
-      assert.equal(await index(), (paused + 1) % count, `${key}: resume`);
+      assert.equal(await index(), (hovered + 1) % count, `${key}: playback continues on hover`);
+      await gallery.focus();
+      const focused = await index();
+      await page.clock.fastForward(5000);
+      assert.equal(await index(), (focused + 1) % count, `${key}: playback continues on focus`);
+      const beforeManual = await index();
+      await page.keyboard.press('ArrowRight');
+      assert.equal(await index(), (beforeManual + 1) % count, `${key}: manual navigation`);
+      await page.clock.fastForward(5000);
+      assert.equal(await index(), (beforeManual + 2) % count, `${key}: autoplay continues after manual navigation`);
     }
-    const reducedPage = await browser.newPage({ reducedMotion: 'reduce' });
-    await reducedPage.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000', { waitUntil: 'domcontentloaded' });
-    for (const toggle of await reducedPage.locator('[data-gallery-toggle]').all()) {
-      assert.equal(await toggle.innerText(), '자동 재생 시작');
-    }
-    console.log('PASS: both galleries auto-advance and loop; hover, focus, pause/resume, manual navigation and reduced motion work.');
+    console.log('PASS: both galleries loop automatically without toggle buttons, including hover/focus and manual navigation.');
   } finally {
     await browser.close();
   }

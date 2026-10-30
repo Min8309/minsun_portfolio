@@ -6,6 +6,7 @@ const { chromium } = require('playwright');
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
   try {
     const page = await browser.newPage({ reducedMotion: 'reduce' });
+    await page.clock.install(); // Keep automatic slides stable during manual interaction checks.
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000', { waitUntil: 'domcontentloaded' });

@@ -1115,7 +1115,6 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
  font-weight: 700;
 }
 
-.gallery-autoplay { align-self: center; margin: 4px 8px 12px; font-size: 14px; min-height: 44px; }
 
 /* Decorative neural connections is clipped to the introduction and never captures input. */
 .hero { isolation: isolate; }
