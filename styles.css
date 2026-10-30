@@ -1078,3 +1078,21 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
 .case-evolution span { display: block; color: var(--text-sub); font-size: 16px; line-height: 1.8; }
 .case-section h5 { font-size: 17px; margin: 20px 0 8px; color: var(--text-main); }
 @media (max-width: 900px) { .case-evolution { grid-template-columns: 1fr; } }
+
+/* Consistent feedback for every enabled button, including link buttons. */
+:where(button, .btn-action, .interactive-role-button, .media-viewer-tools a):not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible) {
+ background: #2452F5;
+ color: #FFFFFF;
+ border-color: #2452F5;
+}
+.btn-primary:not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible) {
+ background: #1638B8;
+ color: #FFFFFF;
+ border-color: #1638B8;
+}
+.interactive-role-button:is(:hover, :focus-visible) span { color: inherit; }
+@media (prefers-reduced-motion: no-preference) {
+ :is(button, .btn-action, .interactive-role-button, .media-viewer-tools a) {
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+ }
+}

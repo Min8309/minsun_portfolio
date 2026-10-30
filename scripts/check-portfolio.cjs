@@ -190,10 +190,12 @@ const { chromium } = require('playwright');
     const about = page.locator('.interactive-role-button');
     const normal = await about.evaluate(item => getComputedStyle(item).backgroundColor);
     await about.hover();
-    assert.equal(await about.evaluate(item => getComputedStyle(item).backgroundColor), normal);
+    assert.notEqual(await about.evaluate(item => getComputedStyle(item).backgroundColor), normal);
+    assert.equal(await about.evaluate(item => getComputedStyle(item).backgroundColor), 'rgb(36, 82, 245)');
+    assert.equal(await about.evaluate(item => getComputedStyle(item).color), 'rgb(255, 255, 255)');
     assert.equal(normal, 'rgb(232, 240, 252)');
     assert.equal(errors.length, 0, errors.join('\n'));
-    console.log('PASS: project counts, index, service buttons, dialog state/focus, responsive layout, mobile menu, fixed About Me color.');
+    console.log('PASS: project counts, index, service buttons, dialog state/focus, responsive layout, mobile menu, button hover feedback.');
   } finally {
     await browser.close();
   }
