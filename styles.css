@@ -1056,3 +1056,16 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
 .hero-lead { max-width: 720px; }
 .hero-context { max-width: 680px; }
 .hero-layout { gap: 0; }
+
+/* Profile examples connect production experience to portfolio work. */
+.strength-heading { margin-top: 48px; margin-bottom: 20px; }
+.strength-heading h3 { font-size: 23px; line-height: 1.5; margin-bottom: 8px; }
+.strength-heading p { color: var(--text-sub); font-size: 16px; }
+.strength-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; list-style: none; }
+.strength-card { display: flex; align-items: flex-start; gap: 16px; padding: 28px; border: 1px solid var(--border-color); border-radius: 14px; }
+.strength-icon { color: var(--primary); font: 600 18px var(--mono-font); padding-top: 3px; }
+.strength-label { color: var(--primary); font-size: 14px; font-weight: 600; }
+.strength-card h3 { font-size: 20px; line-height: 1.5; margin: 10px 0 12px; }
+.strength-card p { color: var(--text-sub); font-size: 16px; line-height: 1.85; }
+@media (max-width: 900px) { .strength-cards { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .strength-card { padding: 22px 18px; gap: 12px; } }
