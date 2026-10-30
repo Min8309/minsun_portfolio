@@ -46,7 +46,7 @@
           const py = lobe.y + u * Math.sin(tilt) + v * Math.cos(tilt) * .52 + depth * lobe.r * .58;
           if (!point) context.moveTo(px, py); else context.lineTo(px, py);
         }
-        context.strokeStyle = `rgba(36,82,245,${.055 + .065 * (1 - Math.abs(depth))})`;
+        context.strokeStyle = `rgba(68,143,158,${.18 + .14 * (1 - Math.abs(depth))})`;
         context.lineWidth = ring % 4 === 0 ? .85 : .45;
         context.stroke();
       }
@@ -55,8 +55,8 @@
       const px = lobe.x + Math.cos(angle) * lobe.r * .75;
       const py = lobe.y + Math.sin(angle) * lobe.r * .4;
       const light = context.createRadialGradient(px, py, 0, px, py, 13);
-      light.addColorStop(0, 'rgba(36,82,245,.22)');
-      light.addColorStop(1, 'rgba(36,82,245,0)');
+      light.addColorStop(0, 'rgba(68,143,158,.42)');
+      light.addColorStop(1, 'rgba(68,143,158,0)');
       context.fillStyle = light;
       context.fillRect(px - 13, py - 13, 26, 26);
     }
