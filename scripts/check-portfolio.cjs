@@ -71,7 +71,7 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('#projects .featured-contribution li').count(), 12);
     assert.ok((await page.locator('.hero-lead').innerText()).includes('소재 발굴부터 데이터 해석'));
     assert.equal(await page.locator('.hero-meta .tag').innerText(), '콘텐츠 마케터 · 브랜드 콘텐츠 & 데이터 기반 기획');
-    assert.deepEqual(await page.locator('.floating-note').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['#work-gyeongseong-yarok', '#work-seoul-data', '#work-echo-chamber', '#work-maljup']);
+    assert.equal(await page.locator('.hero-visual, .floating-note').count(), 0);
     assert.equal(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).color), 'rgb(36, 82, 245)');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
