@@ -103,7 +103,6 @@ Supabase 클라우드 저장과 n8n·AI 사진 분석은 운영 연결 및 설�
 - YouTube: [운영 중인 영상 채널](https://www.youtube.com/@MinsunPark-l2r)
 
 - Gmail: [minsunpark3421@gmail.com](mailto:minsunpark3421@gmail.com)
-- 네이버 메일: [flushing3421@naver.com](mailto:flushing3421@naver.com)
 
 ## 로컬 실행
 
