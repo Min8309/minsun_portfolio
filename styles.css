@@ -1070,3 +1070,11 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
 .strength-card p { color: var(--text-sub); font-size: 16px; line-height: 1.85; }
 @media (max-width: 900px) { .strength-cards { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .strength-card { padding: 22px 18px; gap: 12px; } }
+
+/* Game planning iteration, based on the author's production account. */
+.case-evolution { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 24px 0; list-style: none; }
+.case-evolution li { padding: 18px; background: #F2F5FF; border: 1px solid var(--border-color); border-radius: 12px; }
+.case-evolution strong { display: block; color: var(--primary); font-size: 16px; margin-bottom: 10px; }
+.case-evolution span { display: block; color: var(--text-sub); font-size: 16px; line-height: 1.8; }
+.case-section h5 { font-size: 17px; margin: 20px 0 8px; color: var(--text-main); }
+@media (max-width: 900px) { .case-evolution { grid-template-columns: 1fr; } }
