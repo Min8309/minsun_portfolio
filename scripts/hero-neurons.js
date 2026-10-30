@@ -78,9 +78,9 @@
    if (!item.parent || item.energy > .1) {
     const size = item.parent ? 2 + item.energy*2 : 6;
     const halo = ctx.createRadialGradient(item.x,item.y,0,item.x,item.y,size*4);
-    halo.addColorStop(0,`rgba(68,143,158,${.28+item.energy*.28})`);halo.addColorStop(1,'rgba(68,143,158,0)');
+    halo.addColorStop(0, item.energy > .1 ? `rgba(255,255,255,${item.energy*.72})` : 'rgba(68,143,158,.28)');halo.addColorStop(1,'rgba(255,255,255,0)');
     ctx.fillStyle=halo;ctx.fillRect(item.x-size*4,item.y-size*4,size*8,size*8);
-    ctx.fillStyle=`rgba(68,143,158,${.55+item.energy*.3})`;
+    ctx.fillStyle=item.energy > .1 ? `rgba(255,255,255,${.55+item.energy*.4})` : 'rgba(68,143,158,.55)';
     ctx.beginPath();
     for(let i=0;i<=12;i++){const a=i/12*Math.PI*2;const r=size*(1+.23*Math.sin(a*5));const x=item.x+Math.cos(a)*r,y=item.y+Math.sin(a)*r;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}
     ctx.fill();
@@ -89,8 +89,10 @@
   for (const pulse of pulses) {
    const p=point(pulse.item,Math.min(pulse.t,pulse.item.progress));
    const glow=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,10);
-   glow.addColorStop(0,'rgba(218,255,252,.95)');glow.addColorStop(.25,'rgba(68,143,158,.85)');glow.addColorStop(1,'rgba(68,143,158,0)');
+   glow.addColorStop(0,'rgba(255,255,255,1)');glow.addColorStop(.3,'rgba(255,255,255,.85)');glow.addColorStop(1,'rgba(255,255,255,0)');
    ctx.fillStyle=glow;ctx.fillRect(p.x-10,p.y-10,20,20);
+   ctx.beginPath();ctx.moveTo(p.x-3.5,p.y);ctx.lineTo(p.x+3.5,p.y);ctx.moveTo(p.x,p.y-3.5);ctx.lineTo(p.x,p.y+3.5);
+   ctx.strokeStyle='rgba(255,255,255,.95)';ctx.lineWidth=1.2;ctx.stroke();
   }
  }
  function tick(timestamp) {
