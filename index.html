@@ -600,6 +600,46 @@ header.sidebar-nav { background: #20232B; border-color: #353943; }
 .hero-links-heading { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
 .hero-art .floating-note { position: static; width: 100%; max-width: none; animation: none; padding: 16px 18px; box-shadow: none; border: 1px solid var(--border-color); }
 .hero-art .floating-note > span { white-space: normal; }
+
+/* Soft blue depth and readable supporting typography. */
+body { background-image: radial-gradient(ellipse at 95% 0%, rgba(36,82,245,.09), transparent 42%), linear-gradient(145deg, #FAFBFF 0%, #F5F7FC 48%, #F7F7F8 100%); }
+.hero { background: radial-gradient(ellipse at 85% 35%, rgba(36,82,245,.08), transparent 58%), linear-gradient(120deg, rgba(255,255,255,.65), rgba(235,240,255,.4)); }
+header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 100%); }
+.hero-art .floating-note, .compact-project, .tool-card, .strength-card { background: linear-gradient(140deg, #FFFFFF 25%, #F1F4FF 100%); }
+#projects .project-card-main { background: linear-gradient(145deg, rgba(255,255,255,.3), rgba(230,236,255,.38)); }
+#about { background: radial-gradient(ellipse at 90% 50%, rgba(36,82,245,.07), transparent 65%); }
+.contact-box { background: linear-gradient(125deg, #FFFFFF, #EDF1FF); }
+.hero-meta { gap: 12px; font-family: var(--body-font); font-size: 16px; letter-spacing: 0; }
+.hero-meta .tag { font-size: 16px; line-height: 1.65; letter-spacing: 0; padding: 7px 12px; }
+.status-badge { font-size: 12px; padding: 6px 10px; }
+.hero-context { font-size: 17px; line-height: 1.85; color: var(--text-sub); }
+.hero-lead { font-size: 20px; }
+.hero-actions .btn-action, .btn-action { font-size: 16px; }
+.sidebar-section-title { font-size: 12px; }
+.project-index-list a { font-size: 16px; line-height: 1.6; padding: 10px 12px; }
+.project-index-num { font-size: 13px; min-width: 24px; }
+.sidebar-profile-menu .nav-links a { font-size: 16px; }
+.interactive-role-button { font-size: 14px; }
+.hero-links-heading { font-size: 16px; }
+.hero-art .floating-note { font-size: 16px; }
+.section-desc { font-size: 18px; }
+.track-label { font-size: 14px; letter-spacing: 0; }
+.project-num { font-size: 14px; }
+.project-summary { font-size: 18px; }
+.featured-decision > span { font-size: 14px; }
+.featured-contribution h4 { font-size: 15px; color: var(--text-sub); }
+.featured-contribution ul { font-size: 17px; }
+.tech-pill { font-size: 13px; }
+.compact-body p, .modal-content p, .project-evidence dd { font-size: 17px; }
+.compact-detail, .project-evidence dt, .media-expand { font-size: 15px; }
+.featured-visual figcaption { font-size: 13px; }
+@media (max-width: 600px) {
+ .hero-meta .tag { font-size: 14px; }
+ .hero-lead { font-size: 18px; }
+ .hero-context { font-size: 16px; }
+ .project-index-list a { font-size: 16px; }
+ .hero-art .floating-note { font-size: 16px; }
+}
   </style>
 </head>
 <body>
