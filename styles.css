@@ -1114,3 +1114,12 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
  justify-content: center;
  font-weight: 700;
 }
+
+/* Static sculptural ribbons belong only to the introduction. */
+.hero { isolation: isolate; }
+.hero-ribbon { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; pointer-events: none; z-index: 0; opacity: .78; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(250,251,255,.88), rgba(250,251,255,.65) 48%, rgba(250,251,255,.08) 85%); }
+@media (max-width: 900px) {
+ .hero-ribbon { object-position: 70% center; opacity: .4; }
+ .hero::after { background: rgba(250,251,255,.45); }
+}

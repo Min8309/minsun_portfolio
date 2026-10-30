@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+ <defs>
+  <linearGradient id="fold-a" x1="1060" y1="70" x2="1140" y2="470" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#FFFFFF"/><stop offset=".34" stop-color="#F1F4FA"/><stop offset=".65" stop-color="#CDD6E5"/><stop offset=".84" stop-color="#E5EAF3"/><stop offset="1" stop-color="#FAFCFF"/>
+  </linearGradient>
+  <linearGradient id="fold-b" x1="1050" y1="320" x2="1180" y2="720" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#FAFCFF"/><stop offset=".3" stop-color="#E9EEF7"/><stop offset=".62" stop-color="#CAD5E8"/><stop offset=".83" stop-color="#E6ECF7"/><stop offset="1" stop-color="#FFFFFF"/>
+  </linearGradient>
+  <linearGradient id="fold-c" x1="1050" y1="600" x2="1150" y2="900" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#FFFFFF"/><stop offset=".4" stop-color="#E9EFF9"/><stop offset=".72" stop-color="#CFDAED"/><stop offset="1" stop-color="#F9FBFF"/>
+  </linearGradient>
+  <linearGradient id="edge" x1="600" y1="350" x2="1600" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF" stop-opacity="0"/><stop offset=".7" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".4"/></linearGradient>
+  <filter id="soft" x="-20%" y="-30%" width="140%" height="170%"><feGaussianBlur stdDeviation="13"/></filter>
+ </defs>
+ <path d="M-180 160C270-90 510 380 930 245C1260 140 1330-160 1730-110L1740 80C1390-5 1320 385 980 435C520 510 220 130-150 365Z" fill="#9EADC6" opacity=".13" filter="url(#soft)"/>
+ <path d="M-180 130C270-120 510 350 930 215C1260 110 1330-190 1730-140L1740 50C1390-35 1320 355 980 405C520 480 220 100-150 335Z" fill="url(#fold-a)"/>
+ <path d="M-180 130C270-120 510 350 930 215C1260 110 1330-190 1730-140" stroke="url(#edge)" stroke-width="2"/>
+ <path d="M-170 450C280 230 620 650 1030 465C1370 310 1440 140 1740 240L1740 455C1400 350 1350 650 1030 680C610 720 210 400-170 660Z" fill="#A9B7CE" opacity=".13" filter="url(#soft)"/>
+ <path d="M-170 420C280 200 620 620 1030 435C1370 280 1440 110 1740 210L1740 425C1400 320 1350 620 1030 650C610 690 210 370-170 630Z" fill="url(#fold-b)"/>
+ <path d="M-170 420C280 200 620 620 1030 435C1370 280 1440 110 1740 210" stroke="url(#edge)" stroke-width="2"/>
+ <path d="M-170 730C340 570 640 880 1100 680C1430 535 1500 540 1740 590L1740 780C1400 680 1330 880 1090 920C620 1010 200 690-170 920Z" fill="url(#fold-c)"/>
+ <path d="M-170 730C340 570 640 880 1100 680C1430 535 1500 540 1740 590" stroke="url(#edge)" stroke-width="2"/>
+</svg>
