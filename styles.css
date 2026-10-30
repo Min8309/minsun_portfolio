@@ -1052,7 +1052,8 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
 }
 
 /* Text-only introduction. */
-.hero-copy { width: 100%; max-width: 920px; margin-inline: auto; }
+.hero > .container { max-width: 1680px; }
+.hero-copy { width: 100%; max-width: 920px; margin-inline: 0; }
 .hero-lead { max-width: 720px; }
 .hero-context { max-width: 680px; }
 .hero-layout { gap: 0; }

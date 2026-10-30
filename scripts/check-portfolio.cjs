@@ -148,9 +148,11 @@ const { chromium } = require('playwright');
       assert.equal(await button.evaluate(item => document.activeElement === item), true);
       assert.equal(await page.locator('main').evaluate(item => item.inert), false);
     }
-    for (const width of [1440, 901, 900, 390]) {
+    for (const width of [2560, 1920, 1440, 901, 900, 390]) {
       await page.setViewportSize({ width, height: 900 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      const leftEdges = await page.evaluate(() => ({ hero: document.querySelector('.hero-title').getBoundingClientRect().left, projects: document.querySelector('#projects .section-title').getBoundingClientRect().left }));
+      assert.ok(Math.abs(leftEdges.hero - leftEdges.projects) < 1, `Hero and project headings must align at ${width}px`);
       const imageFits = await page.locator('#work-seoul-data .gallery-slide, #work-maljup .gallery-slide, #work-senior-helper .visual-primary').evaluateAll(images => images.map(image => getComputedStyle(image).objectFit));
       imageFits.forEach(fit => assert.equal(fit, 'contain'));
 
