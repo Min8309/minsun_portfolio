@@ -69,9 +69,9 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('.featured-decision').count(), 4);
     assert.equal(await page.locator('#projects .featured-summary').count(), 0);
     assert.equal(await page.locator('#projects .featured-contribution li').count(), 12);
-    assert.ok((await page.locator('.hero-lead').innerText()).includes('전달할 메시지를 기획'));
+    assert.ok((await page.locator('.hero-lead').innerText()).includes('소재 발굴부터 데이터 해석'));
     assert.equal(await page.locator('.hero-meta .tag').innerText(), '콘텐츠 마케터 · 브랜드 콘텐츠 & 데이터 기반 기획');
-    assert.deepEqual(await page.locator('.floating-note').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['#work-seoul-data', '#work-maljup', '#work-echo-chamber', '#work-gyeongseong-yarok']);
+    assert.deepEqual(await page.locator('.floating-note').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['#work-gyeongseong-yarok', '#work-seoul-data', '#work-echo-chamber', '#work-maljup']);
     assert.equal(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).color), 'rgb(36, 82, 245)');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
@@ -79,9 +79,14 @@ const { chromium } = require('playwright');
       await page.locator('article[id^="work-"]').evaluateAll(cards => cards.map(card => card.id)));
 
     assert.equal(await page.locator('article a.service-link').count(), 11);
+    assert.equal(await page.locator('article a.github-link').count(), 10);
+    assert.equal(await page.locator('#projects a.github-link').count(), 4);
     assert.equal(await page.locator('#work-maljup .service-link').getAttribute('href'), 'https://esl-101.onrender.com/');
     assert.equal(await page.locator('#work-echo-chamber .service-link').getAttribute('href'), 'https://echochamber-y3r4.onrender.com/');
 
+    assert.equal(await page.locator('#projects .project-card-footer button.btn-primary').count(), 4);
+    assert.equal(await page.locator('#projects .service-link.btn-outline').count(), 4);
+    assert.equal(await page.locator('.art-core, .orbit').count(), 0);
     assert.equal(await page.locator('#projects [data-expand-project]').count(), 4);
     assert.equal(await page.locator('#more-work [data-expand-project]').count(), 0);
     for (const expand of await page.locator('#projects [data-expand-project]').all()) {
@@ -123,6 +128,17 @@ const { chromium } = require('playwright');
       assert.equal(await page.locator('#modalBody button[onclick]').count(), 0);
       const featured = await button.evaluate(item => !!item.closest('#projects') || ['work-senior-helper', 'work-ateliera'].includes(item.closest('article').id));
       assert.equal(await page.locator('#modalBody .project-evidence').count(), featured ? 1 : 0);
+      if (await button.evaluate(item => !!item.closest('#projects'))) {
+        assert.equal(await page.locator('#modalBody .case-section').count(), 5);
+        assert.ok(await page.locator('#modalBody .case-figure img').count() >= 1);
+        for (const picture of await page.locator('#modalBody .case-figure img').all()) {
+          await picture.evaluate(image => image.decode());
+        }
+        const sources = page.locator('#modalBody .case-references');
+        assert.equal(await sources.evaluate(item => item.open), false);
+        await sources.locator('summary').click();
+        assert.equal(await sources.evaluate(item => item.open), true);
+      }
       const links = await page.locator('#modalBody a').evaluateAll(items => items.map(item => item.getAttribute('href')));
       assert.equal(new Set(links).size, links.length);
       // Reopening an already open dialog must not overwrite the original page state.

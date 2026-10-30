@@ -14,633 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
 
-  <style>
-:root { --bg-ground: #F5F7FB; --bg-surface: #FFFFFF; --bg-surface-elevated: #EAF0F8; --bg-card: #FFFFFF; --border-color: #CBD6E5; --border-hover: rgba(78, 115, 166, 0.45); --border-glow: rgba(78, 115, 166, 0.25); --text-main: #17263D; --text-sub: #384B65; --text-muted: #52647D; --primary: #355D94; --primary-light: #436DA5; --primary-glow: rgba(78, 115, 166, 0.28); --accent-violet: #48679A; --pop-amber: #855B26; --pop-emerald: #287060; --on-primary: #FFFFFF; --body-font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; --mono-font: 'JetBrains Mono', monospace; --glass-blur: blur(18px); --header-height: 74px; --radius-sm: 8px; --radius-md: 14px; --radius-lg: 20px; --radius-full: 9999px; --transition-base: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-* { box-sizing: border-box; margin: 0px; padding: 0px; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 24px); }
-body { background-color: var(--bg-ground); background-image: radial-gradient(80% 50% at 50% -20%, rgba(78, 115, 166, 0.12), transparent 70%), radial-gradient(60% 40% at 90% 20%, rgba(109, 140, 184, 0.08), transparent 60%), radial-gradient(50% 30% at 10% 60%, rgba(251, 191, 36, 0.04), transparent 50%); background-attachment: fixed; color: var(--text-main); font-family: var(--body-font); line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased; }
-::selection { background: var(--primary); color: var(--on-primary); }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: pointer; }
-button,  a { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-.skip-link { position: fixed; left: 24px; top: -80px; z-index: 2000; background: var(--primary); color: var(--on-primary); padding: 12px 22px; border-radius: var(--radius-sm); font-weight: 600; font-size: 14px; transition: top 0.25s; box-shadow: 0 10px 25px var(--primary-glow); }
-.skip-link:focus { top: 20px; }
-.container { max-width: 1280px; padding: 0px 32px; margin: 0px auto; width: 100%; }
-.scroll-progress { position: fixed; left: 0px; top: 0px; height: 3px; width: 100%; transform: scaleX(0); transform-origin: left center; background: linear-gradient(90deg, var(--primary), var(--accent-violet)); z-index: 1200; pointer-events: none; box-shadow: 0 0 12px var(--primary-glow); }
-:root { --sidebar-width: 290px; }
-body { padding-left: var(--sidebar-width); }
-header.sidebar-nav { position: fixed; left: 0px; top: 0px; bottom: 0px; width: var(--sidebar-width); height: 100dvh; background: rgba(255, 255, 255, 0.97); backdrop-filter: var(--glass-blur); border-right: 1px solid var(--border-color); z-index: 1000; display: flex; flex-direction: column; box-shadow: rgba(23, 38, 61, 0.1) 6px 0px 35px; }
-.sidebar-top-bar { display: flex; align-items: center; justify-content: space-between; padding: 24px 22px 18px; border-bottom: 1px solid var(--border-color); }
-.logo-group { display: flex; flex-direction: column; gap: 8px; }
-.logo { font-size: 16px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--text-main); transition: opacity 0.2s; }
-.logo:hover { opacity: 0.85; }
-.logo-badge { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 14px var(--primary); animation: 2.5s ease 0s infinite normal none running pulse-glow; }
-@keyframes pulse-glow {
-  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 12px var(--primary); }
-  50% { transform: scale(1.15); opacity: 0.8; box-shadow: 0 0 20px var(--accent-violet); }
-}
-.status-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-family: var(--mono-font); color: var(--text-muted); background: rgba(78, 115, 166, 0.06); padding: 3px 8px; border-radius: var(--radius-full); border: 1px solid var(--border-color); width: fit-content; }
-.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pop-emerald); box-shadow: 0 0 8px var(--pop-emerald); }
-.sidebar-scroll-area { flex: 1 1 0%; overflow: hidden auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 24px; overscroll-behavior: contain; }
-.sidebar-scroll-area::-webkit-scrollbar { width: 4px; }
-.sidebar-scroll-area::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 4px; }
-.sidebar-section-title { font: 10px/1 var(--mono-font); letter-spacing: 0.12em; color: var(--text-muted); padding: 0px 10px 8px; }
-.nav-links { display: flex; flex-direction: column; gap: 4px; list-style: none; }
-.nav-links a { display: flex; align-items: center; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; color: var(--text-sub); transition: var(--transition-base); border: 1px solid transparent; }
-.nav-links a:hover { color: var(--text-main); background: rgba(78, 115, 166, 0.06); border-color: rgba(78, 115, 166, 0.06); }
-.nav-links a[aria-current] { color: var(--primary); background: rgba(78, 115, 166, 0.1); border-color: rgba(78, 115, 166, 0.28); font-weight: 600; }
-.project-index-list { list-style: none; display: flex; flex-direction: column; gap: 3px; }
-.project-index-list a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: var(--radius-sm); font-size: 13px; color: var(--text-sub); transition: var(--transition-base); border: 1px solid transparent; }
-.project-index-list a:hover { background: rgba(78, 115, 166, 0.08); color: var(--primary); border-color: rgba(78, 115, 166, 0.2); }
-.project-index-list a[aria-current] { background: rgba(78, 115, 166, 0.12); color: var(--primary); border-color: rgba(78, 115, 166, 0.35); font-weight: 600; }
-.project-index-num { font: 11px var(--mono-font); color: var(--primary); min-width: 20px; }
-.menu-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-main); font-size: 20px; cursor: pointer; }
-.project-popover-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); font: 11px/1 var(--mono-font); letter-spacing: 0.1em; color: var(--text-muted); }
-.project-popover ul { list-style: none; display: flex; flex-direction: column; gap: 4px; max-height: 420px; overflow-y: auto; }
-.project-popover a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-sm); font-size: 13px; color: var(--text-sub); transition: var(--transition-base); border: 1px solid transparent; }
-.project-popover a:hover,  .project-popover a[aria-current] { background: rgba(78, 115, 166, 0.08); color: var(--primary); border-color: rgba(78, 115, 166, 0.25); }
-.project-popover-num { font: 11px var(--mono-font); color: var(--primary); min-width: 20px; }
-.project-popover-desc { font-size: 11px; color: var(--text-muted); margin-left: auto; }
-.btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 24px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition-base); text-decoration: none; }
-.btn-primary { background: linear-gradient(135deg, var(--primary) 0%, #284A79 100%); color: rgb(255, 255, 255); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 4px 18px var(--primary-glow); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: rgba(78, 115, 166, 0.45) 0px 8px 25px; background: linear-gradient(135deg, rgb(44, 80, 131) 0%, rgb(32, 61, 101) 100%); }
-.btn-outline { background: rgba(78, 115, 166, 0.06); color: var(--text-main); border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
-.btn-outline:hover { border-color: var(--primary); color: var(--primary); background: rgba(78, 115, 166, 0.08); transform: translateY(-2px); }
-.hero { position: relative; overflow: hidden; padding: 90px 0px 60px; }
-.hero::before { content: ""; position: absolute; width: 700px; height: 700px; top: -200px; right: -150px; background: radial-gradient(circle, rgba(78, 115, 166, 0.14) 0%, rgba(109, 140, 184, 0.06) 40%, transparent 70%); pointer-events: none; filter: blur(40px); }
-.hero-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px; align-items: center; position: relative; z-index: 2; }
-.hero-layout > * { min-width: 0px; }
-.hero-meta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; font: 12px var(--mono-font); letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 24px; }
-.tag { display: inline-flex; align-items: center; gap: 7px; color: var(--primary); background: rgba(78, 115, 166, 0.08); padding: 5px 12px; border-radius: var(--radius-full); border: 1px solid rgba(78, 115, 166, 0.2); }
-.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 8px var(--primary); }
-.hero-title { font-size: clamp(54px, 6.5vw, 92px); font-weight: 700; letter-spacing: -0.05em; line-height: 1.05; margin-bottom: 24px; }
-.hero-title > span { display: block; }
-.hero-title .white-glow { background: linear-gradient(rgb(23, 38, 61) 20%, rgb(48, 72, 107) 100%) text; -webkit-text-fill-color: transparent; }
-.hero-title .gradient-code { background: linear-gradient(135deg, rgb(56, 75, 101) 0%, rgb(82, 108, 145) 100%) text; -webkit-text-fill-color: transparent; }
-.hero-title .highlight { background: linear-gradient(135deg, var(--primary), var(--accent-violet)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.hero-title .period { color: var(--pop-amber); -webkit-text-fill-color: initial; }
-.hero-lead { color: var(--text-sub); font-size: 18px; max-width: 580px; line-height: 1.85; margin-bottom: 34px; }
-.hero-lead strong { color: var(--text-main); font-weight: 600; display: block; margin-bottom: 6px; }
-.hero-art { position: relative; aspect-ratio: 1 / 1; max-width: 480px; width: 100%; margin: 0px auto; isolation: isolate; min-height: 440px; }
-.art-grid { position: absolute; inset: 4%; background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px); background-size: 36px 36px; mask-image: radial-gradient(black 30%, transparent 75%); }
-.orbit { position: absolute; inset: 8%; border-radius: 50%; border: 1px dashed rgba(78, 115, 166, 0.35); transform: rotate(-24deg) scaleY(0.7); animation: 25s linear 0s infinite normal none running orbit-rotate; }
-.orbit.two { inset: 16% -2%; border-style: solid; border-color: rgba(109, 140, 184, 0.3); transform: rotate(38deg) scaleY(0.65); animation: 35s linear 0s infinite reverse none running orbit-rotate; }
-.orbit.three { inset: 2% 18%; border: 1px solid rgba(251, 191, 36, 0.25); transform: rotate(15deg); }
-@keyframes orbit-rotate {
-  0% { transform: rotate(0deg) scaleY(0.7); }
-  100% { transform: rotate(360deg) scaleY(0.7); }
-}
-.orbit-motion { position: absolute; inset: 10% 8%; border-radius: 50%; border: 1px solid rgba(78, 115, 166, 0.16); transform: rotate(-24deg) scaleY(0.78); pointer-events: none; z-index: 2; }
-.orbit-particle { --orbit-color: var(--primary); position: absolute; inset: 0px; border-radius: 50%; animation: 24s linear 0s infinite normal none running particle-orbit; }
-.orbit-particle::before { content: ""; position: absolute; left: calc(50% - 5px); top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--orbit-color); box-shadow: 0 0 12px var(--orbit-color), 0 0 28px var(--orbit-color); }
-.orbit-particle::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border-width: 2px; border-style: solid; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; border-image: none; border-top-color: var(--orbit-color); clip-path: polygon(50% 0px, 80% 0px, 80% 18%, 50% 18%); opacity: 0.5; }
-.orbit-particle:nth-child(2) { --orbit-color: var(--pop-amber); animation-delay: -6s; transform: rotate(90deg); }
-.orbit-particle:nth-child(3) { --orbit-color: var(--accent-violet); animation-delay: -12s; transform: rotate(180deg); }
-.orbit-particle:nth-child(4) { --orbit-color: var(--pop-emerald); animation-delay: -18s; transform: rotate(270deg); }
-.hero-art:hover .orbit-particle,  .hero-art:focus-within .orbit-particle { animation-play-state: paused; }
-@keyframes particle-orbit {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.art-core { position: absolute; inset: 24%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgb(169, 194, 225) 0%, rgb(109, 140, 184) 35%, rgb(53, 87, 128) 65%, rgb(23, 38, 61) 85%); box-shadow: rgba(23, 38, 61, 0.1) -10px -15px 40px inset, rgba(78, 115, 166, 0.35) 0px 0px 80px, rgba(109, 140, 184, 0.2) 0px 0px 120px; animation: 6s ease-in-out 0s infinite alternate none running core-float; }
-.art-core::after { content: ""; position: absolute; inset: 10%; border-radius: 50%; border: 1px solid rgba(78, 115, 166, 0.4); background: repeating-linear-gradient(0deg, transparent, transparent 12px, rgba(78, 115, 166, 0.15) 13px); transform: rotate(-20deg); }
-@keyframes core-float {
-  0% { transform: translateY(0px) scale(1); }
-  100% { transform: translateY(-14px) scale(1.02); }
-}
-.art-cross { font: 56px var(--mono-font); position: absolute; left: 50%; top: 50%;                   color: rgba(255, 255, 255, 0.9); transform: translate(-50%, -50%); font-weight: 300; pointer-events: none; text-shadow: rgba(255, 255, 255, 0.6) 0px 0px 15px; }
-.art-label { position: absolute; font: 10px var(--mono-font); letter-spacing: 0.1em; color: var(--text-muted); background: rgb(234, 240, 248); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color); }
-.art-label.top { top: 8%; left: 10%; }
-.art-label.bottom { bottom: 8%; right: 8%; }
-.floating-note { position: absolute; z-index: 3; display: flex; align-items: center; gap: 8px; padding: 8px 12px; min-height: 44px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-md); background: rgb(255, 255, 255); backdrop-filter: var(--glass-blur); box-shadow: rgba(23, 38, 61, 0.1) 0px 8px 24px; font-size: 13px; font-weight: 500; animation: 5s ease-in-out 0s infinite alternate none running note-float; width: max-content; max-width: 100%; transition: border-color 0.2s, background 0.2s; }
-.floating-note:hover { border-color: var(--primary); background: rgb(234, 240, 248); }
-.floating-note:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-.floating-note > span { min-width: 0px; white-space: nowrap; }
-.floating-note i { font: 18px var(--mono-font); color: var(--primary);                   font-style: normal; background: rgba(78, 115, 166, 0.12); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
-.note-a { top: 4%; right: 0px; }
-.note-b { top: 28%; left: 0px; animation-delay: -2.5s; }
-.note-b i { color: var(--pop-amber); background: rgba(251, 191, 36, 0.12); }
-.note-c { top: 52%; right: 0px; animation-delay: -1.25s; }
-.note-c i { color: var(--accent-violet); background: rgba(109, 140, 184, 0.12); }
-.note-d { top: 76%; left: 0px; animation-delay: -3.75s; }
-.note-d i { color: var(--pop-emerald); background: rgba(52, 211, 153, 0.12); }
-@keyframes note-float {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-10px); }
-}
-.section { padding: 90px 0px; position: relative; }
-.section-header { margin-bottom: 44px; max-width: 760px; }
-.section-kicker { font: 12px var(--mono-font); color: var(--primary);                   letter-spacing: 0.16em; font-weight: 600; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; }
-.section-kicker::before { content: ""; width: 14px; height: 2px; background: var(--primary); }
-.section-title { font-size: clamp(32px, 4vw, 44px); font-weight: 700; line-height: 1.25; letter-spacing: -0.04em; color: var(--text-main); }
-.section-desc { color: var(--text-muted); font-size: 16px; margin-top: 14px; line-height: 1.8; }
-.project-grid { display: grid; gap: 32px; }
-.secondary-grid { grid-template-columns: repeat(2, minmax(0px, 1fr)); }
-.project-card { background: var(--bg-card); backdrop-filter: var(--glass-blur); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-base); position: relative; }
-.project-card:hover { border-color: var(--border-hover); box-shadow: 0 24px 50px -12px rgba(23, 38, 61, 0.10), 0 0 35px var(--border-glow); transform: translateY(-4px); }
-.project-card-featured { display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: stretch; min-height: 480px; max-height: 520px; }
-.project-card-featured .project-cover { height: 100%; min-height: 100%; aspect-ratio: auto; border-right: 1px solid var(--border-color); border-bottom: 0px; }
-.project-card-main { display: flex; flex-direction: column; height: 100%; padding: 24px 28px; justify-content: space-between; overflow-y: auto; overscroll-behavior: contain; }
-.project-card-main::-webkit-scrollbar { width: 4px; }
-.project-card-main::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 4px; }
-.project-cover { position: relative; background: rgb(234, 240, 248); overflow: hidden; aspect-ratio: 16 / 10; border-right: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; }
-.project-cover svg,  .project-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-.project-card:hover .project-cover svg,  .project-card:hover .project-cover img { transform: scale(1.03); }
-.project-video-cover video { display: block; width: 100%; height: 100%; object-fit: contain; background: rgb(7, 11, 20); pointer-events: none; user-select: none; }
-.seoul-map-cover img { object-fit: contain; animation: 5s ease-in-out 0s infinite alternate none running seoul-map-float; }
-@keyframes seoul-map-float {
-  0% { transform: translateY(3px); }
-  100% { transform: translateY(-3px); }
-}
-.cover-label { position: absolute; left: 16px; bottom: 14px; color: var(--text-main); font: 9px var(--mono-font); letter-spacing: 0.1em; background: rgba(7, 11, 20, 0.85); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.1); }
-.project-card-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
-.project-num { font: 11px var(--mono-font);                   font-weight: 700; color: var(--primary); letter-spacing: 0.08em; background: rgba(78, 115, 166, 0.1); padding: 3px 8px; border-radius: var(--radius-sm); border: 1px solid rgba(78, 115, 166, 0.2); }
-.project-category { color: var(--text-muted); font: 10px var(--mono-font); letter-spacing: 0.05em; }
-.project-card-body { padding: 0px; }
-.project-title { font-size: 22px; line-height: 1.3; font-weight: 700; letter-spacing: -0.03em; color: var(--text-main); margin-bottom: 4px; }
-.project-hook { color: var(--primary-light); font-size: 14px; font-weight: 500; margin-bottom: 12px; }
-.case-brief { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
-.case-brief > div { background: rgba(78, 115, 166, 0.06); border: 1px solid rgba(78, 115, 166, 0.06); border-radius: 6px; padding: 8px 12px; }
-.case-brief dt { font: 10px var(--mono-font); color: var(--text-muted); margin-bottom: 2px; letter-spacing: 0.04em; }
-.case-brief dd { font-size: 13px; line-height: 1.5; color: var(--text-sub); }
-.case-brief .case-role { background: rgba(78, 115, 166, 0.06); border-color: rgba(78, 115, 166, 0.2); }
-.case-brief .case-role dt { color: var(--primary); font-weight: 600; }
-.case-brief .case-role dd { color: var(--text-main); font-weight: 600; }
-.project-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px 14px; background: rgb(240, 244, 250); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 12px; }
-.metric-key { font: 9px var(--mono-font); color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 2px; }
-.metric-val { font-size: 12px; font-weight: 600; color: var(--pop-amber); line-height: 1.4; }
-.project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.tech-pill { font-size: 11px; font-family: var(--mono-font); background: rgba(78, 115, 166, 0.06); color: var(--text-sub); border: 1px solid rgba(78, 115, 166, 0.06); border-radius: var(--radius-full); padding: 3px 10px; transition: border-color 0.2s; }
-.tech-pill:hover { border-color: var(--primary); color: var(--primary); }
-.project-card-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: auto; padding: 12px 0px 0px; border-top: 1px solid rgba(148, 163, 184, 0.1); }
-.project-card-footer .btn-action { min-height: 40px; padding: 8px 16px; font-size: 13px; }
-.secondary-grid .project-card-body { padding: 22px 26px 14px; }
-.secondary-grid .project-card-header { padding: 24px 26px 0px; }
-.secondary-grid .project-card-footer { padding: 18px 26px 24px; }
-.secondary-grid .project-cover { aspect-ratio: 16 / 9; border-right: 0px; border-bottom: 1px solid var(--border-color); }
-.secondary-grid .project-title { font-size: 22px; }
-#video { background: linear-gradient(rgb(238, 243, 250) 0%, rgb(231, 238, 247) 100%); border-block: 1px solid var(--border-color); }
-.video-player { width: 100%; aspect-ratio: 16 / 9; background: rgb(0, 0, 0); border-radius: var(--radius-md); overflow: hidden; box-shadow: rgba(23, 38, 61, 0.1) 0px 15px 35px; border: 1px solid rgba(255, 255, 255, 0.1); }
-.video-player iframe { display: block; width: 100%; height: 100%; border: 0px; }
-.video-caption-bar { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); }
-.video-caption-bar strong { color: var(--text-main); font-weight: 500; }
-.video-caption-bar a { color: var(--primary); text-decoration: none; font-size: 11px; }
-.video-pipeline-box { padding: 12px 14px; background: rgba(78, 115, 166, 0.06); border: 1px solid rgba(78, 115, 166, 0.06); border-radius: var(--radius-sm); }
-.video-pipeline-title { font: 10px var(--mono-font); color: var(--primary); letter-spacing: 0.08em; margin-bottom: 6px; }
-.video-pipeline-steps { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-sub); flex-wrap: wrap; }
-.video-pipeline-steps span { background: rgba(78, 115, 166, 0.06); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(78, 115, 166, 0.06); }
-.video-pipeline-steps .arrow { color: var(--text-muted); background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0px; }
-.video-header-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
-.video-showcase-list { display: flex; flex-direction: column; gap: 8px; margin: 10px 0px 12px; }
-.video-showcase-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 13px; background: rgba(78, 115, 166, 0.06); border: 1px solid rgba(78, 115, 166, 0.06); border-radius: 8px; color: var(--text-main); text-decoration: none; transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-.video-showcase-item:hover { background: rgba(78, 115, 166, 0.08); border-color: rgba(78, 115, 166, 0.35); transform: translateX(3px); }
-.video-item-meta { display: flex; flex-direction: column; gap: 1px; }
-.video-item-tag { font: 9.5px var(--mono-font); color: var(--primary); letter-spacing: 0.05em; }
-.video-item-title { font-size: 13px; font-weight: 600; color: var(--text-main); }
-.video-item-desc { font-size: 11px; color: var(--text-muted); }
-.video-item-arrow { font-size: 13px; color: var(--text-muted); transition: transform 0.2s, color 0.2s; padding-left: 8px; }
-.video-showcase-item:hover .video-item-arrow { transform: translate(2px, -2px); color: var(--primary); }
-#about { border-top: 1px solid var(--border-color); background: radial-gradient(at 80% 50%, rgba(109, 140, 184, 0.04), transparent 60%); }
-.about-box { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; }
-.about-story h3 { font-size: 26px; font-weight: 700; line-height: 1.45; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--text-main); }
-.about-story p { font-size: 16px; color: var(--text-sub); line-height: 1.9; margin-bottom: 20px; }
-.about-skills { padding-left: 40px; border-left: 1px solid var(--border-color); }
-.skill-block { padding: 24px 0px; border-bottom: 1px solid var(--border-color); }
-.skill-block:first-child { padding-top: 0px; }
-.skill-title { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
-.skill-items { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
-#tools { padding-block: 56px; }
-#tools .section-header { margin-bottom: 24px; }
-.tool-names { font-size: 14px; font-weight: 600; color: var(--primary); line-height: 1.6; margin-bottom: 8px; }
-.tool-summary { font-size: 14px; line-height: 1.65; color: var(--text-sub); }
-.tool-work-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; color: var(--primary); }
-@media (min-width: 601px) and (max-width: 1100px) {
-#tools .tool-grid { grid-template-columns: repeat(2, minmax(0px, 1fr)); }
-}
-.tool-grid { display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 14px; }
-.tool-card { background: var(--bg-card); backdrop-filter: var(--glass-blur); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; transition: var(--transition-base); }
-.tool-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-.tool-category { color: var(--primary); font: 11px var(--mono-font); letter-spacing: 0.08em; margin-bottom: 8px; }
-.tool-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--text-main); }
-.tool-note { margin-top: 24px; font-size: 13px; color: var(--text-muted); text-align: center; }
-.contact-box { position: relative; padding: 48px; border: 1px solid rgba(78, 115, 166, 0.25); border-radius: var(--radius-lg); background: radial-gradient(ellipse at 90% 100%, rgba(78, 115, 166, 0.12), transparent 70%), var(--bg-card); backdrop-filter: var(--glass-blur); box-shadow: rgba(23, 38, 61, 0.1) 0px 20px 50px; }
-.contact-box h3 { font-size: clamp(26px, 3.2vw, 36px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.35; margin-bottom: 12px; }
-.contact-box p { color: var(--text-muted); font-size: 15px; margin-bottom: 6px; }
-.contact-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 14px; margin: 28px 0px; }
-.contact-info-card { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: rgb(234, 240, 248); border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; color: var(--text-main); transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-.contact-info-card:hover { border-color: var(--primary); background: rgba(78, 115, 166, 0.08); transform: translateY(-2px); }
-.contact-card-icon { font-size: 22px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(78, 115, 166, 0.06); border-radius: var(--radius-sm); border: 1px solid rgba(78, 115, 166, 0.06); flex-shrink: 0; }
-.contact-card-icon { color: var(--primary); }
-.contact-card-icon svg { width: 22px; height: 22px; }
-.contact-info-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-.contact-card-text { display: flex; flex-direction: column; gap: 2px; flex: 1 1 0%; min-width: 0px; }
-.contact-card-label { font: 10px var(--mono-font); color: var(--primary); letter-spacing: 0.08em; }
-.contact-card-val { font-size: 15px; font-weight: 600; color: var(--text-main); overflow-wrap: anywhere; }
-.contact-card-hint { font-size: 11.5px; color: var(--text-muted); }
-.contact-card-action { font-size: 11px; font-family: var(--mono-font); color: var(--primary); opacity: 0.85; white-space: nowrap; }
-footer { padding: 36px 0px; border-top: 1px solid var(--border-color); background: rgb(234, 240, 248); }
-.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; color: var(--text-muted); font-size: 12px; font-family: var(--mono-font); }
-.footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--body-font); }
-.footer-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
-.footer-links a:hover { color: var(--primary); text-decoration: underline; }
-.footer-links a:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-.modal-backdrop { display: none; position: fixed; inset: 0px; z-index: 2000; padding: 24px; background: rgba(23, 38, 61, 0.45); backdrop-filter: blur(16px); align-items: center; justify-content: center; }
-.modal-box { position: relative; width: 100%; max-width: 820px; max-height: 85dvh; overflow-y: auto; padding: 48px 40px 36px; background: rgb(255, 255, 255); border: 1px solid rgba(78, 115, 166, 0.3); border-radius: var(--radius-lg); box-shadow: 0 25px 60px rgba(23, 38, 61, 0.10), 0 0 40px var(--primary-glow); animation: 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal none running modal-in; }
-@keyframes modal-in {
-  0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-  100% { opacity: 1; transform: translateY(0px) scale(1); }
-}
-.modal-close { position: absolute; top: 20px; right: 24px; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: rgb(240, 244, 250); color: var(--text-sub); cursor: pointer; font-size: 13px; font-family: var(--mono-font); transition: var(--transition-base); }
-.modal-close:hover { border-color: var(--primary); color: var(--primary); }
-.modal-content h3 { font-size: 26px; line-height: 1.4; letter-spacing: -0.03em; margin: 12px 0px 20px; color: var(--text-main); }
-.modal-meta { font: 12px/1.8 var(--mono-font); color: var(--primary); }
-.modal-content p { font-size: 15px; line-height: 1.85; color: var(--text-sub); margin-bottom: 16px; }
-.modal-content strong { color: var(--text-main); }
-.modal-content a:not(.btn-action) { color: var(--primary); text-underline-offset: 4px; }
-.design-note { margin: 24px 0px; padding: 20px; border: 1px solid rgba(78, 115, 166, 0.2); border-radius: var(--radius-md); background: rgba(78, 115, 166, 0.05); }
-.design-note h4 { font-size: 16px; margin-bottom: 10px; color: var(--primary); }
-.senior-screen-cover { display: flex; align-items: center; justify-content: center; padding: 20px; background: rgb(7, 11, 20); }
-.senior-screen-cover figure { margin: 0px; width: 100%; }
-.senior-screen-cover img { width: 100%; height: auto; border-radius: 8px; }
-.senior-screen-cover figcaption { font-size: 11px; font-family: var(--mono-font); color: var(--text-muted); margin-top: 8px; text-align: center; }
-.presentation-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0px; }
-.reveal { opacity: 1; }
-.motion-ready .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-.motion-ready .reveal.is-visible { opacity: 1; transform: none; }
-@media (max-width: 1100px) {
-.hero-layout { grid-template-columns: 1fr; gap: 40px; }
-.hero-art { max-width: 400px; }
-.about-box { grid-template-columns: 1fr; gap: 40px; }
-.about-skills { border-left: 0px; padding-left: 0px; }
-}
-@media (max-width: 900px) {
-:root { --header-height: 112px; }
-body { padding-left: 0px; padding-top: 112px; background-attachment: scroll; }
-.floating-note, .project-card { backdrop-filter: none; }
-.container { padding: 0px 20px; }
-header.sidebar-nav { width: 100%; height: 112px; bottom: auto; flex-direction: row; align-items: center; justify-content: space-between; padding: 0px 20px; border-right: 0px; border-bottom: 1px solid var(--border-color); box-shadow: rgba(23, 38, 61, 0.1) 0px 4px 20px; }
-.sidebar-top-bar { padding: 0px; border-bottom: 0px; width: 100%; display: flex; justify-content: space-between; align-items: center; }
-.menu-toggle { display: flex; }
-.sidebar-scroll-area { display: none; position: absolute; inset: 94px 20px auto auto; width: min(240px, -40px + 100vw); max-height: calc(100dvh - 114px); flex: 0 0 auto; padding: 12px; gap: 0px; z-index: 999; background: rgb(255, 255, 255); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: rgba(23, 38, 61, 0.1) 0px 16px 40px; transform-origin: right top; }
-.sidebar-scroll-area.is-open { display: flex; animation: 0.18s ease-out 0s 1 normal none running menu-dropdown-in; }
-.sidebar-scroll-area .sidebar-section-title { padding: 6px 10px 12px; }
-.sidebar-scroll-area .nav-links { display: flex; flex-direction: column; gap: 4px; }
-.sidebar-scroll-area .nav-links a { width: 100%; min-height: 46px; justify-content: space-between; gap: 16px; padding: 10px 12px; white-space: nowrap; font-size: 14px; }
-.sidebar-scroll-area .nav-links a::after { content: "↗"; color: var(--primary); }
-.sidebar-scroll-area .nav-links a[aria-current] { background: rgba(78, 115, 166, 0.12); border-color: var(--primary); }
-@keyframes menu-dropdown-in {
-  0% { opacity: 0; transform: translateY(-8px) scale(0.98); }
-  100% { opacity: 1; transform: translateY(0px) scale(1); }
-}
-.project-card-featured { grid-template-columns: 1fr; min-height: 0px; max-height: none; }
-.project-card-featured .project-cover { aspect-ratio: 16 / 9; max-height: 200px; height: auto; border-right: 0px; border-bottom: 1px solid var(--border-color); }
-.project-card-main { padding: 18px 16px; overflow: visible; }
-.project-title { font-size: 20px; }
-.project-hook { font-size: 13px; margin-bottom: 10px; }
-.case-brief { grid-template-columns: 1fr; gap: 6px; margin-bottom: 10px; }
-.project-metrics { grid-template-columns: 1fr 1fr; gap: 6px; padding: 8px 10px; margin-bottom: 10px; }
-.project-card-footer { flex-direction: column; width: 100%; gap: 8px; padding-top: 10px; }
-.project-card-footer .btn-action { width: 100%; min-height: 44px; }
-.project-cover,  .video-cover { border-right: 0px; border-bottom: 1px solid var(--border-color); }
-.secondary-grid { grid-template-columns: 1fr; }
-.contact-box { padding: 36px 24px; }
-.tool-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 480px) {
-.hero-title { font-size: 42px; }
-.hero-lead { font-size: 16px; }
-.project-card-header,  .project-card-body,  .project-card-footer { padding-inline: 18px; }
-.project-metrics { grid-template-columns: 1fr; }
-.modal-box { padding: 48px 20px 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-html { scroll-behavior: auto; }
-*,  ::before,  ::after { animation: auto ease 0s 1 normal none running none !important; transition: none !important; }
-.motion-ready .reveal { opacity: 1 !important; transform: none !important; }
-}
-.interactive-role-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; width: fit-content; max-width: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid var(--border-color); border-radius: 10px; background: rgba(78, 115, 166, 0.07); color: var(--text-main); font-size: 12px; line-height: 1.6; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
-.interactive-role-button:hover { border-color: var(--primary); background: rgba(78, 115, 166, 0.14); }
-@media (hover: hover) and (pointer: fine) {
-.interactive-role-button:hover { transform: scale(1.04); }
-}
-.interactive-role-button span { color: var(--primary); }
-.logo-group { min-width: 0px; }
-@media (min-width: 901px) {
-.sidebar-top-bar .logo-group { width: 100%; }
-.interactive-role-button { align-self: center; width: 60%; padding-inline: 16px; }
-}
-:root { color-scheme: light; }
-.art-label { color: var(--text-sub); }
-.cover-label { color: rgb(255, 255, 255); }
-.sidebar-scroll-area { background: transparent; }
-.floating-note,  .contact-info-card,  .modal-close { border-color: var(--border-color); }
-.contact-info-card:hover { background: rgb(255, 255, 255); }
-.project-card:hover { box-shadow: rgba(23, 38, 61, 0.1) 0px 16px 36px; }
-.btn-outline { background: rgb(255, 255, 255); }
-.contact-card-hint { color: var(--text-muted); }
-.logo-badge { box-shadow: none; animation: auto ease 0s 1 normal none running none; }
-header.sidebar-nav { --text-main: #FFFFFF; --text-sub: #EDF3FC; --text-muted: #CFDDEF; --primary: #DCEAFF; --border-color: #6B87AA; background: rgb(53, 87, 128); border-right-color: rgb(53, 87, 128); box-shadow: rgba(23, 38, 61, 0.12) 4px 0px 24px; }
-.sidebar-nav .logo-badge { background: rgb(182, 207, 238); }
-.sidebar-nav .interactive-role-button,  .sidebar-nav .btn-outline,  .sidebar-nav .menu-toggle { background: rgb(66, 101, 143); color: rgb(255, 255, 255); border-color: rgb(145, 170, 204); }
-.sidebar-nav .interactive-role-button:hover,  .sidebar-nav .btn-outline:hover { background: rgb(76, 112, 155); }
-.sidebar-nav .btn-primary,  .sidebar-nav .btn-primary:hover { background: rgb(237, 243, 252); color: rgb(37, 69, 110); border-color: rgb(237, 243, 252); box-shadow: none; }
-.sidebar-nav .project-index-list a:hover,  .sidebar-nav .nav-links a:hover { color: rgb(255, 255, 255); background: rgb(66, 101, 143); border-color: rgb(145, 170, 204); }
-.sidebar-nav .project-index-list a[aria-current],  .sidebar-nav .nav-links a[aria-current] { --text-muted: #355780; --primary: #25456E; background: rgb(232, 240, 252); color: rgb(37, 69, 110); border-color: rgb(232, 240, 252); }
-.sidebar-nav :focus-visible { outline-color: rgb(255, 255, 255); }
-.sidebar-nav .sidebar-scroll-area::-webkit-scrollbar-thumb { background: rgb(145, 170, 204); }
-@media (max-width: 900px) {
-.sidebar-nav .sidebar-scroll-area { background: rgb(53, 87, 128); gap: 20px; }
-.sidebar-nav .project-index-list a { min-height: 44px; padding-inline: 8px; }
-}
-.representative-grid { display: grid; grid-template-columns: minmax(0px, 1fr); gap: 48px; }
-.representative-card { grid-template-columns: minmax(0px, 0.9fr) minmax(0px, 1.1fr); min-height: 480px; max-height: none; }
-.representative-card .project-cover { background: rgb(234, 240, 248); }
-.representative-card .project-cover img { object-fit: contain; }
-.representative-card .project-card-main { min-width: 0px; overflow: visible; height: auto; }
-.representative-card .project-title { font-size: clamp(23px, 2.3vw, 30px); }
-.representative-card .project-card-footer { flex-wrap: wrap; }
-@media (min-width: 901px) {
-.representative-card:nth-child(2n) { grid-template-columns: minmax(0px, 1.1fr) minmax(0px, 0.9fr); }
-.representative-card:nth-child(2n) > .project-card-main { grid-area: 1 / 1; }
-.representative-card:nth-child(2n) > .project-cover { grid-area: 1 / 2; border-right: 0px; border-left: 1px solid var(--border-color); }
-}
-.project-category-group { margin-top: 64px; scroll-margin-top: calc(var(--header-height) + 24px); }
-.category-heading { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); }
-.category-heading h3 { font-size: clamp(25px, 3vw, 34px); margin: 12px 0px; }
-.category-heading p { color: var(--text-sub); }
-@media (max-width: 900px) {
-.representative-card { grid-template-columns: minmax(0px, 1fr); min-height: 0px; max-height: none; }
-}
-#category-content .video-player { aspect-ratio: 16 / 9; border: 0px; border-radius: 0px; box-shadow: none; }
-#category-content .video-pipeline-box { margin-top: 18px; }
-#category-content .project-card-featured .project-cover { flex-shrink: 0; }
-#projects .project-card-main { justify-content: center; gap: 24px; }
-#projects .project-card-body { flex: 0 0 auto; }
-#projects .project-card-header { margin: 0px; }
-#projects .project-card-footer { padding-top: 20px; }
-.category-heading { margin-bottom: 20px; padding-bottom: 16px; }
-.category-heading h3 { font-size: 24px; }
-.project-category-group { margin-top: 44px; }
-.compact-project .project-cover { aspect-ratio: 16 / 9; border-right: 0px; border-bottom: 1px solid var(--border-color); }
-.compact-body { padding: 24px; display: flex; flex-direction: column; flex: 1 1 0%; gap: 12px; }
-.compact-body .project-title { font-size: 23px; margin: 0px; }
-.compact-body p { color: var(--text-sub); font-size: 15px; }
-.compact-detail { align-self: flex-start; margin-top: auto; min-height: 44px; color: var(--primary); font-weight: 600; font-size: 14px; text-align: left; }
-.compact-video { display: flex; min-width: 0px; }
-.compact-video > article { width: 100%; }
-.compact-video .video-player { width: 100%; border: 0px; border-radius: 0px; box-shadow: none; }
-.sidebar-profile-menu { border-top: 1px solid var(--border-color); padding-top: 20px; }
-.sidebar-project-menu .project-index-list { list-style: none; }
-.project-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 12px; }
-.service-link:disabled { background: rgb(225, 231, 240); border-color: rgb(203, 214, 229); color: rgb(82, 100, 125); box-shadow: none; cursor: not-allowed; }
-.service-link:disabled:hover { transform: none; background: rgb(225, 231, 240); box-shadow: none; }
-    /* Keep About Me in the same light-blue treatment as the selected index item. */
-    .sidebar-nav .interactive-role-button,
-    .sidebar-nav .interactive-role-button:hover,
-    .sidebar-nav .interactive-role-button:active {
-      background: #E8F0FC;
-      color: #25456E;
-      border-color: #E8F0FC;
-    }
-    .sidebar-nav .interactive-role-button span { color: #25456E; }
-    .featured-decision { margin-top: 24px; padding-left: 16px; border-left: 3px solid #91AACC; color: var(--text-main); font-size: 17px; font-weight: 600; line-height: 1.7; }
-    .featured-decision > span { display: block; font-size: 11px; letter-spacing: .08em; color: var(--primary); margin-bottom: 6px; }
-    .featured-visual { padding: 24px; align-items: center; }
-    .featured-visual figure { width: 100%; margin: 0; min-width: 0; }
-    .visual-stage { position: relative; width: 100%; }
-    .visual-stage.has-inset { padding-bottom: 110px; }
-    .featured-visual .visual-primary { display: block; width: 100%; height: auto; max-height: 400px; object-fit: contain; border: 1px solid #CBD6E5; border-radius: 10px; }
-    .featured-visual .visual-inset { position: absolute; bottom: 0; right: 0; width: 48%; height: auto; max-height: 245px; object-fit: contain; object-position: right bottom; border: 4px solid #FFFFFF; border-radius: 10px; box-shadow: 0 8px 24px rgba(23,38,61,.16); background: #FFFFFF; }
-    .featured-visual figcaption { position: static; margin-top: 16px; color: var(--text-muted); font-size: 11px; line-height: 1.6; text-align: left; }
-    @media (max-width: 900px) {
-      .representative-card .featured-visual { max-height: none; height: auto; aspect-ratio: auto; padding: 20px; }
-      .visual-stage.has-inset { padding-bottom: 80px; }
-      .featured-visual .visual-primary { max-height: 300px; }
-      .featured-visual .visual-inset { max-height: 190px; }
-    }
-    .gallery-stage { width: 100%; display: grid; grid-template-columns: 24px minmax(0, 1fr) 24px; align-items: center; gap: 4px; }
-    .gallery-viewport { grid-column: 2; grid-row: 1; aspect-ratio: var(--gallery-ratio, 1866 / 856); min-width: 0; background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
-    .gallery-stage .gallery-slide { display: block; width: 100%; height: 100%; object-fit: contain; }
-    .gallery-stage .gallery-slide[hidden] { display: none; }
-    .gallery-arrow { position: static; transform: none; grid-row: 1; width: 24px; height: 44px; display: flex; align-items: center; justify-content: center; background: transparent; border: 0; border-radius: 6px; color: #355780; box-shadow: none; }
-    .gallery-arrow:hover { background: #DDE7F4; }
-    .gallery-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-    .gallery-prev { grid-column: 1; }
-    .gallery-next { grid-column: 3; }
-    #work-seoul-data .seoul-gallery, #work-maljup .maljup-gallery { padding: 8px; }
-    .seoul-gallery .gallery-stage .gallery-slide { max-height: none; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
-    .maljup-gallery .gallery-viewport { aspect-ratio: 4/3; }
-    @media (min-width: 901px) {
-      #work-seoul-data.representative-card { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
-      #work-seoul-data .project-card-main { padding-inline: 24px; }
-    }
-    #work-seoul-data .seoul-gallery { padding: 4px; }
-    /* Give each representative project a full-screen presentation area. */
-    #projects > .container { max-width: 1680px; }
-    #projects .representative-grid { gap: 64px; }
-    @media (min-width: 901px) {
-      #projects .representative-card { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); min-height: calc(100svh - 64px); scroll-margin-top: 32px; }
-      #projects .representative-card:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); }
-      #projects .project-card-main { padding: clamp(24px, 2.5vw, 44px); gap: 32px; }
-      #projects .project-title { font-size: clamp(28px, 2.5vw, 42px); line-height: 1.35; }
-      #projects .featured-decision { font-size: 18px; }
-      #projects .featured-visual .visual-primary { max-height: calc(100svh - 180px); }
-      #projects .project-cover { min-width: 0; }
-      #projects .seoul-gallery, #projects .maljup-gallery { padding: 8px; }
-    }
-    @media (max-width: 900px) {
-      #projects .representative-grid { gap: 40px; }
-      #projects .representative-card { min-height: calc(100svh - 144px); }
-      #projects .project-card-main { gap: 20px; }
-    }
-    /* Keep the full application screens visible inside the large image panels. */
-    @media (min-width: 901px) {
-      #projects .representative-card:nth-child(-n+3) > .featured-visual { position: relative; padding: 0; overflow: hidden; }
-      #projects .representative-card:nth-child(-n+3) > .featured-visual > figure { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; }
-      #projects .representative-card:nth-child(-n+3) .gallery-stage { height: 100%; }
-      #projects .representative-card:nth-child(-n+3) .gallery-viewport { height: 100%; aspect-ratio: auto; border: 0; border-radius: 0; }
-      #projects .representative-card:nth-child(-n+3) .gallery-slide { width: 100%; height: 100%; object-fit: contain; object-position: center; }
-      #work-senior-helper .visual-stage { height: 100%; }
-      #work-senior-helper .visual-primary { height: 100%; max-height: none; object-fit: contain; border: 0; border-radius: 0; }
-      #work-senior-helper figcaption { position: absolute; bottom: 12px; left: 12px; right: 12px; padding: 6px 10px; margin: 0; background: rgba(255,255,255,.92); border-radius: 6px; }
-    }
-    @media (max-width: 900px) {
-    }
-    /* Present only the four featured projects without a surrounding card frame. */
-    #projects .representative-card,
-    #projects .representative-card:hover {
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-      transform: none;
-    }
-    #projects .representative-card > .project-cover {
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-    }
-    #projects .representative-card .gallery-viewport {
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-    }
-    #projects .representative-card:hover .project-cover img,
-    #projects .representative-card:hover .project-cover svg { transform: none; }
-    /* App galleries show the complete screenshot at its original aspect ratio. */
-    #projects #work-seoul-data .seoul-gallery,
-    #projects #work-maljup .maljup-gallery { display: flex; align-items: center; padding: 8px; }
-    #projects #work-seoul-data .seoul-gallery > figure,
-    #projects #work-maljup .maljup-gallery > figure { position: static; inset: auto; height: auto; width: 100%; }
-    #projects #work-seoul-data .gallery-stage,
-    #projects #work-maljup .gallery-stage { height: auto; }
-    #projects #work-seoul-data .gallery-viewport,
-    #projects #work-maljup .gallery-viewport { height: auto; aspect-ratio: auto; overflow: visible; }
-    #projects #work-seoul-data img.gallery-slide,
-    #projects #work-maljup img.gallery-slide { display: block; width: 100%; height: auto; max-width: 100%; max-height: none; object-fit: contain; object-position: center; transform: none; }
-    #projects #work-seoul-data img.gallery-slide[hidden],
-    #projects #work-maljup img.gallery-slide[hidden] { display: none; }
-    .featured-contribution { margin-top: 24px; }
-    .featured-contribution h4 { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-bottom: 10px; }
-    .featured-contribution ul { padding-left: 19px; color: var(--text-sub); font-size: 15px; line-height: 1.85; }
-    .featured-contribution li + li { margin-top: 6px; }
-    #projects .representative-card > .project-cover { display: flex; flex-direction: column; justify-content: center; align-items: stretch; }
-    #projects #work-senior-helper .featured-visual > figure { position: static; height: auto; }
-    #projects #work-senior-helper .visual-stage { height: auto; }
-    #projects #work-senior-helper .visual-primary { height: auto; max-height: 70svh; }
-    #projects #work-senior-helper figcaption { position: static; background: transparent; }
-    .media-expand { align-self: flex-end; flex-shrink: 0; margin: 10px 8px; min-height: 44px; padding: 8px 12px; color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
-    #projects #work-gyeongseong-yarok .project-video-cover video { height: auto; max-height: 75svh; object-fit: contain; }
-    .project-evidence { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); }
-    .project-evidence h4 { font-size: 20px; line-height: 1.5; margin-bottom: 16px; }
-    .project-evidence dl { display: grid; gap: 14px; }
-    .project-evidence dt { color: var(--primary); font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-    .project-evidence dd { margin: 0; color: var(--text-sub); font-size: 15px; line-height: 1.8; }
-    .evidence-source { margin-top: 14px; font-size: 13px; }
-    .media-viewer { width: min(1600px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 20px; margin: auto; border: 1px solid var(--border-color); border-radius: 14px; background: #F5F7FB; color: var(--text-main); }
-    .media-viewer::backdrop { background: rgba(14,26,44,.8); }
-    .media-viewer-toolbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 16px; }
-    .media-viewer-toolbar h2 { font-size: 18px; line-height: 1.5; }
-    .media-viewer-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-    .media-viewer-tools button, .media-viewer-tools a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #CBD6E5; border-radius: 8px; font-size: 13px; }
-    .media-viewer-stage { display: grid; grid-template-columns: 40px minmax(0,1fr) 40px; gap: 8px; align-items: center; }
-    .media-viewer-stage > button { min-height: 48px; font-size: 36px; color: #355780; }
-    .media-viewer-stage > button:disabled { opacity: .3; cursor: default; }
-    .media-viewer-content { height: min(75dvh, 1000px); overflow: auto; display: flex; align-items: center; justify-content: center; min-width: 0; }
-    .media-viewer-content img, .media-viewer-content video { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-    .media-viewer-content.is-original { display: block; }
-    .media-viewer-content.is-original img { max-width: none; max-height: none; }
-    #mediaViewerStatus { margin-top: 12px; font-size: 13px; color: var(--text-sub); }
-    @media (max-width: 600px) {
-      .media-viewer { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); padding: 12px; }
-      .media-viewer-toolbar { flex-direction: column; align-items: stretch; gap: 8px; }
-      .media-viewer-stage { grid-template-columns: 24px minmax(0,1fr) 24px; gap: 4px; }
-      .media-viewer-content { height: 65dvh; }
-    }
-    #projects .representative-card .project-card-footer { margin-top: 0; }
-    /* Keep portrait and landscape Maljup slides in the same stable display area. */
-    #projects #work-maljup .gallery-viewport { position: relative; aspect-ratio: 1009 / 790; overflow: hidden; }
-    #projects #work-maljup img.gallery-slide { position: absolute; inset: 0; margin: auto; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
-    #projects #work-senior-helper .visual-stage { width: fit-content; max-width: 100%; margin-inline: auto; }
-    #projects #work-senior-helper .visual-primary { width: auto; height: auto; max-width: 100%; max-height: 70svh; }
-    .senior-phone-link { position: absolute; top: 0; bottom: 1%; left: 31.27%; width: 32.18%; border-radius: 0 0 24px 24px; cursor: pointer; }
-    .senior-phone-link:focus-visible { outline: 3px solid #355780; outline-offset: -3px; background: rgba(53,87,128,.08); }
-    #projects .representative-card .project-card-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .track-label { font: 600 11px/1.6 var(--mono-font); letter-spacing: .05em; color: var(--text-muted); }
-    #projects .project-num { white-space: normal; overflow-wrap: anywhere; line-height: 1.6; }
-    .featured-tech { display: flex; flex-wrap: wrap; gap: 8px; }
-    #projects #work-ateliera .project-video-cover video, #projects #work-echo-chamber .project-video-cover video { height: auto; max-height: 75svh; object-fit: contain; }
-    #projects #work-seoul-data .seoul-gallery { flex-direction: column; align-items: stretch; }
-    .senior-archive-cover .visual-stage { position: relative; height: 100%; width: auto; max-width: 100%; aspect-ratio: 1212 / 823; }
-    .senior-archive-cover img { display: block; width: 100%; height: 100%; object-fit: contain; }
-    #work-senior-helper:hover .project-cover img { transform: none; }
-    .archive-technical { padding-top: 16px; border-top: 1px solid var(--border-color); }
-    .archive-technical .archive-decision { font-size: 14px; line-height: 1.75; }
-    .archive-decision strong { display: block; color: var(--primary); font-size: 12px; margin-bottom: 6px; }
-    .archive-technical h5 { font-size: 12px; font-weight: 600; color: var(--text-muted); margin: 14px 0 8px; }
-    .archive-technical ul, .technical-overview ul { padding-left: 18px; color: var(--text-sub); font-size: 14px; line-height: 1.8; }
-    .archive-technical li + li, .technical-overview li + li { margin-top: 6px; }
-    .technical-overview { margin: 24px 0; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
-    .technical-overview h4 { font-size: 16px; margin: 14px 0 10px; }
-    #projects #work-echo-chamber .featured-visual > figure { position: static; height: auto; width: 100%; }
-    #projects #work-echo-chamber .visual-stage { height: auto; }
-    #projects #work-echo-chamber .visual-primary { height: auto; max-height: 65svh; object-fit: contain; }
-    #projects #work-echo-chamber .featured-visual { flex-direction: column; align-items: stretch; padding: 12px; }
-
-/* Content planning portfolio: one vivid accent with neutral surfaces. */
-:root { --bg-ground: #F7F7F8; --bg-surface-elevated: #F0F1F4; --text-main: #191B22; --text-sub: #414550; --text-muted: #626773; --border-color: #D9DCE3; --primary: #2452F5; --primary-light: #1943D5; --accent-violet: #2452F5; --pop-amber: #2452F5; --pop-emerald: #2452F5; }
-body { background-image: none; }
-.hero-title { font-size: clamp(32px, 3.8vw, 60px); line-height: 1.3; letter-spacing: -.045em; }
-.hero-title .highlight { background: none; color: var(--primary); -webkit-text-fill-color: currentColor; }
-.hero-context { max-width: 560px; font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.featured-caption { margin-top: 10px; font-size: 12px; line-height: 1.6; color: var(--text-muted); }
-.content-origin { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); }
-.content-origin h4 { font-size: 23px; line-height: 1.5; margin-bottom: 14px; }
-.case-scope { font-size: 14px; color: var(--text-muted); }
-.featured-decision { border-color: var(--primary); }
-@media (max-width: 600px) { .hero-title { font-size: 34px; } .hero-meta .tag { line-height: 1.8; letter-spacing: 0; } }
-
-header.sidebar-nav { background: #20232B; border-color: #353943; }
-.btn-primary { background: var(--primary); }
-.btn-primary:hover { background: var(--primary-light); }
-.art-core { background: var(--primary); box-shadow: 0 18px 60px rgba(36,82,245,.18); }
-.hero::before { background: none; }
-.hero-art .orbit { border-color: #D9DCE3; }
-.hero-art .floating-note i { color: var(--primary); background: #EEF1FF; }
-.gallery-arrow, .media-viewer-stage > button { color: var(--primary); }
-#projects #work-seoul-data .featured-visual { flex-direction: column; align-items: stretch; padding: 12px; }
-#projects #work-seoul-data .media-expand { position: relative; z-index: 2; align-self: center; margin-top: 12px; }
-
-/* Text-led project shortcuts in place of the decorative sphere. */
-.hero-art { display: grid; gap: 14px; align-content: center; aspect-ratio: auto; min-height: 0; max-width: 390px; }
-.hero-links-heading { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
-.hero-art .floating-note { position: static; width: 100%; max-width: none; animation: none; padding: 16px 18px; box-shadow: none; border: 1px solid var(--border-color); }
-.hero-art .floating-note > span { white-space: normal; }
-
-/* Soft blue depth and readable supporting typography. */
-body { background-image: radial-gradient(ellipse at 95% 0%, rgba(36,82,245,.09), transparent 42%), linear-gradient(145deg, #FAFBFF 0%, #F5F7FC 48%, #F7F7F8 100%); }
-.hero { background: radial-gradient(ellipse at 85% 35%, rgba(36,82,245,.08), transparent 58%), linear-gradient(120deg, rgba(255,255,255,.65), rgba(235,240,255,.4)); }
-header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 100%); }
-.hero-art .floating-note, .compact-project, .tool-card, .strength-card { background: linear-gradient(140deg, #FFFFFF 25%, #F1F4FF 100%); }
-#projects .project-card-main { background: linear-gradient(145deg, rgba(255,255,255,.3), rgba(230,236,255,.38)); }
-#about { background: radial-gradient(ellipse at 90% 50%, rgba(36,82,245,.07), transparent 65%); }
-.contact-box { background: linear-gradient(125deg, #FFFFFF, #EDF1FF); }
-.hero-meta { gap: 12px; font-family: var(--body-font); font-size: 16px; letter-spacing: 0; }
-.hero-meta .tag { font-size: 16px; line-height: 1.65; letter-spacing: 0; padding: 7px 12px; }
-.status-badge { font-size: 12px; padding: 6px 10px; }
-.hero-context { font-size: 17px; line-height: 1.85; color: var(--text-sub); }
-.hero-lead { font-size: 20px; }
-.hero-actions .btn-action, .btn-action { font-size: 16px; }
-.sidebar-section-title { font-size: 12px; }
-.project-index-list a { font-size: 16px; line-height: 1.6; padding: 10px 12px; }
-.project-index-num { font-size: 13px; min-width: 24px; }
-.sidebar-profile-menu .nav-links a { font-size: 16px; }
-.interactive-role-button { font-size: 14px; }
-.hero-links-heading { font-size: 16px; }
-.hero-art .floating-note { font-size: 16px; }
-.section-desc { font-size: 18px; }
-.track-label { font-size: 14px; letter-spacing: 0; }
-.project-num { font-size: 14px; }
-.project-summary { font-size: 18px; }
-.featured-decision > span { font-size: 14px; }
-.featured-contribution h4 { font-size: 15px; color: var(--text-sub); }
-.featured-contribution ul { font-size: 17px; }
-.tech-pill { font-size: 13px; }
-.compact-body p, .modal-content p, .project-evidence dd { font-size: 17px; }
-.compact-detail, .project-evidence dt, .media-expand { font-size: 15px; }
-.featured-visual figcaption { font-size: 13px; }
-@media (max-width: 600px) {
- .hero-meta .tag { font-size: 14px; }
- .hero-lead { font-size: 18px; }
- .hero-context { font-size: 16px; }
- .project-index-list a { font-size: 16px; }
- .hero-art .floating-note { font-size: 16px; }
-}
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#projects">프로젝트로 바로 가기</a>
@@ -678,17 +52,18 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
               <span class="status-badge"><span class="status-dot"></span>OPEN TO WORK</span>
             </div>
             <h1 class="hero-title"><span>이야기를 발견하고,</span><span class="highlight">참여할 콘텐츠로.</span></h1>
-            <p class="hero-lead"><strong>기사와 일상에서 소재를 발견하고,<br>댓글과 데이터에서 콘텐츠의 방향을 탐색합니다.</strong>전달할 메시지를 기획하고, 영상과 웹 인터랙션으로 직접 구현하는 박민선입니다.</p>
+            <p class="hero-lead"><strong>소재 발굴부터 데이터 해석,<br>콘텐츠 제작까지 연결합니다.</strong>기사와 일상의 관찰에서 출발해, 전달할 이야기와 참여 방식을 기획하는 박민선입니다.</p>
             <p class="hero-context">AI·웹 디자인 교육과정에서 진행한 개인·팀 프로젝트입니다. 각 작업의 출발점과 기획 이유, 직접 맡은 제작 과정을 소개합니다.</p>
             <div class="hero-actions"><a class="btn-action btn-primary" href="#projects">대표 프로젝트 보기 ↗</a><a class="btn-action btn-outline" href="#about">프로필 보기</a></div>
           </div>
           <div class="hero-visual">
             <div class="hero-art" role="group" aria-label="작업 역량별 프로젝트 바로가기">
               <p class="hero-links-heading">기획으로 연결한 네 가지 관점</p>
-              <a class="floating-note note-a" href="#work-seoul-data"><i aria-hidden="true">⌘</i><span>데이터에서 발견한 정보</span></a>
-              <a class="floating-note note-b" href="#work-maljup"><i aria-hidden="true">✳</i><span>다시 만나는 학습 콘텐츠</span></a>
-              <a class="floating-note note-c" href="#work-echo-chamber"><i aria-hidden="true">◇</i><span>이야기의 확산과 왜곡</span></a>
-              <a class="floating-note note-d" href="#work-gyeongseong-yarok"><i aria-hidden="true">↗</i><span>참여하는 역사 콘텐츠</span></a>
+<a class="floating-note" href="#work-gyeongseong-yarok"><i aria-hidden="true">01</i><span>경성야록 · 소재를 참여형 콘텐츠로</span></a>
+<a class="floating-note" href="#work-seoul-data"><i aria-hidden="true">02</i><span>서울 상권 · 대상별 데이터 해석</span></a>
+<a class="floating-note" href="#work-echo-chamber"><i aria-hidden="true">03</i><span>EchoChamber · 메시지 흐름 관찰</span></a>
+<a class="floating-note" href="#work-maljup"><i aria-hidden="true">04</i><span>말줍 · 다시 만나는 학습 콘텐츠</span></a>
+
             </div>
           </div>
         </div>
@@ -698,7 +73,7 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
     </section>
 
 <section id="projects" class="section"><div class="container">
-      <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">소재와 데이터를 콘텐츠로 연결한 네 가지 작업</h2><p class="section-desc">소재 발굴 · 대상별 정보 기획 · 메시지 흐름 분석 · 반복 이용 경험</p></div></div>
+      <div class="section-header reveal"><div><div class="section-kicker">01 / SELECTED WORK</div><h2 class="section-title">소재와 데이터를 연결한 대표작 4선</h2><p class="section-desc">소재 발굴 · 대상별 정보 기획 · 메시지 흐름 분석 · 반복 이용 경험</p></div></div>
       <div class="representative-grid">
 <article id="work-gyeongseong-yarok" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="A">
   <div class="project-cover project-video-cover">
@@ -706,33 +81,33 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
     <source src="videos/gyeongseong-demo.mp4" type="video/mp4">
     <a href="videos/gyeongseong-demo.mp4">경성야록 시연 영상 보기</a>
   </video>
-<button type="button" class="media-expand" data-expand-project="gyeongseong-yarok">시연 영상 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">STORY · 참여형 콘텐츠 기획</span><span class="project-num">01 / OSMU · 첫 팀 프로젝트</span></div><div class="project-card-body"><h3 class="project-title">경성야록</h3><p class="project-summary">100년 전 사건을 읽는 데서 나아가, 공간을 탐색하고 퀴즈를 풀며 배우는 게임 콘텐츠를 만들었습니다.</p><p class="featured-decision"><span>기획 의도</span>독자가 사건 속 공간을 눈으로 경험하고, 교육적인 퀴즈로 지식을 얻도록 참여 방식을 기획했습니다.</p><div class="featured-contribution"><h4>본인 기여 · 팀 프로젝트</h4><ul><li>기사 DB 정리와 콘텐츠에 활용할 이야기 선별</li><li>OSMU 콘텐츠 중 게임 ‘식자실’ 설계·구현</li><li>PC·모바일 조작과 공간 탐색·퀴즈 경험 구현</li></ul></div></div><div class="featured-tech" aria-label="핵심 기술"><span class="tech-pill">JavaScript</span><span class="tech-pill">3D 공간 조작</span><span class="tech-pill">DB 설계</span><span class="tech-pill">반응형 웹</span></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('gyeongseong-yarok')">프로젝트 자세히 보기 ↗</button><a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" aria-label="경성야록 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div>
+<button type="button" class="media-expand" data-expand-project="gyeongseong-yarok">시연 영상 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">STORY · 참여형 콘텐츠 기획</span><span class="project-num">01 / OSMU · 첫 팀 프로젝트</span></div><div class="project-card-body"><h3 class="project-title">경성야록</h3><p class="project-summary">신문 기사를 공간 탐색과 퀴즈로 확장한 OSMU 게임 콘텐츠입니다.</p><p class="featured-decision"><span>핵심 기획 결정</span>사건을 읽는 데서 그치지 않도록 공간을 탐색하고 단서를 조합하는 참여 방식을 선택했습니다.</p><div class="featured-contribution"><h4>본인 역할 · 첫 팀 프로젝트</h4><ul><li>기사 DB 정리와 콘텐츠에 활용할 이야기 선별</li><li>팀 OSMU 프로젝트 중 게임 ‘식자실’ 설계·구현</li><li>PC·모바일에서 이동·조사·수집하는 조작 구성</li></ul></div></div><div class="featured-tech" aria-label="작업 키워드"><span class="tech-pill">소재 선별</span><span class="tech-pill">OSMU</span><span class="tech-pill">게임 콘텐츠</span><span class="tech-pill">웹·모바일 구현</span></div><div class="project-card-footer"><button class="btn-action btn-primary" onclick="openDetailModal('gyeongseong-yarok')">기획 과정 보기 ↗</button><a href="https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html" target="_blank" rel="noopener noreferrer" aria-label="경성야록 서비스 바로가기 (새 탭)" class="btn-action btn-outline service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/gyungsung" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/gyungsung GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div>
 </article>
-<article id="work-seoul-data" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="A"><div class="project-cover featured-visual" data-gallery role="region" aria-roledescription="슬라이드" aria-label="서울 상권 분석 서비스 화면" tabindex="0"><figure><div class="gallery-stage" id="seoul-gallery-slides"><div class="gallery-viewport"><img class="gallery-slide" src="assets/seoul-gallery/01.png" data-ratio="1217 / 642" width="1217" height="642" alt="서울 상권 분석 제공 서비스 화면 1" aria-label="서울 상권 분석 화면 1" decoding="async"><img class="gallery-slide" src="assets/seoul-gallery/02.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 2" aria-label="서울 상권 분석 화면 2" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/03.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 3" aria-label="서울 상권 분석 화면 3" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/04.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 4" aria-label="서울 상권 분석 화면 4" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/05.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 5" aria-label="서울 상권 분석 화면 5" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/06.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 6" aria-label="서울 상권 분석 화면 6" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/07.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 7" aria-label="서울 상권 분석 화면 7" decoding="async" hidden></div><button type="button" class="gallery-arrow gallery-prev" data-gallery-step="-1" aria-label="이전 이미지" aria-controls="seoul-gallery-slides">‹</button><button type="button" class="gallery-arrow gallery-next" data-gallery-step="1" aria-label="다음 이미지" aria-controls="seoul-gallery-slides">›</button></div><span class="sr-only" data-gallery-status role="status" aria-live="polite"></span><figcaption class="featured-caption">제공된 서비스 화면 · 과거 상권 데이터에 기반한 분석 예시</figcaption></figure><button type="button" class="media-expand" data-expand-project="seoul-data">이미지 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">DATA · 대상별 정보 기획</span><span class="project-num">02 / 서울 상권 데이터 분석</span></div><div class="project-card-body"><h3 class="project-title">서울, 어디서 놀고 어디서 벌까?</h3><p class="project-summary">같은 상권 데이터에서 창업자와 소비자에게 필요한 정보를 다르게 골라 전달했습니다.</p><p class="featured-decision"><span>기획 의도</span>창업자는 수익과 안정성을, 소비자는 방문할 곳을 찾습니다. 서로 다른 목적에 맞춰 탐색 모드와 정보를 나눴습니다.</p><div class="featured-contribution"><h4>주요 작업 · 데이터 해석과 정보 구성</h4><ul><li>공공 데이터 정제·병합과 목적별 추천 지표 구성</li><li>상권 비교·지도·시각화 대시보드 구현</li><li>실제 매출과 모델 예측을 구분해 정보 전달</li></ul></div></div><div class="featured-tech" aria-label="작업 키워드"><span class="tech-pill">공공 데이터</span><span class="tech-pill">타깃별 정보 구성</span><span class="tech-pill">데이터 시각화</span><span class="tech-pill">Streamlit</span></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('seoul-data')">기획과 분석 과정 보기 ↗</button><a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
-<article id="work-echo-chamber" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="B"><div class="project-cover project-video-cover"><video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" preload="metadata" poster="assets/echochamber-preview.webp" aria-label="EchoChamber 실제 앱 시연 영상 · 반복 재생"><source src="videos/echochamber-demo.mp4" type="video/mp4"><a href="videos/echochamber-demo.mp4">EchoChamber 시연 영상 보기</a></video><button type="button" class="media-expand" data-expand-project="echo-chamber">시연 영상 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">ANALYSIS · 대화 흐름 관찰</span><span class="project-num">03 / 메시지 확산·왜곡 실험</span></div><div class="project-card-body"><h3 class="project-title">EchoChamber — AI 소문 연구실</h3><p class="project-summary">댓글을 읽으며 발견한 이야기의 변형에 주목해, 정보의 확산과 왜곡을 살펴보는 실험을 만들었습니다.</p><p class="featured-decision"><span>기획 의도</span>이야기가 어느 지점에서 달라지는지 살펴보기 위해, AI 에이전트의 대화와 관계 변화를 시각화했습니다.</p><div class="featured-contribution"><h4>주요 기여 · 기술 구현</h4><ul><li>JavaScript 화면과 FastAPI REST 엔드포인트 연동</li><li>대화·메모리·관계망 상태를 시각적 UI로 구성</li><li>LLM 분석 백엔드와 프론트엔드 흐름 연결</li></ul></div></div><div class="featured-tech" aria-label="핵심 기술"><span class="tech-pill">JavaScript</span><span class="tech-pill">FastAPI</span><span class="tech-pill">LLM / OpenAI</span><span class="tech-pill">REST API</span></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('echo-chamber')">프로젝트 자세히 보기 ↗</button><a href="https://echochamber-y3r4.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
-<article id="work-maljup" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="B"><div class="project-cover featured-visual maljup-gallery" data-gallery role="region" aria-roledescription="슬라이드" aria-label="말줍 서비스 화면" tabindex="0"><figure><div class="gallery-stage" id="maljup-gallery-slides"><div class="gallery-viewport"><img class="gallery-slide" src="assets/maljup-gallery/dashboard.png" alt="말줍 PC · 학습 대시보드" aria-label="말줍 PC · 학습 대시보드" data-ratio="1009 / 790" width="1009" height="790" decoding="async"><img class="gallery-slide" src="assets/maljup-gallery/collection.png" alt="말줍 PC · 내 표현 수집함" aria-label="말줍 PC · 내 표현 수집함" data-ratio="1009 / 790" width="1009" height="790" decoding="async" hidden><img class="gallery-slide" src="assets/maljup-gallery/recordings.png" alt="말줍 PC · 녹음 보관함" aria-label="말줍 PC · 녹음 보관함" data-ratio="1009 / 790" width="1009" height="790" decoding="async" hidden><img class="gallery-slide" src="assets/maljup-gallery/mobile.png" alt="말줍 모바일 · 하단 메뉴와 형광펜·메모 수집 패널" aria-label="말줍 모바일 · 하단 메뉴와 형광펜·메모 수집 패널" data-ratio="562 / 786" width="562" height="786" decoding="async" hidden></div><button type="button" class="gallery-arrow gallery-prev" data-gallery-step="-1" aria-label="이전 이미지" aria-controls="maljup-gallery-slides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="gallery-arrow gallery-next" data-gallery-step="1" aria-label="다음 이미지" aria-controls="maljup-gallery-slides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div><span class="sr-only" data-gallery-status role="status" aria-live="polite" aria-atomic="true">1 / 4</span></figure><button type="button" class="media-expand" data-expand-project="maljup">이미지 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">EXPERIENCE · 소비 행동에서 출발한 기획</span><span class="project-num">04 / 콘텐츠 수집·복습 경험</span></div><div class="project-card-body"><h3 class="project-title">말줍 — 나만의 표현 수집함</h3><p class="project-summary">유튜브에서 발견한 영어 표현을 놓치고, 저장해도 다시 보지 않던 불편에서 시작했습니다.</p><p class="featured-decision"><span>기획 의도</span>표현을 모으는 데서 끝나지 않도록 수집·말하기·복습을 한곳에 연결해, 저장한 표현을 다시 만나게 하고자 했습니다.</p><div class="featured-contribution"><h4>주요 기여 · 기술 구현</h4><ul><li>영상 타임스탬프 연동 자막 수집 → MediaRecorder 녹음 → 복습 루프 구현</li><li>IndexedDB 학습 데이터 저장과 JSON 백업·복원 구현</li><li>PC 대시보드와 모바일 수집 패널에 맞춘 반응형 웹 UI 구성</li></ul></div></div><div class="featured-tech" aria-label="핵심 기술"><span class="tech-pill">Vanilla JS (ES6+)</span><span class="tech-pill">IndexedDB</span><span class="tech-pill">MediaRecorder</span><span class="tech-pill">반응형 웹</span></div><div class="project-card-footer"><button class="btn-action btn-outline" onclick="openDetailModal('maljup')">프로젝트 자세히 보기 ↗</button><a href="https://esl-101.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="말줍 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
+<article id="work-seoul-data" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="A"><div class="project-cover featured-visual" data-gallery role="region" aria-roledescription="슬라이드" aria-label="서울 상권 분석 서비스 화면" tabindex="0"><figure><div class="gallery-stage" id="seoul-gallery-slides"><div class="gallery-viewport"><img class="gallery-slide" src="assets/seoul-gallery/01.png" data-ratio="1217 / 642" width="1217" height="642" alt="서울 상권 분석 제공 서비스 화면 1" aria-label="서울 상권 분석 화면 1" decoding="async"><img class="gallery-slide" src="assets/seoul-gallery/02.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 2" aria-label="서울 상권 분석 화면 2" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/03.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 3" aria-label="서울 상권 분석 화면 3" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/04.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 4" aria-label="서울 상권 분석 화면 4" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/05.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 5" aria-label="서울 상권 분석 화면 5" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/06.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 6" aria-label="서울 상권 분석 화면 6" decoding="async" hidden><img class="gallery-slide" src="assets/seoul-gallery/07.png" data-ratio="1218 / 868" width="1218" height="868" alt="서울 상권 분석 제공 서비스 화면 7" aria-label="서울 상권 분석 화면 7" decoding="async" hidden></div><button type="button" class="gallery-arrow gallery-prev" data-gallery-step="-1" aria-label="이전 이미지" aria-controls="seoul-gallery-slides">‹</button><button type="button" class="gallery-arrow gallery-next" data-gallery-step="1" aria-label="다음 이미지" aria-controls="seoul-gallery-slides">›</button></div><span class="sr-only" data-gallery-status role="status" aria-live="polite"></span><figcaption class="featured-caption">제공된 서비스 화면 · 과거 상권 데이터에 기반한 분석 예시</figcaption></figure><button type="button" class="media-expand" data-expand-project="seoul-data">이미지 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">DATA · 대상별 정보 기획</span><span class="project-num">02 / 서울 상권 데이터 분석</span></div><div class="project-card-body"><h3 class="project-title">서울, 어디서 놀고 어디서 벌까?</h3><p class="project-summary">서울 상권 데이터를 창업자·소비자의 목적에 맞게 구성한 정보 서비스입니다.</p><p class="featured-decision"><span>핵심 기획 결정</span>같은 상권도 창업자는 수익과 안정성을, 소비자는 방문할 곳을 찾습니다. 목적에 따라 모드와 추천 지표를 나눴습니다.</p><div class="featured-contribution"><h4>직접 맡은 작업</h4><ul><li>공공 데이터 정제·병합과 목적별 지표 구성</li><li>상권 비교·지도를 통한 정보 전달</li><li>실제 매출과 모델 예측을 구분해 표시</li></ul></div></div><div class="featured-tech" aria-label="작업 키워드"><span class="tech-pill">공공 데이터</span><span class="tech-pill">대상별 정보</span><span class="tech-pill">시각화</span><span class="tech-pill">Streamlit</span></div><div class="project-card-footer"><button class="btn-action btn-primary" onclick="openDetailModal('seoul-data')">기획 과정 보기 ↗</button><a href="https://dataseoul.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/data_seoul" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/data_seoul GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
+<article id="work-echo-chamber" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="B"><div class="project-cover project-video-cover"><video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" preload="metadata" poster="assets/echochamber-preview.webp" aria-label="EchoChamber 실제 앱 시연 영상 · 반복 재생"><source src="videos/echochamber-demo.mp4" type="video/mp4"><a href="videos/echochamber-demo.mp4">EchoChamber 시연 영상 보기</a></video><button type="button" class="media-expand" data-expand-project="echo-chamber">시연 영상 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">ANALYSIS · 대화 흐름 관찰</span><span class="project-num">03 / 메시지 확산·왜곡 실험</span></div><div class="project-card-body"><h3 class="project-title">EchoChamber — AI 소문 연구실</h3><p class="project-summary">AI 에이전트의 대화와 관계망으로 이야기의 확산·변형을 살펴보는 실험입니다.</p><p class="featured-decision"><span>핵심 기획 결정</span>댓글을 읽으며 발견한 “어디서 이야기가 달라질까?”라는 질문을 대화 흐름과 관계망으로 살펴보고자 했습니다.</p><div class="featured-contribution"><h4>직접 맡은 작업</h4><ul><li>대화·기억·관계 변화를 살펴보는 화면 구성</li><li>정보 확산 경로를 관계망으로 시각화</li><li>JavaScript 화면과 FastAPI·LLM 처리 흐름 연결</li></ul></div></div><div class="featured-tech" aria-label="작업 키워드"><span class="tech-pill">대화 흐름</span><span class="tech-pill">메시지 확산</span><span class="tech-pill">관계망 시각화</span><span class="tech-pill">AI 실험</span></div><div class="project-card-footer"><button class="btn-action btn-primary" onclick="openDetailModal('echo-chamber')">기획 과정 보기 ↗</button><a href="https://echochamber-y3r4.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/echoChamber" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/echoChamber GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
+<article id="work-maljup" tabindex="-1" class="representative-card reveal project-card project-card-featured" data-track="B"><div class="project-cover featured-visual maljup-gallery" data-gallery role="region" aria-roledescription="슬라이드" aria-label="말줍 서비스 화면" tabindex="0"><figure><div class="gallery-stage" id="maljup-gallery-slides"><div class="gallery-viewport"><img class="gallery-slide" src="assets/maljup-gallery/dashboard.png" alt="말줍 PC · 학습 대시보드" aria-label="말줍 PC · 학습 대시보드" data-ratio="1009 / 790" width="1009" height="790" decoding="async"><img class="gallery-slide" src="assets/maljup-gallery/collection.png" alt="말줍 PC · 내 표현 수집함" aria-label="말줍 PC · 내 표현 수집함" data-ratio="1009 / 790" width="1009" height="790" decoding="async" hidden><img class="gallery-slide" src="assets/maljup-gallery/recordings.png" alt="말줍 PC · 녹음 보관함" aria-label="말줍 PC · 녹음 보관함" data-ratio="1009 / 790" width="1009" height="790" decoding="async" hidden><img class="gallery-slide" src="assets/maljup-gallery/mobile.png" alt="말줍 모바일 · 하단 메뉴와 형광펜·메모 수집 패널" aria-label="말줍 모바일 · 하단 메뉴와 형광펜·메모 수집 패널" data-ratio="562 / 786" width="562" height="786" decoding="async" hidden></div><button type="button" class="gallery-arrow gallery-prev" data-gallery-step="-1" aria-label="이전 이미지" aria-controls="maljup-gallery-slides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="gallery-arrow gallery-next" data-gallery-step="1" aria-label="다음 이미지" aria-controls="maljup-gallery-slides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div><span class="sr-only" data-gallery-status role="status" aria-live="polite" aria-atomic="true">1 / 4</span></figure><button type="button" class="media-expand" data-expand-project="maljup">이미지 크게 보기 ↗</button></div><div class="project-card-main"><div class="project-card-header"><span class="track-label">EXPERIENCE · 소비 행동에서 출발한 기획</span><span class="project-num">04 / 콘텐츠 수집·복습 경험</span></div><div class="project-card-body"><h3 class="project-title">말줍 — 나만의 표현 수집함</h3><p class="project-summary">영상 속 영어 표현의 수집·말하기·복습을 연결한 개인 학습 도구입니다.</p><p class="featured-decision"><span>핵심 기획 결정</span>좋은 표현을 바로 기록하기 어렵고, 저장해도 다시 보지 않는 경험에서 출발했습니다. 수집한 표현을 다시 만나도록 복습을 연결했습니다.</p><div class="featured-contribution"><h4>직접 맡은 작업</h4><ul><li>자막에서 표현을 골라 모으는 수집 흐름 구성</li><li>수집한 표현의 녹음·복습·학습 달력 구현</li><li>PC·모바일 화면과 로컬 저장·백업 연결</li></ul></div></div><div class="featured-tech" aria-label="작업 키워드"><span class="tech-pill">소비 행동 관찰</span><span class="tech-pill">표현 수집</span><span class="tech-pill">복습 흐름</span><span class="tech-pill">반응형 웹</span></div><div class="project-card-footer"><button class="btn-action btn-primary" onclick="openDetailModal('maljup')">기획 과정 보기 ↗</button><a href="https://esl-101.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="말줍 서비스 바로가기 (새 탭)" class="btn-action btn-outline service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/esl_101" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/esl_101 GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
       </div></div></section>
 
 <section id="more-work" class="section"><div class="container">
       <div class="section-header reveal"><div><div class="section-kicker">02 / PROJECT ARCHIVE</div><h2 class="section-title">프로젝트 아카이브</h2><p class="section-desc">일곱 가지 작업을 짧게 살펴보고, 관심 있는 프로젝트의 상세 내용을 열어보세요.</p></div></div>
       <section id="category-insights" class="project-category-group" aria-labelledby="heading-insights"><div class="category-heading reveal"><span class="section-kicker">01 / CATEGORY</span><h3 id="heading-insights">데이터 기반 인사이트</h3><p>데이터를 목적에 맞게 해석하고, 탐색과 의사결정을 돕는 경험입니다.</p></div><div class="project-grid secondary-grid">
 
-<article id="work-csi-lab" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover"><img src="assets/csi-lab-cover.webp" alt="CSI LAB: 지문 스캔과 증거 연결망으로 표현한 범죄 데이터 수사 콘셉트" width="1672" height="941" loading="lazy" decoding="async"><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div><div class="compact-body"><h4 class="project-title">CSI LAB</h4><p>이미지 속 단서를 관찰하고 범죄 데이터를 읽는 수사 게임 경험입니다.</p><div class="archive-technical"><p class="archive-decision"><strong>설계 판단</strong>범죄 데이터와 비전 AI 분석을 사용자가 단서를 조합하는 인터랙티브 수사 시뮬레이션으로 풀어냈습니다.</p><h5>주요 기여 · 기술 구현</h5><ul><li>이미지 속 단서 탐색 인터랙션과 증거 관계 시각화 구현</li><li>수사 단계·사용자 선택에 따른 상태 분기와 결과 렌더링</li><li>데이터 분석과 스토리텔링 UI를 연결한 게이미피케이션 구성</li></ul></div><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('csi-lab')">자세히 보기 ↗</button><a href="https://csilab-kr.streamlit.app/" target="_blank" rel="noopener noreferrer" aria-label="CSI LAB 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
+<article id="work-csi-lab" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover"><img src="assets/csi-lab-cover.webp" alt="CSI LAB: 지문 스캔과 증거 연결망으로 표현한 범죄 데이터 수사 콘셉트" width="1672" height="941" loading="lazy" decoding="async"><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div><div class="compact-body"><h4 class="project-title">CSI LAB</h4><p>이미지 속 단서를 관찰하고 범죄 데이터를 읽는 수사 게임 경험입니다.</p><div class="archive-technical"><p class="archive-decision"><strong>설계 판단</strong>범죄 데이터와 비전 AI 분석을 사용자가 단서를 조합하는 인터랙티브 수사 시뮬레이션으로 풀어냈습니다.</p><h5>주요 기여 · 기술 구현</h5><ul><li>이미지 속 단서 탐색 인터랙션과 증거 관계 시각화 구현</li><li>수사 단계·사용자 선택에 따른 상태 분기와 결과 렌더링</li><li>데이터 분석과 스토리텔링 UI를 연결한 게이미피케이션 구성</li></ul></div><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('csi-lab')">자세히 보기 ↗</button><a href="https://csilab-kr.streamlit.app/" target="_blank" rel="noopener noreferrer" aria-label="CSI LAB 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/csi_lab" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/csi_lab GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
 
       </div></section>
       <section id="category-product" class="project-category-group" aria-labelledby="heading-product"><div class="category-heading reveal"><span class="section-kicker">02 / CATEGORY</span><h3 id="heading-product">AI 서비스와 제품 기획</h3><p>사용자 문제를 기능과 흐름으로 구체화한 서비스·시제품입니다. 프로젝트별 AI 적용 범위를 구분해 소개합니다.</p></div><div class="project-grid secondary-grid">
 
-<article id="work-ateliera" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover"><img src="assets/ateliera-preview.webp" alt="Ateliera 한강변 3D 화실 시연 화면" loading="lazy"></div><div class="compact-body"><h4 class="project-title">Ateliera — 한강변의 3D 화실</h4><p>한강이 보이는 나만의 화실을 갖고 싶다는 소망에서 출발해, 공간 탐색과 간단한 드로잉을 연결했습니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('ateliera')">자세히 보기 ↗</button><a href="https://ateliera.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary service-link">화실 입장하기 ↗</a></div></div></article><article id="work-my-ai-life" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="life"><stop stop-color="#111C32"></stop><stop offset="1" stop-color="#1F2640"></stop></linearGradient></defs><rect width="640" height="400" fill="url(#life)"></rect>
+<article id="work-ateliera" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover"><img src="assets/ateliera-preview.webp" alt="Ateliera 한강변 3D 화실 시연 화면" loading="lazy"></div><div class="compact-body"><h4 class="project-title">Ateliera — 한강변의 3D 화실</h4><p>한강이 보이는 나만의 화실을 갖고 싶다는 소망에서 출발해, 공간 탐색과 간단한 드로잉을 연결했습니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('ateliera')">자세히 보기 ↗</button><a href="https://ateliera.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary service-link">화실 입장하기 ↗</a><a href="https://github.com/Min8309/ateliera" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/ateliera GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article><article id="work-my-ai-life" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover" aria-hidden="true"><svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" font-family="sans-serif"><defs><linearGradient id="life"><stop stop-color="#111C32"></stop><stop offset="1" stop-color="#1F2640"></stop></linearGradient></defs><rect width="640" height="400" fill="url(#life)"></rect>
 <text x="44" y="58" fill="#38BDF8" font-size="11" letter-spacing="4">MY AI LIFE</text><text x="44" y="99" fill="#F8FAFC" font-size="28">Every choice, a new story.</text>
 <path d="M60 280H180Q220 280 250 240L305 165M180 280Q240 280 280 305L375 325M250 240H390L475 200M390 240L475 280" stroke="#38BDF8" opacity=".65" fill="none" stroke-width="2"></path>
 <g fill="#162D44" stroke="#38BDF8"><circle cx="75" cy="280" r="20"></circle><circle cx="180" cy="280" r="12"></circle><circle cx="305" cy="165" r="20"></circle><circle cx="390" cy="240" r="18"></circle><circle cx="475" cy="200" r="13"></circle><circle cx="475" cy="280" r="13"></circle></g><circle cx="375" cy="325" r="20" fill="#F59E0B"></circle>
-<text x="294" y="169" fill="#CBD5E1" font-size="10">AI</text><text x="354" y="363" fill="#F59E0B" font-size="10">HUMAN</text><g transform="translate(515 142)" stroke="#697791" fill="none"><path d="M0 0L45 26V78L0 104L-45 78V26Z"></path><path d="M0 14L32 32V70L0 89L-32 70V32Z" opacity=".5"></path><path d="M0 52L0 0M0 52L45 26M0 52L45 78M0 52L0 104M0 52L-45 78M0 52L-45 26" opacity=".4"></path><path d="M0 10L36 31L29 68L0 94L-20 64L-37 30Z" stroke="#F59E0B" fill="#F59E0B" fill-opacity=".1"></path></g></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div><div class="compact-body"><h4 class="project-title">MY AI LIFE</h4><p>선택과 공공 통계로 삶의 여러 가능성을 살펴보는 시뮬레이터입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('my-ai-life')">자세히 보기 ↗</button><a href="https://min8309.github.io/my_ai_life/" target="_blank" rel="noopener noreferrer" aria-label="MY AI LIFE 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
-<article id="work-morningblock" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover morningblock-cover"><img src="assets/morningblock-characters.webp" alt="모닝블록의 파스텔 색상과 모드별 블로키 캐릭터" loading="lazy" width="1774" height="887"></div><div class="compact-body"><h4 class="project-title">모닝블록</h4><p>아침의 시간과 순서를 조립해 음성으로 따라가는 루틴 앱입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('morningblock')">자세히 보기 ↗</button><a href="https://mornigblock.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="모닝블록 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
+<text x="294" y="169" fill="#CBD5E1" font-size="10">AI</text><text x="354" y="363" fill="#F59E0B" font-size="10">HUMAN</text><g transform="translate(515 142)" stroke="#697791" fill="none"><path d="M0 0L45 26V78L0 104L-45 78V26Z"></path><path d="M0 14L32 32V70L0 89L-32 70V32Z" opacity=".5"></path><path d="M0 52L0 0M0 52L45 26M0 52L45 78M0 52L0 104M0 52L-45 78M0 52L-45 26" opacity=".4"></path><path d="M0 10L36 31L29 68L0 94L-20 64L-37 30Z" stroke="#F59E0B" fill="#F59E0B" fill-opacity=".1"></path></g></svg><span class="cover-label">PROJECT CONCEPT / VISUAL STUDY</span></div><div class="compact-body"><h4 class="project-title">MY AI LIFE</h4><p>선택과 공공 통계로 삶의 여러 가능성을 살펴보는 시뮬레이터입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('my-ai-life')">자세히 보기 ↗</button><a href="https://min8309.github.io/my_ai_life/" target="_blank" rel="noopener noreferrer" aria-label="MY AI LIFE 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/my_ai_life" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/my_ai_life GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
+<article id="work-morningblock" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover morningblock-cover"><img src="assets/morningblock-characters.webp" alt="모닝블록의 파스텔 색상과 모드별 블로키 캐릭터" loading="lazy" width="1774" height="887"></div><div class="compact-body"><h4 class="project-title">모닝블록</h4><p>아침의 시간과 순서를 조립해 음성으로 따라가는 루틴 앱입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('morningblock')">자세히 보기 ↗</button><a href="https://mornigblock.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="모닝블록 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/mornig_block" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/mornig_block GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
 
       </div></section>
-      <section id="category-experience" class="project-category-group" aria-labelledby="heading-experience"><div class="category-heading reveal"><span class="section-kicker">03 / CATEGORY</span><h3 id="heading-experience">고객 경험과 커머스</h3><p>사용자의 상황을 이해하고, 쉬운 이용과 상품 탐색을 설계합니다.</p></div><div class="project-grid secondary-grid"><article id="work-senior-helper" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover senior-archive-cover"><div class="visual-stage"><img src="assets/senior-helper-screen.webp" alt="시니어 헬퍼 실제 홈 화면: 큰 버튼 네 개와 캐릭터 안내" width="1212" height="823" loading="lazy" decoding="async"><a class="senior-phone-link" href="https://senior-helper-seven.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="휴대폰 화면을 눌러 시니어 헬퍼 서비스 열기 (새 탭)" title="시니어 헬퍼 직접 사용하기"></a></div></div><div class="compact-body"><h4 class="project-title">시니어 뇌건강 헬퍼</h4><p>큰 버튼과 음성·터치 입력으로 두뇌 활동과 일상 기록을 연결하는 시니어 친화적 모바일 웹입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('senior-helper')">자세히 보기 ↗</button><a href="https://senior-helper-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
+      <section id="category-experience" class="project-category-group" aria-labelledby="heading-experience"><div class="category-heading reveal"><span class="section-kicker">03 / CATEGORY</span><h3 id="heading-experience">고객 경험과 커머스</h3><p>사용자의 상황을 이해하고, 쉬운 이용과 상품 탐색을 설계합니다.</p></div><div class="project-grid secondary-grid"><article id="work-senior-helper" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover senior-archive-cover"><div class="visual-stage"><img src="assets/senior-helper-screen.webp" alt="시니어 헬퍼 실제 홈 화면: 큰 버튼 네 개와 캐릭터 안내" width="1212" height="823" loading="lazy" decoding="async"><a class="senior-phone-link" href="https://senior-helper-seven.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="휴대폰 화면을 눌러 시니어 헬퍼 서비스 열기 (새 탭)" title="시니어 헬퍼 직접 사용하기"></a></div></div><div class="compact-body"><h4 class="project-title">시니어 뇌건강 헬퍼</h4><p>큰 버튼과 음성·터치 입력으로 두뇌 활동과 일상 기록을 연결하는 시니어 친화적 모바일 웹입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('senior-helper')">자세히 보기 ↗</button><a href="https://senior-helper-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/senior_helper" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/senior_helper GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
 
-<article id="work-open-gallery" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover"><img src="assets/open-gallery/cover.webp" alt="오픈갤러리 메인: 작품 렌탈 배너와 작품 탐색 화면" width="720" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top"></div><div class="compact-body"><h4 class="project-title">오픈갤러리</h4><p>작품·상품 탐색부터 옵션·수량·금액 변경까지 연결한 커머스 UI입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('open-gallery')">자세히 보기 ↗</button><a href="https://min8309.github.io/" target="_blank" rel="noopener noreferrer" aria-label="오픈갤러리 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a></div></div></article>
+<article id="work-open-gallery" tabindex="-1" class="project-card compact-project reveal"><div class="project-cover"><img src="assets/open-gallery/cover.webp" alt="오픈갤러리 메인: 작품 렌탈 배너와 작품 탐색 화면" width="720" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top"></div><div class="compact-body"><h4 class="project-title">오픈갤러리</h4><p>작품·상품 탐색부터 옵션·수량·금액 변경까지 연결한 커머스 UI입니다.</p><div class="project-actions"><button class="compact-detail" onclick="openDetailModal('open-gallery')">자세히 보기 ↗</button><a href="https://min8309.github.io/" target="_blank" rel="noopener noreferrer" aria-label="오픈갤러리 서비스 바로가기 (새 탭)" class="btn-action btn-primary service-link">서비스 바로가기 ↗</a><a href="https://github.com/Min8309/Min8309.github.io" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline github-link" aria-label="Min8309/Min8309.github.io GitHub 저장소 보기 (새 탭)">GitHub ↗</a></div></div></article>
       </div></section>
       <section id="category-content" class="project-category-group" aria-labelledby="heading-content"><div class="category-heading reveal"><span class="section-kicker">04 / CATEGORY</span><h3 id="heading-content">브랜드와 콘텐츠</h3><p>자료와 일상의 관찰을 이야기와 비주얼 콘텐츠로 연결합니다.</p></div><div class="project-grid secondary-grid">
 
@@ -756,34 +131,19 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
           <div class="about-story">
             <h3>소재의 가능성을 발견하고,<br>기획한 콘텐츠를 직접 만듭니다.</h3>
             <p>브랜드 콘텐츠와 데이터 기반 기획을 지향하는 박민선입니다. 기사와 일상의 관찰에서 소재를 찾고, 대상에게 전달할 이야기와 참여 방식을 기획합니다.</p>
-            <p>3D 공간부터 시니어 서비스까지, 사용자의 상황에 맞는 경험을 만듭니다. 경성야록에서는 <strong>전체 DB와 웹·모바일 게임 구현</strong>을 담당했습니다.</p>
+            <p>경성야록에서는 <strong>기사 DB·이야기 선별과 게임 콘텐츠 구현</strong>을 맡았고, 서울 상권 분석에서는 대상에 따라 필요한 데이터를 골라 화면으로 전달했습니다.</p>
             <p><strong>8년간의 실무 운영과 고객 소통</strong>으로 다진 체계성을 바탕으로, 새로운 기술을 배우고 기획 의도를 화면에 담습니다.</p>
           </div>
 
           <div class="about-skills">
-            <div class="skill-block">
-              <div class="skill-title">01. 3D & Spatial UI/UX</div>
-              <div class="skill-items">
-                WebGL/3D 가상 공간 연출, 캔버스 드로잉 브러시 엔진, 낮/밤 환경 라이팅 전환, 가상 쇼룸 및 인터랙티브 인터페이스
-              </div>
-            </div>
-            <div class="skill-block">
-              <div class="skill-title">02. Frontend & Interaction</div>
-              <div class="skill-items">
-                Vanilla JS (ES6+ Modules), CSS Grid & Flexbox, 반응형 웹 퍼블리싱, Zero-Dependency 경량 아키텍처, 상태 기반 동적 렌더링
-              </div>
-            </div>
-            <div class="skill-block">
-              <div class="skill-title">03. Tech & Data Literacy</div>
-              <div class="skill-items">
-                FastAPI 연동 및 RESTful API 구조 이해, Streamlit 프로토타이핑, Pandas 데이터 전처리 파이프라인, 머신러닝/YOLO 비전 AI 모델 협업
-              </div>
-            </div>
+            <div class="skill-block"><div class="skill-title">01. 콘텐츠 기획</div><div class="skill-items">기사·일상에서 소재 발굴, 대상과 메시지 정리, OSMU와 참여형 콘텐츠 구성<a class="profile-work-link" href="#work-gyeongseong-yarok">경성야록의 소재·게임 기획 보기 ↗</a></div></div>
+            <div class="skill-block"><div class="skill-title">02. 데이터 해석</div><div class="skill-items">공공 데이터 정제·지표 구성, 대상별 정보 선별, 지도·관계망 시각화<a class="profile-work-link" href="#work-seoul-data">서울 상권 분석의 정보 구성 보기 ↗</a></div></div>
+            <div class="skill-block"><div class="skill-title">03. 제작·구현</div><div class="skill-items">웹·모바일 인터랙션 구현, 이미지·AI 영상 제작, 기획 의도를 작동하는 결과물로 연결<a class="profile-work-link" href="#work-maljup">말줍의 수집·복습 흐름 보기 ↗</a></div></div>
           </div>
         </div>
         <div class="strength-heading"><h3>경험을 작업으로 연결하는 네 가지 강점</h3><p>프로젝트에서 드러나는 접근 방식과 구현 사례입니다.</p></div>
           <ul class="strength-cards" aria-label="박민선의 네 가지 강점">
-            <li class="strength-card"><span class="strength-icon" aria-hidden="true">✓</span><div><span class="strength-label">01 / RIGOR</span><h3>8년간 다져진 체계성과 꼼꼼함</h3><p>자산 관리와 일정 조율로 다진 체계성을 UI 구조화에, 꼼꼼함을 일관된 마크업과 화면 디테일에 담습니다.</p></div></li>
+            <li class="strength-card"><span class="strength-icon" aria-hidden="true">✓</span><div><span class="strength-label">01 / RIGOR</span><h3>8년간 다져진 체계성과 꼼꼼함</h3><p>자산 관리와 일정 조율에서 쌓은 체계성을 자료 정리와 제작 과정에 활용합니다. 경성야록의 기사 DB 정리와 콘텐츠 연결에 이 경험을 적용했습니다.</p></div></li>
             <li class="strength-card"><span class="strength-icon" aria-hidden="true">↔</span><div><span class="strength-label">02 / EMPATHY</span><h3>사용자의 눈높이에 맞춘 설계</h3><p>고객 소통에서 배운 공감으로 사용 장벽을 낮춥니다. 시니어 헬퍼의 큰 버튼과 음성 입력에 이 관점을 담았습니다.</p></div></li>
             <li class="strength-card"><span class="strength-icon" aria-hidden="true">◈</span><div><span class="strength-label">03 / SENSE</span><h3>이미지를 다루는 시각 감각</h3><p>촬영과 이미지 편집 경험을 웹 화면의 시각 구성과 사진 기반 영상 제작에 활용합니다.</p></div></li>
             <li class="strength-card"><span class="strength-icon" aria-hidden="true">⌘</span><div><span class="strength-label">04 / CODE</span><h3>데이터를 경험으로 연결하는 구현</h3><p>경성야록의 전체 DB와 웹·모바일 게임을 구현하며, 데이터 정리부터 사용자 인터랙션까지 연결했습니다.</p></div></li>
@@ -798,7 +158,7 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
           <div>
             <div class="section-kicker">04 / AI & TOOLKIT</div>
             <h2 id="tools-title" class="section-title">아이디어를 구현하는 도구들.</h2>
-            <p class="section-desc">프로젝트 제작에 활용한 AI와 개발·디자인 도구를 역할별로 정리했습니다.</p>
+            <p class="section-desc">기획과 데이터 해석, 결과물 제작을 지원한 도구입니다. 각 도구를 활용한 작업과 함께 소개합니다.</p>
           </div>
         </div>
         <div class="tool-grid">
@@ -820,7 +180,7 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
           <div>
             <div class="section-kicker" style="margin-bottom: 8px;">Contact Me</div>
             <h3>새로운 가능성을 함께 이야기해요.</h3>
-            <p>인터페이스 디자인과 구현에 대한 고민을 공유하고 함께 답을 찾습니다.</p>
+            <p>브랜드 콘텐츠와 데이터 기반 콘텐츠 기획 직무의 기회를 찾고 있습니다.</p>
             <p>유선이나 이메일 등 편하신 채널로 연락 주시면 빠르게 회신드리겠습니다.</p>
           </div>
 
@@ -841,7 +201,7 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
               <div class="contact-card-text">
                 <span class="contact-card-label">GMAIL</span>
                 <strong class="contact-card-val">minsunpark3421@gmail.com</strong>
-                <small class="contact-card-hint">프로젝트 의뢰 및 협업 문의</small>
+                <small class="contact-card-hint">채용 및 콘텐츠 협업 문의</small>
               </div>
               <span class="contact-card-action" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
             </a>
@@ -904,12 +264,12 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
   "morningblock": {
     "title": "모닝블록 — 내 아침을 블록처럼 조립하다",
     "meta": "모듈형 오디오 루틴 • React Native / Expo • TypeScript",
-    "content": "<p><strong>문제와 기획:</strong> 출근 준비 중 뉴스·학습·운동 앱을 오가면 흐름이 끊긴다는 가설에서 시작했습니다. 스트레칭·뉴스·외국어·명상·팟캐스트를 원하는 시간과 순서로 조합하고 음성으로 따라가는 경험을 설계했습니다. 사용자 조사나 효과 측정이 완료된 서비스는 아닙니다.</p>\n          <p><strong>기획·구현 영역:</strong> 오늘·내 루틴·기록·모닝콜·설정 화면, 반원 다이얼과 모드별 캐릭터, 모듈당 1~30분 설정과 드래그 순서 변경을 구성했습니다. 저장 루틴·오늘만 변경·편집 초안·실행 세션을 분리하고, AsyncStorage로 루틴·기록·RSS 목록을 기기에 저장합니다.</p>\n          <p><strong>실행과 기록:</strong> 일시정지·재개를 지원하고 끝까지 마친 루틴만 완료로 기록합니다. 중단·건너뛰기는 완료에서 제외하며, 실제 진행 시간과 한국 시간 기준 달력을 표시합니다. 모바일 예약 알림은 연결된 저장 루틴을 실행하고, 오늘만 변경은 수동 실행에 적용됩니다.</p>\n          <p><strong>콘텐츠와 음성:</strong> 뉴스 RSS의 제목·소개문 낭독, 4개 언어 × 3단계의 기본 레슨 12개, 공개 HTTPS 팟캐스트 RSS와 이어 듣기를 연결했습니다. 기사 전문 수집이나 AI 뉴스 요약은 구현하지 않았습니다. 기기 TTS를 기본으로 사용하며 클라우드 음성은 별도 서버 연결이 필요한 선택 기능입니다.</p>\n          <p><strong>첨부 자료의 검증 기록:</strong> 기준 커밋 3e9e31a의 작업 기록에는 타입 검사, 테스트 38개, 웹·iOS·Android 번들 내보내기 통과와 루틴 저장·실행·기록의 브라우저 확인이 명시되어 있습니다. 타이머 완료는 가상 시간으로 확인한 결과이며, 이번 포트폴리오 작업에서 앱 테스트를 재실행한 것은 아닙니다.</p>\n          <p><strong>현재 범위와 다음 단계:</strong> 모닝콜은 지속적으로 울리는 기상 알람이 아닌 OS 예약 알림이며, 웹에서는 설정만 저장합니다. 실기기의 잠금 화면·무음/집중 모드·권한·오디오 인터럽트와 장시간 백그라운드 전환은 추가 검증이 필요합니다. 실시간 RSS 연결과 클라우드 음성의 실제 생성·청취도 검증 과제로 남아 있습니다.</p>\n          <div class=\"presentation-links\"><a class=\"btn-action btn-outline\" href=\"projects/morningblock.html\">모닝블록 프로젝트 소개 보기 ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/morningblock-project.html\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 발표자료 보기 (30장) ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/morningblock-project.pptx\" download=\"\">PPTX 원본 다운로드 ↓</a><a class=\"btn-action btn-primary\" href=\"https://mornigblock.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\">라이브 데모 ↗</a></div>"
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/mornig_block\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><p><strong>문제와 기획:</strong> 출근 준비 중 뉴스·학습·운동 앱을 오가면 흐름이 끊긴다는 가설에서 시작했습니다. 스트레칭·뉴스·외국어·명상·팟캐스트를 원하는 시간과 순서로 조합하고 음성으로 따라가는 경험을 설계했습니다. 사용자 조사나 효과 측정이 완료된 서비스는 아닙니다.</p>\n          <p><strong>기획·구현 영역:</strong> 오늘·내 루틴·기록·모닝콜·설정 화면, 반원 다이얼과 모드별 캐릭터, 모듈당 1~30분 설정과 드래그 순서 변경을 구성했습니다. 저장 루틴·오늘만 변경·편집 초안·실행 세션을 분리하고, AsyncStorage로 루틴·기록·RSS 목록을 기기에 저장합니다.</p>\n          <p><strong>실행과 기록:</strong> 일시정지·재개를 지원하고 끝까지 마친 루틴만 완료로 기록합니다. 중단·건너뛰기는 완료에서 제외하며, 실제 진행 시간과 한국 시간 기준 달력을 표시합니다. 모바일 예약 알림은 연결된 저장 루틴을 실행하고, 오늘만 변경은 수동 실행에 적용됩니다.</p>\n          <p><strong>콘텐츠와 음성:</strong> 뉴스 RSS의 제목·소개문 낭독, 4개 언어 × 3단계의 기본 레슨 12개, 공개 HTTPS 팟캐스트 RSS와 이어 듣기를 연결했습니다. 기사 전문 수집이나 AI 뉴스 요약은 구현하지 않았습니다. 기기 TTS를 기본으로 사용하며 클라우드 음성은 별도 서버 연결이 필요한 선택 기능입니다.</p>\n          <p><strong>첨부 자료의 검증 기록:</strong> 기준 커밋 3e9e31a의 작업 기록에는 타입 검사, 테스트 38개, 웹·iOS·Android 번들 내보내기 통과와 루틴 저장·실행·기록의 브라우저 확인이 명시되어 있습니다. 타이머 완료는 가상 시간으로 확인한 결과이며, 이번 포트폴리오 작업에서 앱 테스트를 재실행한 것은 아닙니다.</p>\n          <p><strong>현재 범위와 다음 단계:</strong> 모닝콜은 지속적으로 울리는 기상 알람이 아닌 OS 예약 알림이며, 웹에서는 설정만 저장합니다. 실기기의 잠금 화면·무음/집중 모드·권한·오디오 인터럽트와 장시간 백그라운드 전환은 추가 검증이 필요합니다. 실시간 RSS 연결과 클라우드 음성의 실제 생성·청취도 검증 과제로 남아 있습니다.</p>\n          <div class=\"presentation-links\"><a class=\"btn-action btn-outline\" href=\"projects/morningblock.html\">모닝블록 프로젝트 소개 보기 ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/morningblock-project.html\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 발표자료 보기 (30장) ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/morningblock-project.pptx\" download=\"\">PPTX 원본 다운로드 ↓</a><a class=\"btn-action btn-primary\" href=\"https://mornigblock.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\">라이브 데모 ↗</a></div>"
   },
   "gyeongseong-yarok": {
     "title": "경성야록 — 신문 아카이브에서 웹·모바일 게임까지",
-    "meta": "3인 팀 프로젝트 • 담당: DB · 웹·모바일 게임 구현",
-    "content": "<section class=\"content-origin\"><h4>기사에서 참여형 역사 콘텐츠로</h4><p>첫 팀 프로젝트에서 기사 DB와 이야기 선별, OSMU 중 게임 콘텐츠를 담당했습니다. 독자가 100년 전 사건을 읽는 데 그치지 않고 공간을 탐색하고 교육적인 퀴즈를 풀며 배우는 경험을 목표로 했습니다.</p><p class=\"case-scope\">게임 콘텐츠 기획·구현과 PC·모바일 조작을 맡았습니다. 전체 프로젝트의 디자인·UI는 팀원의 담당과 구분합니다. 학습 효과를 측정한 결과는 아닙니다.</p></section><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 키보드 없는 모바일에서도 단서를 탐색하기</h4><dl><div><dt>문제</dt><dd>PC 키보드 조작만 제공하면 휴대폰에서는 이동·조사·수집을 수행하기 어렵습니다.</dd></div><div><dt>대응</dt><dd>본인 담당 게임 ‘식자실’에 PC 키보드 조작과 모바일 조이스틱·조사·수집 버튼을 구분해 구현했습니다.</dd></div><div><dt>확인 근거</dt><dd>기존 시연 영상과 모바일 게임 캡처에서 이동·조사·수집 UI를 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>조작 UI의 구현 근거를 제시합니다. 기기별 전체 플레이 완료나 사용자 만족도·교육 효과를 검증한 결과는 아닙니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"assets/gyeongseong-game-mobile.jpg\" target=\"_blank\" rel=\"noopener noreferrer\">모바일 조작 화면 근거 보기 ↗</a></p></section><p><strong>기획 배경:</strong> “그 시대에도 이런 일이 있었어?”라는 질문에서 출발해, 1930년대 동아일보 신문 지면을 젊은 독자가 탐색할 수 있는 디지털 콘텐츠로 재구성했습니다. 하나의 기록을 기사 본편, 현대어 풀이, 라디오, 호외와 게임으로 확장하는 원소스 멀티유즈 프로젝트입니다.</p>\n          <p><strong>팀 공동 결과물:</strong> 죽첨정 사건, 부산 마리아 사건, 손기정 일장기 말소, 백백교 사건의 네 본편과 박람회·편집국·독자 호외·납량·심인 광고·상점의 여섯 코너, 숨은 3D 게임 ‘식자실’을 연결했습니다. 원문과 현대어 전환, 요약, 과거와 현재 장소 비교 등으로 옛 신문의 읽기 장벽을 낮췄습니다.</p>\n          <p><strong>본인 담당 — DB 및 데이터:</strong> 박민선은 전체 DB와 사건 소스 모음을 담당했습니다. 사건 자료를 정리하고, 기록을 웹 콘텐츠와 연결하는 데이터 영역을 맡았습니다.</p>\n          <p><strong>본인 담당 — 웹·모바일 게임 구현:</strong> Three.js(WebGL)와 Vite를 활용한 1인칭 3D 게임 ‘식자실’을 구현했습니다. 메인에서 소지품 네 개를 모아 입장하고, 제한 시간 10분 안에 단서를 수집해 작업대 퍼즐을 푸는 흐름입니다. PC 키보드 조작과 모바일 조이스틱 조작을 지원해 웹과 휴대폰에서 플레이할 수 있도록 구현했습니다.</p>\n          <p><strong>본인 담당 — 굿즈 그래픽 디자인:</strong> Adobe Illustrator를 사용해 경성야록의 신문 지면과 프로젝트 속 사물·캐릭터 이미지를 굿즈용 그래픽으로 구성했습니다. 로고·QR과 여러 그래픽을 한 장의 디자인 시트로 정리했습니다. 아래 자료는 디자인 작업물이며 실제 상품 제작·판매 실적을 의미하지 않습니다.</p>\n          <figure style=\"margin:20px 0\"><a href=\"presentations/gyeongseong-goods.pdf\" target=\"_blank\" rel=\"noopener noreferrer\"><img src=\"assets/gyeongseong-goods.webp\" alt=\"경성야록 굿즈 디자인 시트: 로고와 QR, 캐릭터·사물·신문 그래픽\" width=\"893\" height=\"1259\" loading=\"lazy\" style=\"display:block;width:100%;max-width:440px;height:auto;margin:auto;border-radius:12px\"></a><figcaption style=\"text-align:center;color:var(--text-muted);font-size:13px;margin-top:10px\">Adobe Illustrator · 굿즈 그래픽 디자인</figcaption></figure>\n          <p></p>\n          <p><strong>추가 담당:</strong> 옛 기사를 풀이·라디오 원고·삽화로 확장하고 교열 후 게시하는 ‘자정의 편집국’ 개발과 영상 제작을 맡았습니다. 프로젝트의 생성형 AI 기능에는 OpenAI API를 사용했습니다.</p>\n          <p><strong>협업:</strong> 김소이는 전체 디자인·UI·인터랙션과 오프닝·박람회·광고·납량 코너를, 이경민은 사건 네 편의 서브페이지와 독자 참여 콘텐츠를 담당했습니다. 페이지 연결 점검과 디자인 톤 통일은 팀 공동 작업입니다.</p>\n          <p><strong>기록을 다루는 원칙:</strong> 사건별 기사 제목·날짜·지면과 출처를 밝히고, AI 삽화와 창작 글에는 「재현」「재구성」을 표기했습니다. 피해자의 얼굴·시신·피 표현 없이 기록을 전달했습니다. 굿즈 그래픽 디자인을 진행했으며, 실제 제작·판매와 구독 확장은 별도 과제입니다. 구독 전환이나 신규 독자 유입은 측정된 성과가 아닙니다.</p>\n          <p><a href=\"https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">경성야록 체험하기 ↗</a></p>\n          <div class=\"design-note\"><h4>설계 판단 · 기기에 따라 조작을 나누기</h4><p><strong>선택:</strong> 신문 자료를 읽는 데서 그치지 않고, 단서를 직접 찾고 조합하는 게임으로 탐색 흐름을 확장했습니다.</p><p><strong>확인 범위:</strong> PPT의 실제 게임 화면에서 모바일 이동·조사·수집 UI를 확인할 수 있습니다. 원문과 재현 콘텐츠는 출처·표기를 구분했습니다.</p></div>"
+    "meta": "교육과정 · 첫 팀 프로젝트 · 기사 DB·이야기 선별 / 게임 콘텐츠 설계·구현",
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/gyungsung\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><p class=\"case-purpose\">읽는 기사에서, 탐색하고 배우는 역사 콘텐츠로.</p><section class=\"case-section\"><h4>출발점과 목적</h4><p>100년 전 사건을 단순히 읽는 데서 그치지 않고, 독자가 공간을 경험하고 교육적인 퀴즈를 풀며 지식을 얻기를 바랐습니다. 팀은 1930년대 신문 기록을 기사·풀이·라디오·게임 등으로 확장하는 OSMU 프로젝트를 진행했습니다.</p></section><section class=\"case-section\"><h4>기획 결정 01 · 자료를 정리하고 이야기의 바탕 만들기</h4><p>죽첨정 사건·부산 마리아 사건·손기정 일장기 말소·백백교 사건 등 기사 자료를 정리하고 활용할 이야기를 선별했습니다. 본인은 기사 DB와 사건 소스 정리를 맡아 콘텐츠 제작의 바탕을 마련했습니다.</p></section><figure class=\"case-figure\"><img src=\"assets/gyeongseong-main.webp\" alt=\"경성야록 프로젝트 실제 화면\" loading=\"lazy\" decoding=\"async\"><figcaption>팀 프로젝트 화면 · 기사와 확장 콘텐츠를 연결한 전체 맥락</figcaption></figure><section class=\"case-section\"><h4>기획 결정 02 · 읽기를 탐색·조사·수집으로 확장</h4><p>담당 게임 ‘식자실’은 공간에서 단서를 찾고 조합하는 방식으로 참여를 유도했습니다. PC와 휴대폰에서 탐색할 수 있도록 키보드 조작과 모바일 조이스틱·조사·수집 버튼을 나눴습니다.</p></section><figure class=\"case-figure\"><img src=\"assets/gyeongseong-game-mobile.jpg\" alt=\"식자실 모바일 게임의 이동·조사·수집 화면\" loading=\"lazy\" decoding=\"async\"><figcaption>본인 담당 게임 · 모바일에서 공간을 이동하고 단서를 탐색하는 조작 UI</figcaption></figure><section class=\"case-section\"><h4>본인 역할</h4><p>기사 DB·사건 자료 정리와 이야기 선별, 게임 ‘식자실’ 설계·구현을 담당했습니다. 편집국 개발·영상 제작·굿즈 그래픽도 맡았습니다. 전체 디자인·UI·인터랙션 및 확장 코너는 김소이, 사건 서브페이지와 독자 참여 콘텐츠는 이경민이 담당했고, 연결 점검과 디자인 톤 통일은 공동 작업입니다.</p></section><section class=\"case-section\"><h4>확인한 결과와 다음 단계</h4><p>실제 구동 영상과 모바일 조작 화면으로 구현 범위를 확인할 수 있습니다. 학습 효과·참여율·구독 전환은 측정하지 않았습니다. 다음에는 독자가 단서와 조작법을 이해하는지, 퀴즈가 기사 내용의 이해로 이어지는지 확인할 필요가 있습니다.</p></section><details class=\"case-references\"><summary>구현 근거 · 기술 설명 · 참고 자료</summary><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 키보드 없는 모바일에서도 단서를 탐색하기</h4><dl><div><dt>문제</dt><dd>PC 키보드 조작만 제공하면 휴대폰에서는 이동·조사·수집을 수행하기 어렵습니다.</dd></div><div><dt>대응</dt><dd>본인 담당 게임 ‘식자실’에 PC 키보드 조작과 모바일 조이스틱·조사·수집 버튼을 구분해 구현했습니다.</dd></div><div><dt>확인 근거</dt><dd>기존 시연 영상과 모바일 게임 캡처에서 이동·조사·수집 UI를 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>조작 UI의 구현 근거를 제시합니다. 기기별 전체 플레이 완료나 사용자 만족도·교육 효과를 검증한 결과는 아닙니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"assets/gyeongseong-game-mobile.jpg\" target=\"_blank\" rel=\"noopener noreferrer\">모바일 조작 화면 근거 보기 ↗</a></p></section><div class=\"case-reference-links\"><a href=\"presentations/gyeongseong-goods.pdf\" target=\"_blank\" rel=\"noopener noreferrer\"></a><a href=\"https://ejdms499-wq.github.io/gyeongseong-yarok_v/opening.html\" target=\"_blank\" rel=\"noopener noreferrer\">경성야록 체험하기 ↗</a></div></details>"
   },
   "video-production": {
     "title": "촬라의 상상 — AI 영상 제작",
@@ -919,42 +279,42 @@ header.sidebar-nav { background: linear-gradient(165deg, #20232B 20%, #252D43 10
   "ateliera": {
     "title": "Ateliera (아틀리에라 : 한강변의 3D 화실)",
     "meta": "WebGL / 3D Canvas • Spatial UI/UX • Digital Painting Engine • Virtual Showroom",
-    "content": "<section class=\"content-origin\"><h4>한강이 보이는 나만의 화실</h4><p>한강이 보이는 곳에 내 화실이 있었으면 좋겠다는 개인적인 소망에서 시작했습니다. 복잡한 기능을 갖춘 전문 도구보다 단순하고 직관적으로 그림을 시작할 수 있는 3D 화실을 만들고자 했습니다.</p></section><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 화면이 달라져도 드로잉 비율 유지</h4><dl><div><dt>문제</dt><dd>공간 탐색 화면과 드로잉 영역의 비율이 달라지면 캔버스가 늘어나거나 그리는 감각이 달라질 수 있습니다.</dd></div><div><dt>대응</dt><dd>캔버스 비율 유지와 브러시 조작을 공간 탐색·쇼룸 동선 안에서 연결하도록 구성했습니다.</dd></div><div><dt>확인 근거</dt><dd>기존 구현 설명과 화실 시연 영상에서 공간 탐색·드로잉·쇼룸 흐름을 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>구현 자료와 시연에 근거한 소개입니다. 실제 사용자의 도구 발견성·창작 흐름과 기기별 필압 동작은 추가 검증 항목입니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"videos/ateliera-demo.mp4\" target=\"_blank\" rel=\"noopener noreferrer\">실제 구동 시연 영상 보기 ↗</a></p></section><section class=\"technical-overview\" aria-label=\"설계 판단과 기술 기여\"><h4>설계 판단</h4><p>2D Canvas의 드로잉을 3D 가상 화실과 연결하는 몰입형 웹 경험을 설계했습니다.</p><h4>주요 기여 · 기술 구현</h4><ul><li>HTML5 Canvas 커스텀 브러시와 Three.js 3D 메시의 텍스처 매핑 구현</li><li>가상 공간의 카메라 이동·조작과 낮·밤 라이팅 전환 구현</li><li>드로잉·공간 조작·라이팅을 모듈 단위로 구성</li></ul></section><p><strong>기획 의도:</strong> 디지털 환경에서도 실제 아틀리에에 머무는 듯한 아날로그적 온기와 몰입감을 전달하고자 기획한 3D 가상 작업실 플랫폼입니다. 서울 한강의 수려한 전망과 햇살이 비치는 화실을 배경으로 창작(그리기)과 탐색(공간 둘러보기), 선택(미술용품 담기)을 하나의 유기적인 인터랙션으로 통합했습니다.</p>\n          <p><strong>캔버스 및 브러시 엔진:</strong> 브라우저 위에서 수채화의 맑은 번짐, 물감의 도톰한 두께감, 연필과 목탄의 거친 흑연 입자, 에어브러시 분사는 물론, 튜브 형태의 메쉬로 발광하는 3D 입체 붓질까지 구현했습니다. 캔버스 비율 유지, 필압/기울기 반응, 낮/밤 모드에 따른 한강물 반사와 조명 변화를 지원합니다.</p>\n          <p><strong>가상 쇼룸 인터페이스:</strong> 화실 왼쪽 문을 열고 들어가 실제 진열장 속 캔버스, 종이, 붓, 물감 등의 상품 정보를 확인하고 장바구니에 담는 쇼룸 동선을 설계하여 디지털 페인팅 툴과 커머스 경험을 결합했습니다.</p>\n          <div class=\"design-note\"><h4>설계 판단 · 공간과 도구를 한 흐름으로</h4><p><strong>선택:</strong> 공간 탐색·그리기·미술용품 선택을 하나의 화실 안에서 이어가도록 구성했습니다.</p><p><strong>확인 범위:</strong> 화면 비율을 바꿔도 캔버스 비율이 유지되는 구조를 적용했습니다. 실제 사용자의 도구 발견성과 창작 흐름 검증은 다음 과제입니다.</p></div>\n        <div class=\"project-card-footer\">\n      \n      <a href=\"https://ateliera.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">화실 입장하기 (Demo) ↗</a>\n    </div>"
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/ateliera\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><section class=\"content-origin\"><h4>한강이 보이는 나만의 화실</h4><p>한강이 보이는 곳에 내 화실이 있었으면 좋겠다는 개인적인 소망에서 시작했습니다. 복잡한 기능을 갖춘 전문 도구보다 단순하고 직관적으로 그림을 시작할 수 있는 3D 화실을 만들고자 했습니다.</p></section><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 화면이 달라져도 드로잉 비율 유지</h4><dl><div><dt>문제</dt><dd>공간 탐색 화면과 드로잉 영역의 비율이 달라지면 캔버스가 늘어나거나 그리는 감각이 달라질 수 있습니다.</dd></div><div><dt>대응</dt><dd>캔버스 비율 유지와 브러시 조작을 공간 탐색·쇼룸 동선 안에서 연결하도록 구성했습니다.</dd></div><div><dt>확인 근거</dt><dd>기존 구현 설명과 화실 시연 영상에서 공간 탐색·드로잉·쇼룸 흐름을 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>구현 자료와 시연에 근거한 소개입니다. 실제 사용자의 도구 발견성·창작 흐름과 기기별 필압 동작은 추가 검증 항목입니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"videos/ateliera-demo.mp4\" target=\"_blank\" rel=\"noopener noreferrer\">실제 구동 시연 영상 보기 ↗</a></p></section><section class=\"technical-overview\" aria-label=\"설계 판단과 기술 기여\"><h4>설계 판단</h4><p>2D Canvas의 드로잉을 3D 가상 화실과 연결하는 몰입형 웹 경험을 설계했습니다.</p><h4>주요 기여 · 기술 구현</h4><ul><li>HTML5 Canvas 커스텀 브러시와 Three.js 3D 메시의 텍스처 매핑 구현</li><li>가상 공간의 카메라 이동·조작과 낮·밤 라이팅 전환 구현</li><li>드로잉·공간 조작·라이팅을 모듈 단위로 구성</li></ul></section><p><strong>기획 의도:</strong> 디지털 환경에서도 실제 아틀리에에 머무는 듯한 아날로그적 온기와 몰입감을 전달하고자 기획한 3D 가상 작업실 플랫폼입니다. 서울 한강의 수려한 전망과 햇살이 비치는 화실을 배경으로 창작(그리기)과 탐색(공간 둘러보기), 선택(미술용품 담기)을 하나의 유기적인 인터랙션으로 통합했습니다.</p>\n          <p><strong>캔버스 및 브러시 엔진:</strong> 브라우저 위에서 수채화의 맑은 번짐, 물감의 도톰한 두께감, 연필과 목탄의 거친 흑연 입자, 에어브러시 분사는 물론, 튜브 형태의 메쉬로 발광하는 3D 입체 붓질까지 구현했습니다. 캔버스 비율 유지, 필압/기울기 반응, 낮/밤 모드에 따른 한강물 반사와 조명 변화를 지원합니다.</p>\n          <p><strong>가상 쇼룸 인터페이스:</strong> 화실 왼쪽 문을 열고 들어가 실제 진열장 속 캔버스, 종이, 붓, 물감 등의 상품 정보를 확인하고 장바구니에 담는 쇼룸 동선을 설계하여 디지털 페인팅 툴과 커머스 경험을 결합했습니다.</p>\n          <div class=\"design-note\"><h4>설계 판단 · 공간과 도구를 한 흐름으로</h4><p><strong>선택:</strong> 공간 탐색·그리기·미술용품 선택을 하나의 화실 안에서 이어가도록 구성했습니다.</p><p><strong>확인 범위:</strong> 화면 비율을 바꿔도 캔버스 비율이 유지되는 구조를 적용했습니다. 실제 사용자의 도구 발견성과 창작 흐름 검증은 다음 과제입니다.</p></div>\n        <div class=\"project-card-footer\">\n      \n      <a href=\"https://ateliera.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">화실 입장하기 (Demo) ↗</a>\n    </div>"
   },
   "my-ai-life": {
     "title": "MY AI LIFE (나의 AI 인생 시뮬레이터)",
     "meta": "Vanilla JS (ES6) • Zero-Dependency • Responsive Web • OSMU Engine",
-    "content": "<p><strong>기획 의도:</strong> AI가 계산한 극효율의 수치가 과연 인간에게도 행복한 삶인가라는 문제의식에서 출발했습니다. 10대 진로 갈림길부터 50대 노후 매듭까지 연령대별 딜레마를 마주하도록 설계했습니다.</p>\n          <p><strong>인터랙션 디자인:</strong> 직관적 선택 후 실제 공공 통계 '팩트 카드'가 팝업되며 기회비용을 숙고하게 만드는 4단계 루프를 적용했습니다. 6대 라이프 지표와 나비효과 큐를 통해 선택의 무게를 시각화합니다.</p>\n          <p><strong>코드 아키텍처:</strong> 외부 라이브러리 없이 브라우저에서 즉시 실행되는 순수 ES6 모듈 구조(Engine, UI, Data 분리)로 경량성과 유지보수성을 극대화했습니다.</p>\n        <div class=\"project-card-footer\">\n              \n              <a href=\"https://min8309.github.io/my_ai_life/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">라이브 데모 ↗</a>\n            </div>"
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/my_ai_life\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><p><strong>기획 의도:</strong> AI가 계산한 극효율의 수치가 과연 인간에게도 행복한 삶인가라는 문제의식에서 출발했습니다. 10대 진로 갈림길부터 50대 노후 매듭까지 연령대별 딜레마를 마주하도록 설계했습니다.</p>\n          <p><strong>인터랙션 디자인:</strong> 직관적 선택 후 실제 공공 통계 '팩트 카드'가 팝업되며 기회비용을 숙고하게 만드는 4단계 루프를 적용했습니다. 6대 라이프 지표와 나비효과 큐를 통해 선택의 무게를 시각화합니다.</p>\n          <p><strong>코드 아키텍처:</strong> 외부 라이브러리 없이 브라우저에서 즉시 실행되는 순수 ES6 모듈 구조(Engine, UI, Data 분리)로 경량성과 유지보수성을 극대화했습니다.</p>\n        <div class=\"project-card-footer\">\n              \n              <a href=\"https://min8309.github.io/my_ai_life/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">라이브 데모 ↗</a>\n            </div>"
   },
   "seoul-data": {
     "title": "서울, 어디서 놀고 어디서 벌까? (상권 데이터 분석)",
-    "meta": "Streamlit • Pandas • Random Forest • Public Data Mart",
-    "content": "<section class=\"content-origin\"><h4>같은 데이터, 서로 다른 정보의 목적</h4><p>창업자에게는 수익과 안정성이, 소비자에게는 방문할 곳을 찾는 정보가 필요하다고 보고 사장님·소비자 모드를 나눴습니다. 공공 데이터를 정리하고 목적별 지표를 골라 지도와 비교 화면으로 전달했습니다.</p><p class=\"case-scope\">데이터 분석과 대상별 정보 구성 사례입니다. 콘텐츠 캠페인의 도달·전환 성과나 실제 창업·매출 개선을 검증한 프로젝트는 아닙니다.</p></section><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 예측을 실제 매출로 오해하지 않도록</h4><dl><div><dt>문제</dt><dd>목적이 다른 사용자가 같은 지표를 보거나, 모델 예측값을 확정된 실제 매출로 받아들일 수 있습니다.</dd></div><div><dt>대응</dt><dd>사장님·소비자 모드를 나누고 실제 평균 매출, AI 예측, 차이를 함께 표시했습니다.</dd></div><div><dt>확인 근거</dt><dd>제공된 서비스 화면의 매출 비교와 발표자료 27·32쪽에서 예측 평가 및 화면 구성을 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>화면과 분석 자료를 근거로 설명합니다. 실제 창업 성공률·매출 개선이나 추천 효과를 측정한 결과는 아닙니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"presentations/seoul-hotplace.pdf#page=32\" target=\"_blank\" rel=\"noopener noreferrer\">화면·평가 근거 보기 · 발표자료 ↗</a></p></section><p><strong>기획 의도:</strong> 방대한 서울시 상권 데이터를 일반 사용자 목적에 맞게 재해석했습니다. 창업자(수익/안정성)와 소비자(2030/주말·야간 핫플)의 시선에 맞춰 듀얼 모드 UI를 제공합니다.</p>\n          <p><strong>데이터 및 UI 설계:</strong> 8.4만 건의 데이터를 정제·병합하고 Random Forest 모델(R² 0.5227)로 점포당 월매출을 추정했습니다. AI 수치를 '확정된 정답'이 아닌 '참고 예측치'로 인지하도록 정보 경계를 투명하게 명시했습니다.</p>\n          <p><strong>발표자료 추가:</strong> 84,675개 관측값·1,577개 상권·62개 업종을 바탕으로 데이터 병합, 지표 설계, 규칙 기반 추천과 Random Forest 매출 추정을 설명합니다. 방문·창업 목적에 따른 해석과 실제 코드 흐름을 함께 담았습니다.</p>\n          <p>발표자료 37쪽 · 웹 열람용 PDF와 편집 가능한 원본 PowerPoint를 제공합니다.</p>\n          <div class=\"presentation-links\"><a class=\"btn-action btn-outline\" href=\"presentations/seoul-hotplace.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"서울 핫플 데이터 분석 PPT 발표자료 37쪽 PDF로 보기\">PPT 발표자료 보기 ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/seoul-hotplace.pptx\" download=\"\">PPT 원본 다운로드 ↓</a></div>\n        <div class=\"project-card-footer\">\n              \n              \n              <a href=\"https://dataseoul.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">서비스 바로가기 ↗</a>\n            </div>"
+    "meta": "교육과정 프로젝트 · 공공 데이터 분석 / 대상별 정보 구성",
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/data_seoul\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><p class=\"case-purpose\">같은 상권 데이터에서, 대상마다 다른 정보를 골라 전달하기.</p><section class=\"case-section\"><h4>출발점과 목적</h4><p>서울 상권 데이터를 창업자와 소비자가 각각의 목적에 맞게 읽을 수 있도록 구성했습니다. 창업자는 수익·안정성을, 소비자는 방문할 곳을 찾는다는 차이에 주목했습니다.</p></section><section class=\"case-section\"><h4>기획 결정 01 · 정보를 찾는 목적부터 나누기</h4><p>하나의 화면에 모든 지표를 담기보다 사장님·소비자 모드로 진입을 나눴습니다. 대상의 목적에 맞는 추천과 탐색 정보를 각각 구성했습니다.</p></section><div class=\"case-comparison\"><figure class=\"case-figure\"><img src=\"assets/seoul-gallery/02.png\" alt=\"서울 상권 분석 사장님 모드 제공 화면\" loading=\"lazy\" decoding=\"async\"><figcaption>사장님 모드 · 창업 목적의 상권 정보를 탐색하는 화면</figcaption></figure><figure class=\"case-figure\"><img src=\"assets/seoul-gallery/04.png\" alt=\"서울 상권 분석 소비자 모드 제공 화면\" loading=\"lazy\" decoding=\"async\"><figcaption>소비자 모드 · 방문 목적의 정보를 탐색하는 화면</figcaption></figure></div><section class=\"case-section\"><h4>기획 결정 02 · 예측과 실제 값을 구분하기</h4><p>모델이 추정한 매출을 확정된 결과로 받아들이지 않도록 실제 평균 매출·예측·차이를 구분했습니다. 분석 수치의 크기보다 사용자가 그 의미와 한계를 이해하도록 전달하는 데 주목했습니다.</p></section><section class=\"case-section\"><h4>본인 역할</h4><p>공공 데이터 정제·병합, 목적별 추천 지표 구성, Streamlit 기반 상권 비교·지도·시각화 화면을 구현했습니다. 분석 자료에는 84,675개 관측값·1,577개 상권·62개 업종과 Random Forest 매출 추정 평가가 정리돼 있습니다.</p></section><section class=\"case-section\"><h4>확인한 결과와 다음 단계</h4><p>제공된 화면과 분석 발표자료로 모드별 구성과 예측 평가를 확인할 수 있습니다. 과거 상권 데이터의 분석 사례이며, 캠페인 운영이나 창업 성공률·매출 개선을 측정한 결과는 아닙니다. 다음에는 대상별로 필요한 정보를 찾고 예측값을 해석할 수 있는지 확인할 필요가 있습니다.</p></section><details class=\"case-references\"><summary>구현 근거 · 기술 설명 · 참고 자료</summary><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 예측을 실제 매출로 오해하지 않도록</h4><dl><div><dt>문제</dt><dd>목적이 다른 사용자가 같은 지표를 보거나, 모델 예측값을 확정된 실제 매출로 받아들일 수 있습니다.</dd></div><div><dt>대응</dt><dd>사장님·소비자 모드를 나누고 실제 평균 매출, AI 예측, 차이를 함께 표시했습니다.</dd></div><div><dt>확인 근거</dt><dd>제공된 서비스 화면의 매출 비교와 발표자료 27·32쪽에서 예측 평가 및 화면 구성을 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>화면과 분석 자료를 근거로 설명합니다. 실제 창업 성공률·매출 개선이나 추천 효과를 측정한 결과는 아닙니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"presentations/seoul-hotplace.pdf#page=32\" target=\"_blank\" rel=\"noopener noreferrer\">화면·평가 근거 보기 · 발표자료 ↗</a></p></section><div class=\"case-reference-links\"><a href=\"presentations/seoul-hotplace.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 발표자료 보기 ↗</a><a href=\"presentations/seoul-hotplace.pptx\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 원본 다운로드 ↓</a><a href=\"https://dataseoul.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\">서비스 바로가기 ↗</a></div></details>"
   },
   "csi-lab": {
     "title": "CSI LAB : 범죄 데이터 수사 솔루션",
     "meta": "Ultralytics YOLO11n • Streamlit • Historical Crime Data",
-    "content": "<section class=\"technical-overview\" aria-label=\"설계 판단과 기술 기여\"><h4>설계 판단</h4><p>범죄 데이터와 비전 AI 분석을 사용자가 단서를 조합하는 인터랙티브 수사 시뮬레이션으로 풀어냈습니다.</p><h4>주요 기여 · 기술 구현</h4><ul><li>이미지 속 단서 탐색 인터랙션과 증거 관계 시각화 구현</li><li>수사 단계·사용자 선택에 따른 상태 분기와 결과 렌더링</li><li>데이터 분석과 스토리텔링 UI를 연결한 게이미피케이션 구성</li></ul></section><p><strong>기획 의도:</strong> 난해한 공공 범죄 통계를 일반 시민이 능동적으로 체감할 수 있도록 '수사관이 되어 사건을 해결하는' 게이미피케이션 구조를 도입했습니다.</p>\n          <p><strong>인터페이스 구현:</strong> 가상 CCTV 화면 속에서 YOLO11 딥러닝 객체 탐지로 시각 단서를 수집하고 목격자 진술과 대조하는 증거 분석실(Evidence LAB) 인터페이스를 구축했습니다. 사건 해결 후에는 1990–2024년 지역 범죄 데이터와 예방 가이드로 연결됩니다.</p>\n          <p><strong>발표자료 추가:</strong> 사건 관찰과 증거 수집에서 실제 범죄 통계 읽기로 이어지는 교육 프로젝트입니다. YOLO 객체 관찰, 가설·추리, 지역·장기 비교와 예방 가이드를 소개하며, 구현 기능과 아직 측정하지 않은 교육 효과를 구분합니다.</p>\n          <p>발표자료 42쪽 · 웹 열람용 PDF와 편집 가능한 원본 PowerPoint를 제공합니다.</p>\n          <div class=\"presentation-links\"><a class=\"btn-action btn-outline\" href=\"presentations/csi-lab.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"CSI LAB PPT 발표자료 42쪽 PDF로 보기\">PPT 발표자료 보기 ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/csi-lab.pptx\" download=\"\">PPT 원본 다운로드 ↓</a></div>\n        <div class=\"project-card-footer\">\n              \n              \n              <a href=\"https://csilab-kr.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">라이브 데모 ↗</a>\n            </div>"
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/csi_lab\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><section class=\"technical-overview\" aria-label=\"설계 판단과 기술 기여\"><h4>설계 판단</h4><p>범죄 데이터와 비전 AI 분석을 사용자가 단서를 조합하는 인터랙티브 수사 시뮬레이션으로 풀어냈습니다.</p><h4>주요 기여 · 기술 구현</h4><ul><li>이미지 속 단서 탐색 인터랙션과 증거 관계 시각화 구현</li><li>수사 단계·사용자 선택에 따른 상태 분기와 결과 렌더링</li><li>데이터 분석과 스토리텔링 UI를 연결한 게이미피케이션 구성</li></ul></section><p><strong>기획 의도:</strong> 난해한 공공 범죄 통계를 일반 시민이 능동적으로 체감할 수 있도록 '수사관이 되어 사건을 해결하는' 게이미피케이션 구조를 도입했습니다.</p>\n          <p><strong>인터페이스 구현:</strong> 가상 CCTV 화면 속에서 YOLO11 딥러닝 객체 탐지로 시각 단서를 수집하고 목격자 진술과 대조하는 증거 분석실(Evidence LAB) 인터페이스를 구축했습니다. 사건 해결 후에는 1990–2024년 지역 범죄 데이터와 예방 가이드로 연결됩니다.</p>\n          <p><strong>발표자료 추가:</strong> 사건 관찰과 증거 수집에서 실제 범죄 통계 읽기로 이어지는 교육 프로젝트입니다. YOLO 객체 관찰, 가설·추리, 지역·장기 비교와 예방 가이드를 소개하며, 구현 기능과 아직 측정하지 않은 교육 효과를 구분합니다.</p>\n          <p>발표자료 42쪽 · 웹 열람용 PDF와 편집 가능한 원본 PowerPoint를 제공합니다.</p>\n          <div class=\"presentation-links\"><a class=\"btn-action btn-outline\" href=\"presentations/csi-lab.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"CSI LAB PPT 발표자료 42쪽 PDF로 보기\">PPT 발표자료 보기 ↗</a><a class=\"btn-action btn-outline\" href=\"presentations/csi-lab.pptx\" download=\"\">PPT 원본 다운로드 ↓</a></div>\n        <div class=\"project-card-footer\">\n              \n              \n              <a href=\"https://csilab-kr.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">라이브 데모 ↗</a>\n            </div>"
   },
   "senior-helper": {
     "title": "시니어 뇌건강 헬퍼",
     "meta": "React 19 • TypeScript • Vite 8 • Tailwind CSS 4 • Senior-Friendly UX",
-    "content": "<section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 음성에만 의존하지 않는 기억 기록</h4><dl><div><dt>문제</dt><dd>음성 인식만으로 기록하게 하면 인식 오류나 권한 제한 상황에서 입력이 막힐 수 있습니다.</dd></div><div><dt>대응</dt><dd>음성 인식과 글 입력을 병행하고, 기록을 로컬에 저장하며 저장 오류 시 입력을 유지하도록 구성했습니다.</dd></div><div><dt>확인 근거</dt><dd>발표자료 7·11·14쪽에서 입력 방식과 기록 저장·음성 텍스트 처리 흐름을 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>구현 자료를 통한 확인입니다. 실제 기기의 권한·인식 정확도와 시니어 사용성 검증은 추가 과제입니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"presentations/senior-helper.pdf#page=14\" target=\"_blank\" rel=\"noopener noreferrer\">입력·기록 흐름 근거 보기 · 발표자료 ↗</a></p></section><p><strong>기획 의도:</strong> 디지털 기기 사용에 도움이 필요한 시니어가 친근한 손자·손녀 캐릭터와 함께 매일 짧게 참여할 수 있는 생활 동반자를 기획했습니다. 복잡한 메뉴 대신 두뇌 운동, 물어보기, 오늘의 기억, 기기 사진 찍기를 2×2 버튼으로 구성했습니다.</p>\n          <p><strong>두뇌 운동과 모바일 경험:</strong> 숫자 순서 누르기, 경로 따라 선 긋기, 색상 단추 맞추기, 소리·불빛 순서 기억하기, 그림 짝 맞추기의 다섯 가지 단계별 활동을 제공합니다. 터치·소리 피드백과 격려 문구를 사용하고, 화면 높이에 따라 캐릭터 영상 영역을 조정합니다.</p>\n          <p><strong>대화와 기억 기록:</strong> 음성 인식과 글 입력으로 질문하고, 글과 실제 음성 녹음으로 하루의 경험을 저장·재생합니다. 일반 대화는 준비된 응답을 사용하며, 기억의 기본 저장 위치는 현재 브라우저입니다. 저장 오류 시 입력을 유지하고 오류를 안내합니다.</p>\n          <p><strong>생활 정보와 외부 연동:</strong> Open-Meteo로 기온·체감온도·습도를 조회하며 지역 선택과 위치 권한을 지원합니다. 기기 사진은 촬영·확인·분석 요청 흐름으로 구성했으며, 분석에는 n8n 서버와 AI 모델 연결이 필요합니다. 연결 실패 시 사용법을 임의로 생성하지 않습니다.</p>\n          <p><strong>구현 범위와 다음 단계:</strong> 모바일 홈, 다섯 가지 훈련, 로컬 기억 저장, 날씨 조회와 촬영 화면을 구현했습니다. Supabase 클라우드 저장은 선택 사항이며 환경변수·익명 인증·RLS 설정이 필요합니다. 사진 분석 운영 웹훅·HTTPS·CORS 연결과 실제 기기 권한, AI 안내 정확성 및 시니어 사용성 검증은 추가 확인 항목입니다.</p>\n          <div class=\"design-note\"><h4>설계 판단 · 선택지를 줄이고 입력 방식을 넓히기</h4><p><strong>선택:</strong> 주요 기능 네 개를 2×2 버튼으로 묶고, 글 입력 외에 음성과 터치로 접근할 수 있도록 구성했습니다.</p><p><strong>확인 범위:</strong> 실제 기기의 음성·카메라 권한과 시니어 사용성 검증은 추가 확인 항목입니다. 구현한 화면을 검증된 사용성 성과로 표현하지 않습니다.</p></div>\n          <p><strong>시연 영상 &amp; 발표자료:</strong> 26쪽 분량의 발표자료(웹 열람용 PDF / 원본 PowerPoint)와 모바일 사용 시연 YouTube Shorts 영상을 제공합니다.</p>\n          <div class=\"presentation-links\">\n            <a class=\"btn-action btn-outline\" href=\"https://youtube.com/shorts/F8F46lj6yV8\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"border-color: rgba(245, 158, 11, 0.4); color: var(--pop-amber);\" aria-label=\"시니어 헬퍼 모바일 시연 Shorts 영상 보기\">시연 Shorts 영상 ↗</a>\n            <a class=\"btn-action btn-outline\" href=\"presentations/senior-helper.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"시니어 헬퍼 PPT 발표자료 26쪽 PDF로 보기\">PPT 발표자료 (26쪽 PDF) ↗</a>\n            <a class=\"btn-action btn-outline\" href=\"presentations/senior-helper.pptx\" download=\"\" aria-label=\"시니어 헬퍼 PPT 발표자료 원본 다운로드\">PPT 원본 다운로드 ↓</a>\n          </div>\n        <div class=\"project-card-footer\">\n      \n      \n      \n      <a href=\"https://senior-helper-seven.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">서비스 바로가기 ↗</a>\n    </div>"
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/senior_helper\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 음성에만 의존하지 않는 기억 기록</h4><dl><div><dt>문제</dt><dd>음성 인식만으로 기록하게 하면 인식 오류나 권한 제한 상황에서 입력이 막힐 수 있습니다.</dd></div><div><dt>대응</dt><dd>음성 인식과 글 입력을 병행하고, 기록을 로컬에 저장하며 저장 오류 시 입력을 유지하도록 구성했습니다.</dd></div><div><dt>확인 근거</dt><dd>발표자료 7·11·14쪽에서 입력 방식과 기록 저장·음성 텍스트 처리 흐름을 확인할 수 있습니다.</dd></div><div><dt>검증 범위</dt><dd>구현 자료를 통한 확인입니다. 실제 기기의 권한·인식 정확도와 시니어 사용성 검증은 추가 과제입니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"presentations/senior-helper.pdf#page=14\" target=\"_blank\" rel=\"noopener noreferrer\">입력·기록 흐름 근거 보기 · 발표자료 ↗</a></p></section><p><strong>기획 의도:</strong> 디지털 기기 사용에 도움이 필요한 시니어가 친근한 손자·손녀 캐릭터와 함께 매일 짧게 참여할 수 있는 생활 동반자를 기획했습니다. 복잡한 메뉴 대신 두뇌 운동, 물어보기, 오늘의 기억, 기기 사진 찍기를 2×2 버튼으로 구성했습니다.</p>\n          <p><strong>두뇌 운동과 모바일 경험:</strong> 숫자 순서 누르기, 경로 따라 선 긋기, 색상 단추 맞추기, 소리·불빛 순서 기억하기, 그림 짝 맞추기의 다섯 가지 단계별 활동을 제공합니다. 터치·소리 피드백과 격려 문구를 사용하고, 화면 높이에 따라 캐릭터 영상 영역을 조정합니다.</p>\n          <p><strong>대화와 기억 기록:</strong> 음성 인식과 글 입력으로 질문하고, 글과 실제 음성 녹음으로 하루의 경험을 저장·재생합니다. 일반 대화는 준비된 응답을 사용하며, 기억의 기본 저장 위치는 현재 브라우저입니다. 저장 오류 시 입력을 유지하고 오류를 안내합니다.</p>\n          <p><strong>생활 정보와 외부 연동:</strong> Open-Meteo로 기온·체감온도·습도를 조회하며 지역 선택과 위치 권한을 지원합니다. 기기 사진은 촬영·확인·분석 요청 흐름으로 구성했으며, 분석에는 n8n 서버와 AI 모델 연결이 필요합니다. 연결 실패 시 사용법을 임의로 생성하지 않습니다.</p>\n          <p><strong>구현 범위와 다음 단계:</strong> 모바일 홈, 다섯 가지 훈련, 로컬 기억 저장, 날씨 조회와 촬영 화면을 구현했습니다. Supabase 클라우드 저장은 선택 사항이며 환경변수·익명 인증·RLS 설정이 필요합니다. 사진 분석 운영 웹훅·HTTPS·CORS 연결과 실제 기기 권한, AI 안내 정확성 및 시니어 사용성 검증은 추가 확인 항목입니다.</p>\n          <div class=\"design-note\"><h4>설계 판단 · 선택지를 줄이고 입력 방식을 넓히기</h4><p><strong>선택:</strong> 주요 기능 네 개를 2×2 버튼으로 묶고, 글 입력 외에 음성과 터치로 접근할 수 있도록 구성했습니다.</p><p><strong>확인 범위:</strong> 실제 기기의 음성·카메라 권한과 시니어 사용성 검증은 추가 확인 항목입니다. 구현한 화면을 검증된 사용성 성과로 표현하지 않습니다.</p></div>\n          <p><strong>시연 영상 &amp; 발표자료:</strong> 26쪽 분량의 발표자료(웹 열람용 PDF / 원본 PowerPoint)와 모바일 사용 시연 YouTube Shorts 영상을 제공합니다.</p>\n          <div class=\"presentation-links\">\n            <a class=\"btn-action btn-outline\" href=\"https://youtube.com/shorts/F8F46lj6yV8\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"border-color: rgba(245, 158, 11, 0.4); color: var(--pop-amber);\" aria-label=\"시니어 헬퍼 모바일 시연 Shorts 영상 보기\">시연 Shorts 영상 ↗</a>\n            <a class=\"btn-action btn-outline\" href=\"presentations/senior-helper.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"시니어 헬퍼 PPT 발표자료 26쪽 PDF로 보기\">PPT 발표자료 (26쪽 PDF) ↗</a>\n            <a class=\"btn-action btn-outline\" href=\"presentations/senior-helper.pptx\" download=\"\" aria-label=\"시니어 헬퍼 PPT 발표자료 원본 다운로드\">PPT 원본 다운로드 ↓</a>\n          </div>\n        <div class=\"project-card-footer\">\n      \n      \n      \n      <a href=\"https://senior-helper-seven.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">서비스 바로가기 ↗</a>\n    </div>"
   },
   "echo-chamber": {
     "title": "EchoChamber : Rumor Lab",
-    "meta": "JavaScript • FastAPI • LLM / OpenAI • REST API",
-    "content": "<section class=\"content-origin\"><h4>댓글의 흐름에서 발견한 질문</h4><p>댓글을 읽다 보면 대화의 흐름이 생기고 원래 이야기가 점점 달라지는 모습이 보였습니다. 어느 지점에서 왜곡이 생기는지 분석하고 수치로 살펴보고 싶어 시작했습니다. AI 에이전트의 대화와 관계 변화를 관찰하는 실험으로 구현했습니다.</p><p class=\"case-scope\">실제 댓글 전체를 분석해 왜곡 원인을 입증한 결과와 AI 시뮬레이션을 구분합니다. AI 시뮬레이션의 수치는 실제 댓글의 진위를 판정하거나 왜곡 원인을 입증한 결과가 아닙니다.</p></section><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>구현 확인 · 데모와 서버 연동 범위</h4><dl><div><dt>문제</dt><dd>정적 호스팅 화면만 보고 실제 LLM 분석과 서버 API까지 동작한다고 오해할 수 있습니다.</dd></div><div><dt>대응</dt><dd>프론트엔드에 대화·네트워크 등의 요청 흐름을 구성하고, FastAPI 라우터와 OpenAI 호출 코드를 별도 백엔드로 분리했습니다.</dd></div><div><dt>확인 근거</dt><dd>확보한 저장소 1f231a0의 index.html에서 fetch 요청, app/routers에서 API 경로, app/services에서 LLM 처리 코드를 확인했습니다.</dd></div><div><dt>검증 범위</dt><dd>공개 버튼은 Render 배포 주소로 연결됩니다. FastAPI·LLM 기능의 실제 동작은 서버와 키 설정에 따라 달라지며, 이번 검토에서 실시간 연동을 실행 검증하지 않았습니다. 현재 소스에서 React 사용은 확인되지 않았습니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"https://github.com/Min8309/echoChamber/tree/1f231a0\" target=\"_blank\" rel=\"noopener noreferrer\">구현 소스와 배포 방식 근거 보기 ↗</a></p></section><section class=\"technical-overview\" aria-label=\"설계 판단과 기술 기여\"><h4>설계 판단</h4><p>다중 AI 에이전트의 대화와 정보 확산 과정을 시각적 인터페이스로 드러냈습니다.</p><h4>주요 기여 · 기술 구현</h4><ul><li>FastAPI REST API와 비동기 통신으로 대화·메모리 상태 연동</li><li>소문 전파 경로와 에이전트 관계망을 상태 기반 UI로 시각화</li><li>화면 설계부터 백엔드 API 스키마 연결까지 프로토타이핑</li></ul></section><p><strong>기획 의도:</strong> 온라인 대화 속에서 가십이 전파되며 왜곡되는 과정을 관찰하고 분석하는 AI 에이전트 실험 플랫폼입니다.</p>\n          <p><strong>아키텍처 및 디자인:</strong> FastAPI 백엔드의 Memory, Conversation, Network 라우터와 연동하여, 에이전트 간 소문 전달 궤적과 왜곡률, 평판 하락 수치를 대시보드 그래프로 시각화했습니다. 댓글 분석을 위한 개인정보 비식별화(PII Masking) 파이프라인 UI도 함께 설계되었습니다.</p>\n        <div class=\"presentation-links\"><a href=\"https://github.com/Min8309/echoChamber\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-outline\">GitHub · 프로젝트 보기 ↗</a><a href=\"presentations/echochamber-project.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-outline\">PPT 발표자료 보기 ↗</a><a href=\"presentations/echochamber-project.ppt\" download class=\"btn-action btn-outline\">PPT 원본 다운로드 ↓</a></div><div class=\"project-card-footer\">\n              \n              <a href=\"https://echochamber-y3r4.onrender.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">라이브 데모 ↗</a>\n            </div>"
+    "meta": "교육과정 프로젝트 · 대화 흐름 관찰 / AI 시뮬레이션과 시각화",
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/echoChamber\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><p class=\"case-purpose\">이야기는 어느 지점에서 달라질까?</p><section class=\"case-section\"><h4>출발점과 목적</h4><p>댓글을 읽다 보면 대화의 흐름이 생기고, 어느 순간 원래 이야기와 다른 방향으로 변하는 모습을 발견했습니다. 전체 흐름과 왜곡이 발생하는 지점을 분석하고 수치로 살펴보고 싶어 시작했습니다.</p></section><section class=\"case-section\"><h4>기획 결정 01 · 개별 대화와 관계의 흐름을 함께 보기</h4><p>AI 에이전트의 대화·기억·관계 변화를 살펴보는 화면을 구성했습니다. 개별 발언뿐 아니라 누가 누구에게 정보를 전하는지를 관계망으로 보여주고자 했습니다.</p></section><figure class=\"case-figure\"><img src=\"assets/echochamber-preview.webp\" alt=\"EchoChamber 시연 영상의 포스터 화면\" loading=\"lazy\" decoding=\"async\"><figcaption>시연 영상 포스터 · 실제 대화·관계 변화는 아래 참고 자료의 구동 영상에서 확인</figcaption></figure><section class=\"case-section\"><h4>기획 결정 02 · 관찰한 현상을 실험으로 다루기</h4><p>댓글에서 발견한 질문을 AI 에이전트의 대화 실험으로 옮겼습니다. 시뮬레이션의 왜곡률 등 지표는 실제 댓글의 진위를 판정하거나 왜곡 원인을 입증하는 수치와 구분해야 합니다.</p></section><section class=\"case-section\"><h4>본인 역할</h4><p>JavaScript 화면과 FastAPI REST 엔드포인트를 연결하고, 대화·메모리·관계망 상태를 시각적 UI로 구성했습니다. LLM 처리 백엔드와 프론트엔드의 흐름을 연결했습니다.</p></section><section class=\"case-section\"><h4>확인한 결과와 다음 단계</h4><p>구현 소스·발표자료·시연 영상으로 작업 범위를 확인할 수 있습니다. 현재 포트폴리오 검토에서는 실제 LLM 연동을 재실행하지 않았습니다. 다음에는 지표의 정의·계산 방식과 실험 조건을 명확하게 제시하고, 변화 지점을 화면에서 해석할 수 있는지 확인해야 합니다.</p></section><details class=\"case-references\"><summary>구현 근거 · 기술 설명 · 참고 자료</summary><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>구현 확인 · 데모와 서버 연동 범위</h4><dl><div><dt>문제</dt><dd>정적 호스팅 화면만 보고 실제 LLM 분석과 서버 API까지 동작한다고 오해할 수 있습니다.</dd></div><div><dt>대응</dt><dd>프론트엔드에 대화·네트워크 등의 요청 흐름을 구성하고, FastAPI 라우터와 OpenAI 호출 코드를 별도 백엔드로 분리했습니다.</dd></div><div><dt>확인 근거</dt><dd>확보한 저장소 1f231a0의 index.html에서 fetch 요청, app/routers에서 API 경로, app/services에서 LLM 처리 코드를 확인했습니다.</dd></div><div><dt>검증 범위</dt><dd>공개 버튼은 Render 배포 주소로 연결됩니다. FastAPI·LLM 기능의 실제 동작은 서버와 키 설정에 따라 달라지며, 이번 검토에서 실시간 연동을 실행 검증하지 않았습니다. 현재 소스에서 React 사용은 확인되지 않았습니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"https://github.com/Min8309/echoChamber/tree/1f231a0\" target=\"_blank\" rel=\"noopener noreferrer\">구현 소스와 배포 방식 근거 보기 ↗</a></p></section><div class=\"case-reference-links\"><a href=\"presentations/echochamber-project.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 발표자료 보기 ↗</a><a href=\"presentations/echochamber-project.ppt\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 원본 다운로드 ↓</a><a href=\"https://echochamber-y3r4.onrender.com/\" target=\"_blank\" rel=\"noopener noreferrer\">라이브 데모 ↗</a></div></details><p><a href=\"videos/echochamber-demo.mp4\" target=\"_blank\" rel=\"noopener noreferrer\">실제 앱 시연 영상 보기 ↗</a></p>"
   },
   "maljup": {
     "title": "말줍 — 나만의 표현 수집함",
-    "meta": "PROJECT DETAILS",
-    "content": "<section class=\"content-origin\"><h4>저장한 표현을 다시 만나게 하려면</h4><p>유튜브를 보며 좋은 영어 표현을 발견해도 바로 기록하기 어려웠고, 따로 스크랩해도 다시 보지 않는 경험에서 출발했습니다. 표현을 한곳에 모아 반복해서 떠올리도록 수집·녹음·복습을 연결했습니다.</p><p class=\"case-scope\">개인적인 불편에서 출발한 학습 도구입니다. 복습 흐름을 구현했지만 실제 재방문율이나 장기 학습 효과는 측정하지 않았습니다.</p></section><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 같은 날 반복 클릭으로 복습이 완료되는 문제 방지</h4><dl><div><dt>문제</dt><dd>복습 완료를 같은 날짜에 여러 번 누르면 3일 복습의 의미가 사라질 수 있습니다.</dd></div><div><dt>대응</dt><dd>다음 복습 날짜와 완료 날짜를 관리해 이른 복습과 같은 날 중복 완료를 거부하도록 구성했습니다.</dd></div><div><dt>확인 근거</dt><dd>로컬 확보 소스의 복습 로직 테스트에서 이른 완료·동일 날짜 중복 완료 거부, 날짜가 다른 3회 복습 후 종료를 확인했습니다.</dd></div><div><dt>검증 범위</dt><dd>확보한 소스의 핵심 로직 확인이며 배포 앱 전체의 실기기 검증은 아닙니다. 장기 학습 효과는 측정하지 않았습니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"https://github.com/Min8309/esl_101/blob/4c2656aad3a124a5d4b2d8fb6c021e93bcfd17a4/tests/core.test.js\" target=\"_blank\" rel=\"noopener noreferrer\">복습 로직 확인 근거 ↗</a></p></section><section class=\"technical-overview\" aria-label=\"설계 판단과 기술 기여\"><h4>설계 판단</h4><p>표현을 모으는 데서 끝나지 않도록 수집·말하기·복습을 한곳에 연결해, 저장한 표현을 다시 만나게 하고자 했습니다.</p><h4>주요 기여 · 기술 구현</h4><ul><li>영상 타임스탬프 연동 자막 수집 → MediaRecorder 녹음 → 복습 루프 구현</li><li>IndexedDB 학습 데이터 저장과 JSON 백업·복원 구현</li><li>PC 대시보드와 모바일 수집 패널에 맞춘 반응형 웹 UI 구성</li></ul></section><h3 class=\"project-title\">말줍 — 나만의 표현 수집함</h3>\n                <p class=\"project-summary\">좋아하는 한마디를 주워, 내 말로. 영상 속 표현을 골라 저장하고, 직접 따라 말하며 다음 3일 동안 복습하는 개인 학습 웹앱 시제품입니다.</p>\n                <dl class=\"case-brief\">\n                  <div><dt>문제와 목표</dt><dd>영상에서 발견한 표현을 흘려보내지 않고, 수집 → 말하기 → 복습으로 이어지는 학습 흐름을 기획했습니다.</dd></div>\n                  <div><dt>구현 내용</dt><dd>SRT·VTT 자막 불러오기, 색상별 형광펜·드래그 수집, 녹음 저장, 빈칸 퀴즈, 학습 달력·암기 체크리스트, JSON 백업·복원</dd></div>\n                  <div><dt>저장과 외부 연동</dt><dd>카드·녹음은 브라우저의 IndexedDB에 저장합니다. Google Sheets 내보내기는 별도 연결이 필요하며, 유튜브 주소로 자막 가져오기는 Node.js·Python 서버 기능입니다.</dd></div>\n                </dl>\n                <div class=\"design-note\"><h4>모바일 UX · 학습 흐름을 작은 화면으로 연결</h4><p>PC의 대시보드·표현 수집함·녹음 화면에 더해, 모바일에서는 하단 메뉴로 주요 학습 기능에 접근하도록 구성했습니다. 자막 검색·형광펜 표시와 메모 수집 패널을 함께 보여주어 표현을 읽고 수집하는 흐름을 이어갑니다.</p><p>제공된 모바일 구현 화면을 소개합니다. 별도 네이티브 앱이나 실제 기기의 녹음·권한 검증 완료를 의미하지 않습니다.</p></div><div class=\"project-tech\"><span class=\"tech-pill\">JavaScript</span><span class=\"tech-pill\">IndexedDB</span><span class=\"tech-pill\">MediaRecorder</span><span class=\"tech-pill\">Node.js / Python</span></div>\n              <div class=\"project-card-footer\"><a href=\"presentations/maljup-project.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-outline\" aria-label=\"말줍 PPT 발표자료 PDF 보기 (새 탭)\">PPT 발표자료 보기 ↗</a><a href=\"https://esl-101.onrender.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">서비스 바로가기 ↗</a></div>"
+    "meta": "교육과정 프로젝트 · 개인 경험에서 출발한 표현 수집·복습 기획",
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/esl_101\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><p class=\"case-purpose\">저장한 영어 표현을 다시 만나게 하려면?</p><section class=\"case-section\"><h4>출발점과 목적</h4><p>유튜브를 자주 보면서 좋은 영어 표현을 발견해도 바로 기록하기 어려웠습니다. 따로 스크랩해 보관해도 다시 보지 않는 경험이 반복돼, 표현을 한곳에 모으고 계속 떠올릴 수 있는 도구를 기획했습니다.</p></section><section class=\"case-section\"><h4>기획 결정 01 · 발견한 순간을 수집으로 연결</h4><p>자막에서 표현을 골라 형광펜·드래그로 수집하고 메모할 수 있도록 구성했습니다. 기록을 위해 다른 곳으로 옮겨 적는 흐름을 줄이고자 했습니다.</p></section><figure class=\"case-figure\"><img src=\"assets/maljup-gallery/collection.png\" alt=\"말줍 내 표현 수집함 화면\" loading=\"lazy\" decoding=\"async\"><figcaption>내 표현 수집함 · 모은 표현을 한곳에서 다시 확인하는 화면</figcaption></figure><section class=\"case-section\"><h4>기획 결정 02 · 보관함에서 학습 흐름으로</h4><p>수집한 표현을 직접 말하고 녹음하며, 3일 복습과 학습 달력으로 다시 접하도록 연결했습니다. 저장 자체보다 이후에 다시 보는 행동까지 지원하는 것이 목표였습니다.</p></section><figure class=\"case-figure\"><img src=\"assets/maljup-gallery/dashboard.png\" alt=\"말줍 학습 대시보드\" loading=\"lazy\" decoding=\"async\"><figcaption>학습 대시보드 · 수집 이후 복습과 기록을 확인하는 화면</figcaption></figure><section class=\"case-section\"><h4>본인 역할</h4><p>자막 수집·녹음·복습·학습 달력, PC·모바일 반응형 화면을 구현했습니다. 카드와 녹음은 IndexedDB에 저장하고 JSON 백업·복원을 지원합니다. YouTube 자막 가져오기와 Google Sheets 내보내기는 별도 서버·연결 설정이 필요합니다.</p></section><section class=\"case-section\"><h4>확인한 결과와 다음 단계</h4><p>확보한 소스의 핵심 로직 테스트에서 이른 복습·같은 날 중복 완료 거부와 날짜가 다른 3회 복습 후 종료를 확인한 기록이 있습니다. 실제 재방문율·장기 학습 효과·실기기 녹음 권한은 검증하지 않았습니다. 다음에는 표현 발견부터 수집까지의 조작과 저장한 표현을 다시 찾는 흐름을 확인할 필요가 있습니다.</p></section><details class=\"case-references\"><summary>구현 근거 · 기술 설명 · 참고 자료</summary><section class=\"project-evidence\" aria-label=\"문제 해결과 확인 근거\"><h4>문제 해결 · 같은 날 반복 클릭으로 복습이 완료되는 문제 방지</h4><dl><div><dt>문제</dt><dd>복습 완료를 같은 날짜에 여러 번 누르면 3일 복습의 의미가 사라질 수 있습니다.</dd></div><div><dt>대응</dt><dd>다음 복습 날짜와 완료 날짜를 관리해 이른 복습과 같은 날 중복 완료를 거부하도록 구성했습니다.</dd></div><div><dt>확인 근거</dt><dd>로컬 확보 소스의 복습 로직 테스트에서 이른 완료·동일 날짜 중복 완료 거부, 날짜가 다른 3회 복습 후 종료를 확인했습니다.</dd></div><div><dt>검증 범위</dt><dd>확보한 소스의 핵심 로직 확인이며 배포 앱 전체의 실기기 검증은 아닙니다. 장기 학습 효과는 측정하지 않았습니다.</dd></div></dl><p class=\"evidence-source\"><a href=\"https://github.com/Min8309/esl_101/blob/4c2656aad3a124a5d4b2d8fb6c021e93bcfd17a4/tests/core.test.js\" target=\"_blank\" rel=\"noopener noreferrer\">복습 로직 확인 근거 ↗</a></p></section><div class=\"case-reference-links\"><a href=\"presentations/maljup-project.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">PPT 발표자료 보기 ↗</a><a href=\"https://esl-101.onrender.com/\" target=\"_blank\" rel=\"noopener noreferrer\">서비스 바로가기 ↗</a></div></details>"
   },
   "open-gallery": {
     "title": "오픈갤러리",
     "meta": "PROJECT DETAILS",
-    "content": "<h3 class=\"project-title\">오픈갤러리 — 작품·상품 탐색 UI</h3>\n                <p class=\"project-summary\">그림 렌탈·아트테크·아트굿즈를 탐색하는 React 프런트엔드 구현 프로젝트입니다. 목록에서 상세 화면으로 이동하고, 이미지·기종·수량 선택에 따라 화면과 금액이 바뀌는 경험을 연결했습니다.</p>\n                <dl class=\"case-brief\"><div><dt>사용 흐름</dt><dd>작품·상품 목록 → 상세 정보 → 이미지·옵션 선택</dd></div><div><dt>구현 내용</dt><dd>페이지 라우팅, 배너 전환, 썸네일 선택, 연관 옵션 초기화, 수량·금액 계산</dd></div><div><dt>확인 범위</dt><dd>배포 파일의 로컬 실행 화면을 확인했습니다. 구매·로그인은 시연 UI이며 실제 결제·인증 연동은 별도입니다.</dd></div></dl>\n                <div class=\"project-tech\"><span class=\"tech-pill\">React</span><span class=\"tech-pill\">React Router</span><span class=\"tech-pill\">useState / useEffect</span><span class=\"tech-pill\">CSS Grid / Flex</span></div>\n              <div class=\"project-card-footer\">\n              <a href=\"projects/open-gallery.html\" class=\"btn-action btn-outline\">페이지별 화면 보기 ↗</a>\n              <a href=\"presentations/open-gallery-technology.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-outline\">발표자료 보기 ↗</a>\n              <a href=\"https://min8309.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">사이트 보기 ↗</a>\n            </div>"
+    "content": "<div class=\"case-source-action\"><a class=\"btn-action btn-outline github-link\" href=\"https://github.com/Min8309/Min8309.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub · 구현 소스 보기 ↗</a></div><h3 class=\"project-title\">오픈갤러리 — 작품·상품 탐색 UI</h3>\n                <p class=\"project-summary\">그림 렌탈·아트테크·아트굿즈를 탐색하는 React 프런트엔드 구현 프로젝트입니다. 목록에서 상세 화면으로 이동하고, 이미지·기종·수량 선택에 따라 화면과 금액이 바뀌는 경험을 연결했습니다.</p>\n                <dl class=\"case-brief\"><div><dt>사용 흐름</dt><dd>작품·상품 목록 → 상세 정보 → 이미지·옵션 선택</dd></div><div><dt>구현 내용</dt><dd>페이지 라우팅, 배너 전환, 썸네일 선택, 연관 옵션 초기화, 수량·금액 계산</dd></div><div><dt>확인 범위</dt><dd>배포 파일의 로컬 실행 화면을 확인했습니다. 구매·로그인은 시연 UI이며 실제 결제·인증 연동은 별도입니다.</dd></div></dl>\n                <div class=\"project-tech\"><span class=\"tech-pill\">React</span><span class=\"tech-pill\">React Router</span><span class=\"tech-pill\">useState / useEffect</span><span class=\"tech-pill\">CSS Grid / Flex</span></div>\n              <div class=\"project-card-footer\">\n              <a href=\"projects/open-gallery.html\" class=\"btn-action btn-outline\">페이지별 화면 보기 ↗</a>\n              <a href=\"presentations/open-gallery-technology.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-outline\">발표자료 보기 ↗</a>\n              <a href=\"https://min8309.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-action btn-primary\">사이트 보기 ↗</a>\n            </div>"
   }
 };
 
