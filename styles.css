@@ -1123,3 +1123,8 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
  .hero-ribbon { object-position: 70% center; opacity: .4; }
  .hero::after { background: rgba(250,251,255,.45); }
 }
+
+/* Playback controls and immediate alternatives for sleeping demos. */
+.gallery-toggle { display: block; margin: 8px auto; min-height: 44px; min-width: 100px; padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-card, #fff); color: var(--text-main); font: inherit; cursor: pointer; }
+.service-note { font-size: 14px; line-height: 1.7; margin: 12px 0; }
+.service-note a { text-decoration: underline; text-underline-offset: 3px; }
