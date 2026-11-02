@@ -24,8 +24,8 @@
     phase += dt * 1.1;
     x += (targetX - x) * .055; y += (targetY - y) * .055;
     impulse *= .95;
-    strength += ((inside ? 1.6 + impulse * 4 : 0) - strength) * .045;
-    ribbon.style.transform = `translate(${(x * 7).toFixed(2)}px,${(y * 5).toFixed(2)}px) rotate(${(x * .3).toFixed(3)}deg) scale(1.035)`;
+    strength += ((inside ? 12 + impulse * 10 : 0) - strength) * .045;
+    ribbon.style.transform = `translate(${(x * 16).toFixed(2)}px,${(y * 10).toFixed(2)}px) rotate(${(x * .3).toFixed(3)}deg) scale(1.035)`;
     for (const { path, original } of paths) {
      let coordinate = 0, px = 0;
      const deformed = original.replace(/-?(?:\d*\.)?\d+/g, value => {
@@ -45,7 +45,7 @@
   if (!enabled()) reset();
   else if (visible && !document.hidden && (inside || strength > .02)) frame = requestAnimationFrame(tick);
  }
- hero.addEventListener('pointermove', event => {
+ function followPointer(event) {
   if (!enabled() || event.pointerType === 'touch') return;
   const box = hero.getBoundingClientRect();
   const nx = (event.clientX - box.left) / box.width * 2 - 1;
@@ -53,7 +53,9 @@
   impulse = Math.min(1, impulse + Math.hypot(nx - targetX, ny - targetY) * 1.4);
   targetX = nx; targetY = ny; inside = true;
   if (!frame) sync();
- }, { passive: true });
+ }
+ hero.addEventListener('pointerenter', followPointer, { passive: true });
+ hero.addEventListener('pointermove', followPointer, { passive: true });
  hero.addEventListener('pointerleave', () => { inside = false; targetX = targetY = 0; });
  motion.addEventListener('change', sync); pointer.addEventListener('change', sync);
  document.addEventListener('visibilitychange', sync);

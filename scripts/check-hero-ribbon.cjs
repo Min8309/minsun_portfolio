@@ -1,0 +1,40 @@
+const assert = require('node:assert/strict');
+const { chromium } = require('playwright');
+(async () => {
+ const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
+ try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'no-preference' });
+  await page.clock.install();
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  await page.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000');
+  const ribbon = page.locator('.hero-ribbon');
+  const paths = () => ribbon.locator('path').evaluateAll(es => es.map(e => e.getAttribute('d')));
+  const original = await paths();
+  const heading = await page.locator('.hero-title').boundingBox();
+  await page.mouse.move(1000, 350);
+  await page.waitForTimeout(100);
+  await page.clock.runFor(2000);
+  assert.notDeepEqual(await paths(), original, 'hover must deform SVG curves');
+  const hover = await paths();
+  await page.mouse.move(1300, 550);
+  await page.clock.runFor(1500);
+  assert.notDeepEqual(await paths(), hover, 'wave continues flowing with pointer');
+  assert.deepEqual(await page.locator('.hero-title').boundingBox(), heading, 'copy remains stationary');
+  await page.mouse.move(100, 10);
+  await page.clock.runFor(15000);
+  assert.deepEqual(await paths(), original, 'leave restores original curves');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.mouse.move(1000, 350);
+  await page.clock.runFor(1500);
+  assert.deepEqual(await paths(), original, 'reduced motion stays static');
+  assert.deepEqual(errors, []);
+  await page.close();
+  const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  await mobile.goto(process.env.PORTFOLIO_URL || 'http://127.0.0.1:8000');
+  const before = await mobile.locator('.hero-ribbon').innerHTML();
+  await mobile.locator('.hero-title').tap();
+  assert.equal(await mobile.locator('.hero-ribbon').innerHTML(), before);
+  assert.ok(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  console.log('PASS: hover deformation, pointer movement, stationary copy, leave reset, reduced motion, mobile touch.');
+ } finally { await browser.close(); }
+})().catch(e => { console.error(e); process.exitCode = 1; });
