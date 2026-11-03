@@ -1115,6 +1115,28 @@ header.sidebar-nav { background: linear-gradient(165deg, rgb(32, 35, 43) 20%, rg
  font-weight: 700;
 }
 
+/* Hero category shortcuts share one neutral state until a project is selected. */
+.hero-actions .btn-action,
+.hero-actions .btn-action:is(:hover, :focus-visible, :active) {
+ background: #FFFFFF;
+ color: var(--text-main);
+ border-color: var(--border-color);
+ box-shadow: none;
+ transform: none;
+}
+.hero-actions .btn-action:focus-visible { outline: 3px solid rgba(36, 82, 245, .28); outline-offset: 3px; }
+.hero-actions .hero-project-link.is-active,
+.hero-actions .hero-project-link.is-active:is(:hover, :focus-visible, :active) {
+ background: var(--primary);
+ color: #FFFFFF;
+ border-color: var(--primary);
+ box-shadow: 0 4px 18px rgba(36, 82, 245, .22);
+}
+@media (max-width: 600px) {
+ .hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .hero-actions .btn-action { width: 100%; padding-inline: 10px; }
+}
+
 /* Static sculptural ribbons belong only to the introduction. */
 .hero { isolation: isolate; }
 .hero-ribbon { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; pointer-events: none; z-index: 0; opacity: .78; }

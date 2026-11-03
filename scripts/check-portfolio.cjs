@@ -74,6 +74,28 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('.hero-meta .tag').innerText(), '콘텐츠 기획 · 스토리 구성 · 영상·인터랙티브 제작');
     assert.equal(await page.locator('.hero-visual, .floating-note').count(), 0);
     assert.equal(await page.locator('.hero-title .highlight').evaluate(item => getComputedStyle(item).color), 'rgb(36, 82, 245)');
+    const heroProjectLinks = page.locator('.hero-project-link');
+    assert.deepEqual(await heroProjectLinks.allInnerTexts(), [
+      '참여형 스토리 · 게임',
+      'AI 영상 · 스토리텔링',
+      '데이터 기반 정보 기획'
+    ]);
+    assert.equal(await page.locator('.hero-actions .btn-action').count(), 4);
+    assert.equal(await page.locator('.hero-actions .is-active').count(), 0);
+    assert.deepEqual(await page.locator('.hero-actions .btn-action').evaluateAll(links => links.map(link => getComputedStyle(link).backgroundColor)),
+      ['rgb(255, 255, 255)', 'rgb(255, 255, 255)', 'rgb(255, 255, 255)', 'rgb(255, 255, 255)']);
+    await heroProjectLinks.nth(0).click();
+    assert.equal(await heroProjectLinks.nth(0).evaluate(link => link.classList.contains('is-active')), true);
+    assert.equal(await heroProjectLinks.nth(0).evaluate(link => getComputedStyle(link).backgroundColor), 'rgb(36, 82, 245)');
+    await heroProjectLinks.nth(1).click();
+    assert.equal(await heroProjectLinks.nth(0).evaluate(link => link.classList.contains('is-active')), false);
+    assert.equal(await heroProjectLinks.nth(1).evaluate(link => link.classList.contains('is-active')), true);
+    assert.equal(await heroProjectLinks.nth(0).evaluate(link => getComputedStyle(link).backgroundColor), 'rgb(255, 255, 255)');
+    const gamePortfolioLink = page.locator('.hero-portfolio-link');
+    assert.equal(await gamePortfolioLink.innerText(), '게임 포트폴리오 ↗');
+    assert.equal(await gamePortfolioLink.getAttribute('href'), 'https://minsun-play-portfolio.vercel.app/');
+    assert.equal(await gamePortfolioLink.getAttribute('target'), '_blank');
+    assert.equal(await gamePortfolioLink.getAttribute('rel'), 'noopener noreferrer');
     assert.equal(await page.locator('#more-work article').count(), 7);
     assert.equal(await page.locator('.project-index-list a').count(), 11);
     assert.deepEqual(await page.locator('.project-index-list a').evaluateAll(links => links.map(link => link.hash.slice(1))),
