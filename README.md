@@ -95,6 +95,8 @@ Supabase 클라우드 저장과 n8n·AI 사진 분석은 운영 연결 및 설�
 | 비전 AI·모델 플랫폼 | Ultralytics YOLO, Hugging Face | 객체 탐지 및 모델·데이터셋 탐색 |
 | 백엔드·API | FastAPI | 프론트엔드와 데이터 처리 기능 연결 |
 | UI/UX 디자인 | Figma | 화면·컴포넌트·인터랙션 설계 |
+| 영상 편집 | CapCut, Adobe Premiere Pro | 사용 가능한 영상 편집 도구 |
+| 그래픽 디자인 | Adobe Photoshop, Adobe Illustrator | 사용 가능한 이미지·그래픽 제작 도구 |
 
 도구별 역할을 구분했으며, 모든 도구가 각 프로젝트에 동일하게 사용된 것은 아닙니다.
 
